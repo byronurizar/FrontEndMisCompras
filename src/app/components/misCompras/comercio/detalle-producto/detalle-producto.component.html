@@ -24,7 +24,7 @@
                     <owl-carousel-o [options]="sliderOption" #owlCar class="product-slick">
                         <ng-container *ngFor="let image of imagenesProducto">
                             <ng-template carouselSlide [id]="image.id" class="item">
-                                <img [src]="image.pathImagen+image.codigoImagen" alt="" class="img-fluid">
+                                <img [src]="urlImagenes+image.pathImagen+image.codigoImagen" alt="" class="img-fluid">
                             </ng-template>
                         </ng-container>
                     </owl-carousel-o>
@@ -34,7 +34,7 @@
                         <ng-container *ngFor="let variant of imagenesProducto">
                             <ng-template carouselSlide class="item">
                                 <div class="item">
-                                    <img [src]="variant.pathImagen+variant.codigoImagen"
+                                    <img [src]="urlImagenes+variant.pathImagen+variant.codigoImagen"
                                         (click)="owlCar.to(variant.id.toString())" alt="">
                                 </div>
                             </ng-template>
@@ -49,6 +49,7 @@
                     <div class="d-flex">
                         <span>{{producto.precio}}</span>&nbsp;Visitas&nbsp;|&nbsp;<span>{{producto.precio}}</span>&nbsp;Pedidos
                     </div>
+                    
                 </div>
                 <hr>
                 <p>{{producto.descripcion}}</p>
@@ -59,6 +60,9 @@
 
                     <div *ngIf="producto.oferta==0">
                         {{producto.precio | currency:'Q':'symbol'}}
+                    </div>
+                    <div *ngIf="producto.descripcionCorta">
+                        {{producto.descripcionCorta}}
                     </div>
                 </div>
                 <hr>
@@ -116,9 +120,9 @@
                     <button class="btn btn-primary-gradien m-r-10" type="button"
                         data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/carrito']"
                         (click)=agregarProducto(producto) title="">Añadir al carrito</button>
-                    <button class="btn btn-success-gradien" type="button" data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/finalizarpedido']"
+                    <button class="btn btn-success-gradien  m-r-10" type="button" data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/finalizarpedido']"
                         (click)=agregarProducto(producto) title="">Comprar ahora</button>
-                    <button class="btn btn-primary-gradien m-r-10 m-l-10" type="button"
+                    <button class="btn btn-primary-gradien  m-r-10" type="button"
                         data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/productos']"
                         title="">Regresar a productos</button>
                 </div>
@@ -145,7 +149,7 @@
                                         <div class="product-box">
                                             <div class="product-img">
                                                 <div class="ribbon ribbon-danger" *ngIf="product.oferta>0">Oferta</div>
-                                                <img class="img-fluid" [src]="[product.pathImagen]" alt="">
+                                                <img class="img-fluid" [src]="urlImagenes+[product.pathImagen]" alt="">
                                             </div>
                                             <div class="product-details">
                                                 <a [routerLink]="['/comercio/detalle', product.id]">

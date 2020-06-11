@@ -6,7 +6,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { Producto } from 'src/app/modelos/producto.model';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
-import { Carrito } from 'src/app/servicios/carrito.service';
 import { ListaDeseos } from 'src/app/servicios/listadeseos.service';
 import { environment } from 'src/environments/environment';
 
@@ -20,7 +19,7 @@ export class ProductosComponent implements OnInit {
   @Output() productoDetalleVistaRapida: any;
   public productos: Producto[] = [];
 
-
+  public urlImagenes = environment.urlImagnes;
 
 
   constructor(private conectorApi: ConectorApi, private toastr: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos) { }

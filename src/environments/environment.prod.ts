@@ -8,5 +8,7 @@ export const environment = {
     storageBucket: "ENTER_YOUR_STORAGE_BUCKET",
     messagingSenderId: "ENTER_YOUR_ID",
     appId: "ENTER_YOUR_API_ID"
-  }
+  },
+  urlBase:'http://35.222.84.155/apiStore/v1/',
+  urlImagnes:'http://35.222.84.155/'
 };

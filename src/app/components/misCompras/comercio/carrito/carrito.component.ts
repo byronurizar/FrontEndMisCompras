@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Carrito } from 'src/app/servicios/carrito.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-carrito',
@@ -13,6 +14,7 @@ export class CarritoComponent implements OnInit {
   public cartItems: Observable<any[]> = of([]);
   public selectCartItems: any[] = [];
   modalReference: NgbModalRef;
+  public urlImagenes = environment.urlImagnes;
   constructor(private route: ActivatedRoute, private cartService: Carrito,private modalService: NgbModal) {
   }
 

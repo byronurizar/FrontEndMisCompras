@@ -7,6 +7,7 @@ import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { Producto } from 'src/app/modelos/producto.model';
 import { Carrito } from 'src/app/servicios/carrito.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -54,6 +55,8 @@ export class DetalleProductoComponent implements OnInit {
     dots: false,
     focusOnSelect: true
   }
+
+  public urlImagenes = environment.urlImagnes;
 
   constructor(private conectorApi: ConectorApi, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, config: NgbRatingConfig, private cartService: Carrito) {
     this.allContent = ContentDetail.ContentDetails;

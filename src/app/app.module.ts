@@ -31,7 +31,6 @@ import { HomeVentasComponent } from './misCompras/home-ventas/home-ventas.compon
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ComercioModule } from './components/misCompras/comercio/comercio.module';
 import { CommonModule } from '@angular/common';
-import { DetalledeProductoComponent } from './misCompras/detallede-producto/detallede-producto.component';
 import { EncabezadoComponent } from './misCompras/encabezado/encabezado.component';
 import { CarruselComponent } from './misCompras/carrusel/carrusel.component';
 import { FooterComponent } from './misCompras/footer/footer.component';
@@ -50,7 +49,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegistroComponent,
     InicioComponent,
     HomeVentasComponent,
-    DetalledeProductoComponent,
     EncabezadoComponent,
     CarruselComponent,
     FooterComponent,

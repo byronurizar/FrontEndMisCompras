@@ -6,6 +6,7 @@ import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { Carrito } from 'src/app/servicios/carrito.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-vista-rapida',
@@ -24,7 +25,7 @@ export class VistaRapidaComponent implements OnInit {
   tallaValido = true;
   public detailCnt = [];
   public slidesPerPage = 4;
-
+  public urlImagenes = environment.urlImagnes;
   public incrementar() {
     this.cantidad += 1;
   }

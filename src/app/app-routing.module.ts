@@ -9,7 +9,6 @@ import { content } from "./shared/routes/content.routes";
 import { IngresoSistemaComponent } from './misCompras/ingreso-sistema/ingreso-sistema.component';
 import { RegistroComponent } from './misCompras/registro/registro.component';
 import { InicioComponent } from './misCompras/inicio/inicio.component';
-import { DetalledeProductoComponent } from './misCompras/detallede-producto/detallede-producto.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -36,10 +35,6 @@ const appRoutes: Routes = [
   {
     path:'inicio',
     component:InicioComponent
-  },
-  {
-    path:'detail/:id',
-    component:DetalledeProductoComponent
   }
 ];
 

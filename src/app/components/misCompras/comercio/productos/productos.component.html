@@ -1,5 +1,5 @@
 <!-- Container-fluid starts -->
-<!-- <div class="container-fluid">
+<div class="container-fluid">
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- Container-fluid Ends -->
 
 <!-- Container-fluid starts-->
@@ -28,7 +28,7 @@
                 <div class="product-box">
                     <div class="product-img">
                         <div class="ribbon ribbon-danger" *ngIf="product.oferta>0">Oferta</div>
-                        <img class="img-fluid" [src]="[product.pathImagen]" alt="">
+                        <img class="img-fluid" [src]="urlImagenes+[product.pathImagen]" alt="">
                         <div class="product-hover">
                             <ul>
                                 <!-- <li><i class="icon-shopping-cart" [routerLink]="['/comercio/carrito']"
@@ -52,8 +52,9 @@
                         </div>
                     </div>
                     <div class="product-details">
-                        <a [routerLink]="['/detail', product.id]">
+                        <a [routerLink]="['/comercio/detalle', product.id]">
                             <h5>{{product.nombre}}</h5>
+                            <h6>{{product.descripcionCorta}}</h6>
                         </a>
                         <div class="product-price">
                             <div *ngIf="product.oferta>0">

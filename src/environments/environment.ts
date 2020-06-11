@@ -13,8 +13,8 @@ export const environment = {
     messagingSenderId: "ENTER_YOUR_ID",
     appId: "ENTER_YOUR_API_ID"
   },
-  urlBase:'http://127.0.0.1:3333/apiStore/v1/',
-  urlImagnes:'http://127.0.0.1:3333/'
+  urlBase:'http://35.222.84.155/apiStore/v1/',
+  urlImagnes:'http://35.222.84.155/'
 };
 
 
