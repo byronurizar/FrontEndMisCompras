@@ -1,0 +1,171 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <div class="row">
+      <div class="col">
+        <div class="page-header-left">
+          <h3>Finalizar Pedido</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="card checkout">
+    <div class="card-header">
+      <h5>Detalle de pedido</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <h5>Información de quien recibe</h5>
+          <form [formGroup]="checkoutForm" novalidate>
+            <div class="form-row">
+              <div class="form-group col-sm-6">
+                <div class="field-label">Nombres</div>
+                <input type="text" name="nombres" formControlName="nombres" class="form-control" placeholder="">
+                <div
+                  *ngIf="checkoutForm.controls['nombres'].touched && checkoutForm.controls['nombres'].errors?.required"
+                  class="text text-danger">
+                  Debe de ingresar por lo menos un nombre.
+                </div>
+                <div
+                  *ngIf="checkoutForm.controls['nombres'].touched && checkoutForm.controls['nombres'].errors?.pattern"
+                  class="text text-danger">
+                  El nombre no es válido.
+                </div>
+              </div>
+              <div class="form-group col-sm-6">
+                <div class="field-label">Apellidos </div>
+                <input type="text" name="apellidos" formControlName="apellidos" class="form-control" placeholder="">
+                <div
+                  *ngIf="checkoutForm.controls['apellidos'].touched && checkoutForm.controls['apellidos'].errors?.required"
+                  class="text text-danger">
+                  Debe de ingresar por lo menos un apellido.
+                </div>
+                <div
+                  *ngIf="checkoutForm.controls['apellidos'].touched && checkoutForm.controls['apellidos'].errors?.pattern"
+                  class="text text-danger">
+                  El apellido no es válido.
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-sm-12">
+                <label for="inputEmail4">Teléfonos (Si es más de uno deben de estar separados por coma)</label>
+                <input class="form-control" type="text" formControlName="telefonos" class="form-control">
+                <div *ngIf="checkoutForm.controls['telefonos'].touched && checkoutForm.controls['telefonos'].errors?.required"
+                  class="text text-danger">
+                  Debe de ingresar un número de teléfono.
+                </div>
+                <div *ngIf="checkoutForm.controls['telefonos'].touched && checkoutForm.controls['telefonos'].errors?.pattern"
+                  class="text text-danger">
+                  El número de teléfono no es válido.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputState">Departamento</label>
+              <select name="departamento" formControlName="departamento" class="form-control" (change)="listarMunicipios($event)">
+                <option [value]="item.value" *ngFor="let item of departamentos"
+                >{{item.title}}</option>
+              </select>
+              <div *ngIf="checkoutForm.controls['departamento'].touched && checkoutForm.controls['departamento'].errors?.required"
+                class="text text-danger">
+                Debe de seleccionar un departamento.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputState">Municipio</label>
+              <select name="municipio" formControlName="municipio" class="form-control">
+                <option [value]="item.value" *ngFor="let item of municipios">
+                  {{item.title}}</option>
+              </select>
+              <div *ngIf="checkoutForm.controls['municipio'].touched && checkoutForm.controls['municipio'].errors?.required"
+                class="text text-danger">
+                Debe de seleccionar un municipio.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2">Dirección</label>
+              <textarea class="form-control" type="text" formControlName="direccion" class="form-control"></textarea>
+              <div *ngIf="checkoutForm.controls['direccion'].touched && checkoutForm.controls['direccion'].errors?.required"
+                class="text text-danger">
+                Debe de ingresar una dirección.
+              </div>
+              <div
+                *ngIf="checkoutForm.controls['direccion'].touched && checkoutForm.controls['direccion'].errors?.minlength"
+                class="text text-danger">
+                Debe de ingresar por lo menos 20 caracteres.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2">Punto de referencia</label>
+              <textarea class="form-control" type="text" formControlName="puntoReferencia" class="form-control"></textarea>
+              <div *ngIf="checkoutForm.controls['puntoReferencia'].touched && checkoutForm.controls['puntoReferencia'].errors?.required"
+                class="text text-danger">
+                Debe de ingresar un punto de referencia.
+              </div>
+              <div
+                *ngIf="checkoutForm.controls['puntoReferencia'].touched && checkoutForm.controls['puntoReferencia'].errors?.minlength"
+                class="text text-danger">
+                Debe de ingresar por lo menos 20 caracteres.
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="checkout-details">
+            <div class="order-box">
+              <div class="title-box">
+                <div class="checkbox-title">
+                  <h4>Productos </h4><span>Total</span>
+                </div>
+              </div>
+              <ul class="qty" *ngIf='checkOutItems.length'>
+                <li *ngFor="let item of checkOutItems"> {{ item.producto.nombre }} × {{ item.cantidad }}
+                  <span> {{ item.producto.precio * item.cantidad | currency:'Q':'symbol' }}</span>
+                </li>
+              </ul>
+              <ul class="qty" *ngIf='!checkOutItems.length'>
+                <li class="empty-checkout"> No hay productos en el carrito. </li>
+              </ul>
+              <ul class="sub-total">
+                <li>Subtotal <span
+                    class="count">{{getTotal() | async | currency:'Q':'symbol'}}</span></li>
+              </ul>
+              <ul class="total">
+                <li>Total <span
+                    class="count">{{ getTotal() | async | currency:'Q':'symbol'}}</span></li>
+              </ul>
+              <div class="animate-chk">
+                <div class="row">
+                  <div class="col">
+
+                    <div ngbRadioGroup name="radioColores" [(ngModel)]="tipoPagoSeleccionado">
+                      <li *ngFor="let tipo of tiposPago">
+                        <label ngbButtonLabel class="btn btn-outline-light">
+                          <input ngbButton type="radio" [value]="tipo.id" (click)="cambiarTipoPago(tipo.id)"> {{tipo.descripcion}}
+                        </label>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                
+                <button [disabled]="!checkoutForm.valid" class="btn btn-primary" type="submit" 
+                  (click)="onSubmit()">Realizar pedido
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="text-right m-t-20">
+            <button class="btn btn-primary cart-btn-transform" [routerLink]="['/comercio/productos']">Continuar
+              comprando</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,193 @@
+<!--page-wrapper Start-->
+<style>
+    .landing-main .navbar-expand-lg .navbar-collapse .navbar-nav .nav-item a {
+        color: #ab8ce4 !important;
+    }
+
+    .landing-main .landing-home {
+        background-image: none !important;
+        min-height: 0vh !important;
+    }
+</style>
+<div class="page-wrapper">
+    <div class="page-body-wrapper landing-main">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3>Detalle de producto<small>Información detallada</small></h3>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'"><i
+                                        data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item">Comercio</li>
+                            <li class="breadcrumb-item active">Detalle de producto</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="card">
+                <div class="row product-page-main">
+                    <div class="col-xl-4">
+                        <div id="sync1-rtl" class="product-slider">
+                            <owl-carousel-o [options]="sliderOption" #owlCar class="product-slick">
+                                <ng-container *ngFor="let image of imagenesProducto">
+                                    <ng-template carouselSlide [id]="image.id" class="item">
+                                        <img [src]="image.pathImagen+image.codigoImagen" alt="" class="img-fluid">
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
+                        </div>
+                        <div id="sync2-rtl">
+                            <owl-carousel-o [options]="sliderNavOptions" class="slider-nav">
+                                <ng-container *ngFor="let variant of imagenesProducto">
+                                    <ng-template carouselSlide class="item">
+                                        <div class="item">
+                                            <img [src]="variant.pathImagen+variant.codigoImagen"
+                                                (click)="owlCar.to(variant.id.toString())" alt="">
+                                        </div>
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-8">
+                        <div class="product-page-details">
+                            <h5>{{producto.nombre}}</h5>
+                            <div class="d-flex">
+                                <span>{{producto.precio}}</span>&nbsp;Visitas&nbsp;|&nbsp;<span>{{producto.precio}}</span>&nbsp;Pedidos
+                            </div>
+                        </div>
+                        <hr>
+                        <p>{{producto.descripcion}}</p>
+                        <div class="product-price digits">
+                            <div *ngIf="producto.oferta>0">
+                                <del>{{producto.precio | currency:'Q':'symbol'}}</del>{{producto.oferta | currency:'Q':'symbol'}}
+                            </div>
+
+                            <div *ngIf="producto.oferta==0">
+                                {{producto.precio | currency:'Q':'symbol'}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <table class="product-page-width">
+                                <tbody>
+                                    <tr>
+                                        <td><b>Proveedor : </b>{{producto.proveedor}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Catálogo : </b>{{producto.catalogo}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Disponibilidad: </b>En base a pedido</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Tiempo de Entrega: </b>De 8 a 10 días</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr *ngIf="tallasDisponibles?.length >0">
+                        <div class="m-t-15" *ngIf="tallasDisponibles?.length >0">
+                            <h6>Tallas</h6>
+                            <div class="product-size">
+                                <ul>
+                                    <div ngbRadioGroup name="radioTallas" [(ngModel)]="tallaSeleccionada">
+                                        <li *ngFor="let talla of tallasDisponibles">
+                                            <label ngbButtonLabel class="btn btn-outline-light">
+                                                <input ngbButton type="radio" [value]="talla.id"> {{talla.idTalla}}
+                                            </label>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr *ngIf="coloresDisponibles?.length >0">
+                        <div class="m-t-15" *ngIf="coloresDisponibles?.length >0">
+                            <h6>Colores</h6>
+                            <div class="product-size">
+                                <ul>
+                                    <div ngbRadioGroup name="radioColores" [(ngModel)]="colorSeleccionado">
+                                        <li *ngFor="let color of coloresDisponibles">
+                                            <label ngbButtonLabel class="btn btn-outline-light">
+                                                <input ngbButton type="radio" [value]="color.id"> {{color.idColor}}
+                                            </label>
+                                        </li>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="m-t-15">
+                            <button class="btn btn-primary-gradien m-r-10" type="button"
+                                data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/carrito']"
+                                (click)=agregarProducto(producto) title="">Añadir al carrito</button>
+                            <button class="btn btn-success-gradien" type="button"
+                                data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/finalizarpedido']"
+                                (click)=agregarProducto(producto) title="">Comprar ahora</button>
+                            <button class="btn btn-primary-gradien m-r-10 m-l-10" type="button"
+                                data-original-title="btn btn-info-gradien" [routerLink]="['/comercio/productos']"
+                                title="">Regresar a productos</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" *ngIf="productosRelacionados?.length>0">
+                <div class="row product-page-main">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs nav-material mb-0" id="top-tab" role="tablist">
+                            <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Febric'}"
+                                    id="top-home-tab" data-toggle="tab" (click)="getOption(type = 'Febric')" role="tab"
+                                    aria-controls="top-home" aria-selected="false">Quiza te pueda interesar</a>
+                                <div class="material-border"></div>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="top-tabContent">
+                            <div class="tab-pane fade active show" id="top-home" role="tabpanel"
+                                aria-labelledby="top-home-tab">
+                                <br>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-3" *ngFor="let product of productosRelacionados">
+                                            <div class="card">
+                                                <div class="product-box">
+                                                    <div class="product-img">
+                                                        <div class="ribbon ribbon-danger" *ngIf="product.oferta>0">
+                                                            Oferta</div>
+                                                        <img class="img-fluid" [src]="[product.pathImagen]" alt="">
+                                                    </div>
+                                                    <div class="product-details">
+                                                        <a [routerLink]="['/comercio/detalle', product.id]">
+                                                            <h6>{{product.nombre}}</h6>
+                                                        </a>
+                                                        <div class="product-price">
+                                                            <div *ngIf="product.oferta>0">
+                                                                <del>{{product.precio | currency:'Q':'symbol'}}</del>{{product.oferta | currency:'Q':'symbol'}}
+                                                            </div>
+                                                            <div *ngIf="product.oferta==0">
+                                                                {{product.precio | currency:'Q':'symbol'}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer-inicio></app-footer-inicio>
+    </div>
+</div>

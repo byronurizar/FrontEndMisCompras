@@ -1,0 +1,45 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Lista de deseos</h5>
+          </div>
+          <div class="card-body">
+            <div class="order-history table-responsive wishlist">
+              <table class="table table-bordernone">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Precio Normal</th>
+                    <th>Disponibilidad</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of selectCartItems">
+                    <td><img class="img-fluid img-60" [src]="[item.pathImagen]" alt="#"></td>
+                    <td>
+                      <div class="product-name"><a
+                          [routerLink]="['/comercio/detalle', item.id]">{{item.nombre}}</a></div>
+                    </td>
+                    <td>{{item.precio | currency:'Q':'symbol'}}</td>
+                    <td>En base a pedidos</td>
+                    <td>
+                      <i class="icofont icofont-close-circled icon" (click)=remove(item)></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"><a class="btn btn-primary cart-btn-transform"
+                        [routerLink]="['/comercio/productos']">Continuar Comprando</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

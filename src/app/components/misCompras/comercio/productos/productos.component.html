@@ -1,0 +1,72 @@
+<!-- Container-fluid starts -->
+<!-- <div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Productos
+                    <small>Listado de productos disponibles</small>
+                </h3>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">Comercio</li>
+                    <li class="breadcrumb-item active">Productos</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Container-fluid Ends -->
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-sm-6" *ngFor="let product of productos">
+            <div class="card">
+                <div class="product-box">
+                    <div class="product-img">
+                        <div class="ribbon ribbon-danger" *ngIf="product.oferta>0">Oferta</div>
+                        <img class="img-fluid" [src]="[product.pathImagen]" alt="">
+                        <div class="product-hover">
+                            <ul>
+                                <!-- <li><i class="icon-shopping-cart" [routerLink]="['/comercio/carrito']"
+                                        (click)=addToCart(product)></i>
+                                </li> -->
+                                <li (click)="abrirDetalle(content,product.id)"><i class="icon-eye"></i></li>
+                                <ng-template #content let-modal>
+                                    <div class="modal-header" style="border-bottom: 0px;">
+                                        <button type="button" class="close" aria-label="Close"
+                                            (click)="modal.dismiss('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 0%;">
+                                        <app-vista-rapida [productoDetalleVistaRapida]="productoDetalleVistaRapida">
+                                        </app-vista-rapida>
+                                    </div>
+                                </ng-template>
+                                <li (click)=agregarListaDeseos(product)><i class="icofont icofont-heart"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <a [routerLink]="['/detail', product.id]">
+                            <h5>{{product.nombre}}</h5>
+                        </a>
+                        <div class="product-price">
+                            <div *ngIf="product.oferta>0">
+                                <del>{{product.precio | currency:'Q':'symbol'}}</del>{{product.oferta | currency:'Q':'symbol'}}
+                            </div>
+                            <div *ngIf="product.oferta==0">
+                                {{product.precio | currency:'Q':'symbol'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

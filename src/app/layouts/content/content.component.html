@@ -1,0 +1,19 @@
+<!--page-wrapper Start-->
+<div class="page-wrapper">
+    <app-header (toggleEvent)="receiveToggle($event)"></app-header>
+    <!--Page Body Start-->
+    <div class="page-body-wrapper " [class.sidebar-close]="toggle" [ngClass]="customize.data.menuLayout">
+        <div class="page-sidebar" [ngClass]="customize.data.scroll"
+            [class.navigation-bordered]="customize.data.borderNavigation"
+            [class.navigation-rightside]="customize.data.rightSidebarIcon"
+            [class.native-image-bg]="customize.data.backgroungImage"
+            [class.native-default]="customize.data.defaultNavigation">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="page-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <!--Page Body End-->
+</div>
+<!--page-wrapper End-->

@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <div class="product-box row">
+    <div class="product-img col-md-6"><img class="img-fluid" [src]="[productoDetalleVistaRapida?.pathImagen]" alt="">
+    </div>
+    <div class="product-details col-md-6 text-left">
+      <h1>{{productoDetalleVistaRapida?.nombre}}</h1>
+      <div class="product-price">
+        <div *ngIf="productoDetalleVistaRapida?.oferta>0">
+          <del>{{productoDetalleVistaRapida?.precio | currency:'Q':'symbol'}}</del>{{productoDetalleVistaRapida?.oferta | currency:'Q':'symbol'}}
+        </div>
+        <div *ngIf="productoDetalleVistaRapida?.oferta==0">
+          {{productoDetalleVistaRapida?.precio | currency:'Q':'symbol'}}
+        </div>
+      </div>
+      <div class="product-view">
+        <h6 class="f-w-600">Detalle de Producto</h6>
+        <p class="mb-0">{{productoDetalleVistaRapida.descripcion}}</p>
+      </div>
+      <hr *ngIf="tallasDisponibles?.length >0">
+      <div class="m-t-15" *ngIf="tallasDisponibles?.length >0">
+        <h6>Tallas</h6>
+        <div class="product-size">
+          <ul>
+            <div ngbRadioGroup name="radioTallas" [(ngModel)]="tallaSeleccionada">
+              <li *ngFor="let talla of tallasDisponibles">
+                <label ngbButtonLabel class="btn btn-outline-light">
+                  <input ngbButton type="radio" [value]="talla.id"> {{talla.idTalla}}
+                </label>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <hr *ngIf="coloresDisponibles?.length >0">
+      <div class="m-t-15" *ngIf="coloresDisponibles?.length >0">
+        <h6>Colores</h6>
+        <div class="product-size">
+          <ul>
+            <div ngbRadioGroup name="radioColores" [(ngModel)]="colorSeleccionado">
+              <li *ngFor="let color of coloresDisponibles">
+                <label ngbButtonLabel class="btn btn-outline-light">
+                  <input ngbButton type="radio" [value]="color.id"> {{color.idColor}}
+                </label>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="product-qnty">
+        <h6 class="f-w-600">Cantidad</h6>
+        <div class="qty-box1">
+          <div class="input-group">
+            <i class="fa fa-minus btnGtr1" (click)="disminuir()"></i>
+            <input class="touchspin1 text-center" #qty name="quantity" type="text" value="{{cantidad}}">
+            <i class="fa fa-plus btnLess1" (click)="incrementar()"></i>
+          </div>
+        </div>
+        <div class="addcart-btn">
+          <button class="btn btn-primary-gradien m-r-10" type="button" data-original-title="btn btn-info-gradien"
+            [routerLink]="['/comercio/carrito']" (click)=agregarProducto(productoDetalleVistaRapida,qty.value) title="">
+            Añadir al carrito</button>
+          <button class="btn btn-success-gradien" type="button" data-original-title="btn btn-info-gradien"
+            (click)=buyNow(productoDetalleVistaRapida,qty.value) title="">Compra ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

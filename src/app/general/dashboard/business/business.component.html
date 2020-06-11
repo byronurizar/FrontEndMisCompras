@@ -1,0 +1,649 @@
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6" data-intro="This is page title">
+                <h3>Business <small>Universal Admin panel</small></h3>
+            </div>
+            <div class="col-lg-6" data-intro="This is breadcrumb">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">Dashboard </li>
+                    <li class="breadcrumb-item active">Business</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xl-6 xl-100">
+            <div class="row">
+                <div class="col-sm-6 xl-25">
+                    <div class="card" data-intro="This is card">
+                        <div class="business-top-widget card-body">
+                            <div class="media d-inline-flex">
+                                <div class="media-body">
+                                    <span class="mb-2">Growth</span>
+                                    <h2 class="total-num counter" [CountTo]="890" [from]="0" [duration]="2"></h2>
+                                </div>
+                                <i class="icofont icofont-growth font-info align-self-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 xl-25">
+                    <div class="card">
+                        <div class="business-top-widget card-body">
+                            <div class="media d-inline-flex">
+                                <div class="media-body">
+                                    <span class="mb-2">Income</span>
+                                    <h2 class="total-num counter" [CountTo]="780" [from]="0" [duration]="2"></h2>
+                                </div>
+                                <i class="icofont icofont-money font-primary align-self-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 xl-25">
+                    <div class="card">
+                        <div class="business-top-widget card-body">
+                            <div class="media d-inline-flex">
+                                <div class="media-body">
+                                    <span class="mb-2">Project</span>
+                                    <h2 class="total-num counter" [CountTo]="654" [from]="0" [duration]="2"></h2>
+                                </div>
+                                <i class="icofont icofont-presentation-alt font-secondary align-self-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 xl-25">
+                    <div class="card">
+                        <div class="business-top-widget card-body">
+                            <div class="media d-inline-flex">
+                                <div class="media-body">
+                                    <span class="mb-2">Employee</span>
+                                    <h2 class="total-num counter" [CountTo]="896" [from]="0" [duration]="2"></h2>
+                                </div>
+                                <i class="icofont icofont-business-man font-danger align-self-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6 xl-100">
+            <div class="card" data-intro="This is card showing profile">
+                <div class="business-card card-body">
+                    <div class="row">
+                        <div class="col-xl-4 col-sm-12 align-self-center pr-0">
+                            <div class="text-center">
+                                <img src="assets/images/logo-login.png" class="logo" alt="u-logo">
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-sm-12 b-l-light ">
+                            <table>
+                                <tr>
+                                    <th>Name&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+                                    <td>Pixelstrap Web Service PVT LTD.</td>
+                                </tr>
+                                <tr>
+                                    <th>Founded&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+                                    <td>01 January 2012</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Email&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+                                    <td>support@pixelstrap.com</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+                                    <td class="digits">+91 234-456-7904</td>
+                                </tr>
+                                <tr>
+                                    <th>Turnover&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+                                    <td class="digits">$78B</td>
+                                </tr>
+                                <tr>
+                                    <th>About&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+                                    <td>
+                                        Simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="business-chart-widget bg-info card-body pb-0">
+                    <div class="row">
+                        <div class="col-8">
+                            <span>Products</span>
+                            <h2 class="total-num counter" [CountTo]="459" [from]="0" [duration]="2"></h2>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icon-package"></i>
+                                <i class="icon-package icon-bg"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="blueBarChart" [data]="WidgetBarChart.data" [type]="WidgetBarChart.type"
+                            [options]="WidgetBarChart.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="business-chart-widget bg-primary card-body pb-0">
+                    <div class="row">
+                        <div class="col-8">
+                            <span>Project</span>
+                            <h2 class="total-num counter" [CountTo]="983" [from]="0" [duration]="2"></h2>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icofont icofont-presentation-alt"></i>
+                                <i class="icofont icofont-presentation-alt icon-bg"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="pinkBarChart" [data]="WidgetBarChart.data" [type]="WidgetBarChart.type"
+                            [options]="WidgetBarChart.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="business-chart-widget bg-secondary card-body pb-0">
+                    <div class="row">
+                        <div class="col-8">
+                            <span>Stock Price</span>
+                            <h2 class="total-num counter" [CountTo]="698" [from]="0" [duration]="2"></h2>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icofont icofont-growth"></i>
+                                <i class="icofont icofont-growth icon-bg"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="greenBarChart" [data]="WidgetBarChart.data" [type]="WidgetBarChart.type"
+                            [options]="WidgetBarChart.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="business-chart-widget bg-danger card-body pb-0">
+                    <div class="row">
+                        <div class="col-8">
+                            <span>Sales</span>
+                            <h2 class="total-num counter" [CountTo]="459" [from]="0" [duration]="2"></h2>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icofont icofont-sale-discount"></i>
+                                <i class="icofont icofont-sale-discount icon-bg"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="redBarChart" [data]="WidgetBarChart.data" [type]="WidgetBarChart.type"
+                            [options]="WidgetBarChart.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-xl-9 xl-100">
+            <div class="card" data-intro="This is scatter chart for sale">
+                <div class="card-header">
+                    <h4>Scatter chart for sale</h4>
+                    <span>Company Product Sales Chart</span>
+
+                </div>
+                <div class="card-body scatter-chart-xs">
+                    <x-chartist [type]="salesChart.type" [data]="salesChart.data" [options]="salesChart.options">
+                    </x-chartist>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-3 xl-100">
+            <div class="row">
+                <div class="col-xl-12 col-sm-6 xl-50">
+                    <div class="card">
+                        <div class="social-widget card-body">
+                            <div class="media">
+                                <div class="radial-bar radial-bar-85 radial-bar-md radial-bar-info mr-3">
+                                    <div class="social-icons"><i class="icofont icofont-social-facebook font-info"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <span class="m-0 social-sub-title">Facebook</span>
+                                    <hr class="m-1">
+                                    <h2 class="total-num counter" [CountTo]="265" [from]="0" [duration]="2"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-sm-6 xl-50">
+                    <div class="card">
+                        <div class="social-widget card-body">
+                            <div class="media">
+                                <div class="radial-bar radial-bar-60 radial-bar-md radial-bar-secondary mr-3">
+                                    <div class="social-icons"><i
+                                            class="icofont icofont-social-twitter font-secondary"></i></div>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <span class="m-0 social-sub-title">Twitter</span>
+                                    <hr class="m-1">
+                                    <h2 class="total-num counter" [CountTo]="895" [from]="0" [duration]="2"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-sm-6 xl-50">
+                    <div class="card">
+                        <div class="social-widget card-body">
+                            <div class="media">
+                                <div class="radial-bar radial-bar-80 radial-bar-md radial-bar-danger mr-3">
+                                    <div class="social-icons"><i
+                                            class="icofont icofont-social-pinterest font-danger"></i></div>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <span class="m-0 social-sub-title">Pinterest</span>
+                                    <hr class="m-1">
+                                    <h2 class="total-num counter" [CountTo]="789" [from]="0" [duration]="2"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-sm-6 xl-50">
+                    <div class="card">
+                        <div class="social-widget card-body">
+                            <div class="media">
+                                <div class="radial-bar radial-bar-50 radial-bar-md radial-bar-primary mr-3">
+                                    <div class="social-icons"><i
+                                            class="icofont icofont-brand-linkedin font-primary"></i></div>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <span class="m-0 social-sub-title">Linkedin</span>
+                                    <hr class="m-1">
+                                    <h2 class="total-num counter" [CountTo]="265" [from]="0" [duration]="2"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-6 xl-100">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Product Cart</h5>
+
+                </div>
+                <div class="card-body">
+                    <div class="user-status table-responsive">
+                        <table class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Details</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Simply dummy text of the printing</td>
+                                    <td class="digits">1</td>
+                                    <td class="font-secondary">Pending</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Long established</td>
+                                    <td class="digits">5</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>sometimes by accident</td>
+                                    <td class="digits">10</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Classical Latin literature</td>
+                                    <td class="digits">9</td>
+                                    <td class="font-info">Return</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>keep the site on the Internet</td>
+                                    <td class="digits">8</td>
+                                    <td class="font-secondary">Pending</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Molestiae consequatur</td>
+                                    <td class="digits">3</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td class="pb-1">Pain can procure</td>
+                                    <td class="digits">8</td>
+                                    <td class="font-info">Return</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-xl-6 xl-100">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Employee Status</h5>
+                </div>
+                <div class="card-body">
+                    <div class="user-status table-responsive">
+                        <table class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Designation</th>
+                                    <th scope="col">Level</th>
+                                    <th scope="col">Experience</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle mt-0">
+                                            <img src="assets/images/user/4.jpg" alt="user"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>John Deo <span class="text-muted digits">(14+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Designer</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: 30%" aria-valuenow="50" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="digits">2 Year</td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle mt-0">
+                                            <img src="assets/images/user/1.jpg" alt="user"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>AB Mako <span class="text-muted digits">(20+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Developer</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 70%" aria-valuenow="50" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="digits">3 Year</td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle mt-0">
+                                            <img src="assets/images/user/5.jpg" alt=""
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Mohi lara<span class="text-muted digits">(99+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Tester</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 60%"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="digits">5 Month</td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle mt-0">
+                                            <img src="assets/images/user/6.jpg" alt=""
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Hileri Soli <span class="text-muted digits">(23+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Designer</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-secondary" role="progressbar"
+                                                    style="width: 30%" aria-valuenow="50" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="digits">3 Month</td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle mt-0">
+                                            <img src="assets/images/user/7.jpg" alt=""
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Pusiz bia <span class="text-muted digits">(14+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Designer</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 90%"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="digits">5 Year</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-6 xl-100">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Customer Review</h5>
+                </div>
+                <div class="card-body">
+                    <owl-carousel-o [options]="owlcarouselOptions">
+                        <ng-container *ngFor="let data of owlcarousel">
+                            <ng-template carouselSlide class="item">
+                                <div class="slide--item">
+                                    <div class="review-box">
+                                        <div class="media">
+                                            <img class="rounded-circle img-thumbnail mr-5 img-100" [src]="data.img"
+                                                alt="">
+                                            <div class="align-self-center media-body">
+                                                <h6 class="mt-0 customer-name">{{data.name}}</h6>
+                                                <span class="m-0 text-muted">{{data.designation}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial">
+                                            <div class="content">
+                                                <p class="description text-muted">
+                                                    {{data.desc}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                    <!-- <owl-carousel [options]="{items :1,margin:30,loop : true,pagination:false, navigationText:false, nav: false}"  [carouselClasses]="['owl-carousel owl-theme']">
+                        <div class="slide--item">
+                            <div class="review-box">
+                                <div class="media">
+                                    <img class="rounded-circle img-thumbnail mr-5 img-100" src="assets/images/user/12.png" alt="">
+                                    <div class="align-self-center media-body">
+                                        <h6 class="mt-0 customer-name">Mark Jenco</h6>
+                                        <span class="m-0 text-muted">CEO & Founder At Company</span>
+                                    </div>
+                                </div>
+                                <div class="testimonial">
+                                    <div class="content">
+                                        <p class="description text-muted">
+                                            I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth,
+                                            Lorem Ipsum is simply dummy text
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </owl-carousel> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-sm-12 xl-100">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card" data-intro="This is blog">
+                        <div class="blog-box blog-grid text-center">
+                            <img src="assets/images/blog/blog-5.png" class="img-fluid top-radius-blog" alt="">
+                            <div class="blog-details-main">
+                                <ul class="blog-social">
+                                    <li class="digits">9 April 2018</li>
+                                    <li class="digits">by: Admin</li>
+                                    <li class="digits">0 Hits</li>
+                                </ul>
+                                <hr>
+                                <h6 class="blog-bottom-details">Perspiciatis unde omnis iste natus error sit.Dummy text
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="blog-box blog-grid text-center">
+                            <img src="assets/images/blog/blog-6.png" class="img-fluid top-radius-blog" alt="">
+                            <div class="blog-details-main">
+                                <ul class="blog-social">
+                                    <li class="digits">9 April 2018</li>
+                                    <li class="digits">by: Admin</li>
+                                    <li class="digits">0 Hits</li>
+                                </ul>
+                                <hr>
+                                <h6 class="blog-bottom-details">Perspiciatis unde omnis iste natus error sit.Dummy text
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-4 xl-50">
+            <div class="card height-equal">
+                <div class="calender-widget">
+                    <div class="cal-img"></div>
+                    <div class="cal-date">
+                        <h5>25<br>APRIL</h5>
+                    </div>
+                    <div class="cal-desc text-center card-body">
+                        <h6 class="f-w-600">I must explain to you how all this mistaken idea truth</h6>
+                        <p class="text-muted mb-0 custom-scrollbar">Denouncing pleasure and praising pain was born and I
+                            will give you a complete account of the system, and expound the actual teachings of the
+                            great explorer of the truth,Letraset sheets containing Lorem Ipsum passages, and more
+                            recently with desktop Lorem Ipsum is simply dummy text. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-8 xl-50">
+            <div class="card height-equal" data-intro="This is blog contact form">
+                <div class="card-header">
+                    <h5>Contact Us</h5>
+                </div>
+                <div class="contact-form card-body">
+                    <form class="theme-form">
+                        <div class="form-icon">
+                            <i class="icofont icofont-envelope-open"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Your Name</label>
+                            <input type="text" class="form-control" id="exampleInputName" placeholder="John Dio">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                placeholder="Demo@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="col-form-label">Message</label>
+                            <textarea rows="3" cols="50" class="form-control textarea"
+                                placeholder="Your Message"></textarea>
+
+                        </div>
+                        <div class="text-sm-right">
+                            <button class="btn btn-secondary-gradien">SEND IT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->

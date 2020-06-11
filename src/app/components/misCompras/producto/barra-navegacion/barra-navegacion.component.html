@@ -1,0 +1,326 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>Producto
+          <small>Registro y asignaciones</small>
+        </h3>
+      </div>
+      <div class="col-lg-6">
+        <ol class="breadcrumb pull-right">
+          <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'"><i class="fa fa-home"></i></a>
+          </li>
+          <li class="breadcrumb-item">Producto </li>
+          <li class="breadcrumb-item active">Registro</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Registrar Producto</h5>
+        </div>
+        <div class="card-body step-indicator">
+          <aw-wizard navBarLayout="large-filled-symbols">
+            <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome ' }"
+              stepTitle="Registrar">
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12 ">
+                    <div class="card">
+                      <div class="card-body">
+                        <form [formGroup]="validationForm" (ngSubmit)="registrarProducto(validationForm)" novalidate
+                          class="ngx-form">
+                          <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                              <label for="nombre">Nombre</label>
+                              <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+                                [formControl]="validationForm.controls['nombre']" required>
+                              <div
+                                *ngIf="validationForm.controls.nombre.touched && validationForm.controls.nombre.errors?.required"
+                                class="text text-danger">
+                                Debe de ingresar un nombre
+                              </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              <label for="codigo">Código</label>
+                              <input type="text" class="form-control" id="codigo" placeholder="Código de producto"
+                                [formControl]="validationForm.controls['codigo']" required>
+                              <div
+                                *ngIf="validationForm.controls.codigo.touched && validationForm.controls.codigo.errors?.required"
+                                class="text text-danger">
+                                Debe de ingresar un código
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                              <label for="descripcion">Descripción</label>
+                              <textarea type="text" class="form-control" id="descripcion" placeholder="Descripción"
+                                rows="2" [formControl]="validationForm.controls['descripcion']" required></textarea>
+                              <div
+                                *ngIf="validationForm.controls.descripcion.touched && validationForm.controls.descripcion.errors?.required"
+                                class="text text-danger">
+                                Debe de ingresar una descripción
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                              <label for="descripcionCorta">Descripción Corta</label>
+                              <input type="text" class="form-control" id="descripcionCorta"
+                                placeholder="Descripción Corta"
+                                [formControl]="validationForm.controls['descripcionCorta']" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <label for="Precio">Precio Normal</label>
+                              <input type="number" class="form-control" id="precio" placeholder="Precio normal"
+                                [formControl]="validationForm.controls['precio']" required>
+                              <div
+                                *ngIf="validationForm.controls.precio.touched && validationForm.controls.precio.errors?.required"
+                                class="text text-danger">
+                                Debe de ingresar un precio de venta
+                              </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <label for="Precio">Precio Oferta</label>
+                              <input type="number" class="form-control" id="oferta" placeholder="Precio oferta"
+                                value="0" [formControl]="validationForm.controls['oferta']" required>
+                              <div
+                                *ngIf="validationForm.controls.oferta.touched && validationForm.controls.oferta.errors?.required"
+                                class="text text-danger">
+                                Debe de ingresar un precio de Oferta
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                              <label for="Precio">Proveedor</label>
+                              <select id="proveedor" class="form-control" ngModel
+                                (ngModelChange)="listarCatalogos($event)"
+                                [formControl]="validationForm.controls['proveedor']" required>
+                                <option [value]="item.value" *ngFor="let item of proveedores">{{item.title}}</option>
+                              </select>
+                              <div
+                                *ngIf="validationForm.controls.proveedor.touched && validationForm.controls.proveedor.errors?.required"
+                                class="text text-danger">
+                                Debe de seleccionar un proveedor
+                              </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                              <label for="idCatalogo">Catalogo</label>
+                              <select id="idCatalogo" class="form-control"
+                                [formControl]="validationForm.controls['idCatalogo']" required>
+                                <option [value]="item.value" *ngFor="let item of catalogos">
+                                  {{item.title}}</option>
+                              </select>
+                              <div
+                                *ngIf="validationForm.controls.idCatalogo.touched && validationForm.controls.idCatalogo.errors?.required"
+                                class="text text-danger">
+                                Debe de seleccionar un Catálogo
+                              </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                              <label for="nopagina">Número de Página</label>
+                              <input type="number" class="form-control" id="nopagina" placeholder="Número de página"
+                                [formControl]="validationForm.controls['nopagina']" required>
+                              <div
+                                *ngIf="validationForm.controls.nopagina.touched && validationForm.controls.nopagina.errors?.required"
+                                class="text text-danger">
+                                Debe de ingresar un número de página
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                              <label for="idCategoria">Categoria</label>
+                              <select id="idCategoria" class="form-control"
+                                [formControl]="validationForm.controls['idCategoria']" required>
+                                <option [value]="item.value" *ngFor="let item of categorias">
+                                  {{item.title}}</option>
+                              </select>
+                              <div
+                                *ngIf="validationForm.controls.idCategoria.touched && validationForm.controls.idCategoria.errors?.required"
+                                class="text text-danger">
+                                Debe de seleccionar una Categoria
+                              </div>
+                            </div>
+                          </div>
+                          <button class="btn btn-primary btn-next" [disabled]="!validationForm.valid" type="submit"
+                            awNextStep>Continuar</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Container-fluid Ends -->
+
+
+            </aw-wizard-step>
+            <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }" stepTitle="Imagenes">
+
+              <!-- Container-fluid starts -->
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12 ">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="custom-dropzone" ngx-dropzone [accept]="'image/png,image/jpeg,image/jpg'"
+                          (change)="onFilesAdded($event)">
+                          <ngx-dropzone-label>
+                            <div>
+                              <h2>Cargar todas las imagenes del producto</h2>
+                            </div>
+                          </ngx-dropzone-label>
+                          <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                            [file]="f" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                          </ngx-dropzone-image-preview>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary btn-next" type="submit" (click)="registrarImagenes()"
+                          [disabled]="!conImagenes" awNextStep>Continuar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Container-fluid Ends -->
+
+
+
+            </aw-wizard-step>
+            <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf099;', fontFamily: 'FontAwesome' }"
+              stepTitle="Asignaciones">
+
+              <!-- Container-fluid starts -->
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Asignación de Colores</h5>
+                      </div>
+                      <div class="card-body smart-datatable">
+                        <div class="table-responsive">
+                          <ng2-smart-table [settings]="configuracion" [source]="coloresAsignados"
+                            (createConfirm)="onAsignarColor($event)" (editConfirm)="onActualizarAsigColor($event)">
+                          </ng2-smart-table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- Container-fluid Ends -->
+
+              <!-- Container-fluid starts -->
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Asignación de Tallas</h5>
+                      </div>
+                      <div class="card-body smart-datatable">
+                        <div class="table-responsive">
+                          <ng2-smart-table [settings]="configuracionTallas" [source]="tallasAsignados"
+                            (createConfirm)="onAsignarTalla($event)" (editConfirm)="onActualizarAsigTalla($event)">
+                          </ng2-smart-table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- Container-fluid Ends -->
+
+              <!-- Container-fluid starts -->
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Productos Relacionados</h5>
+                      </div>
+                      <div class="card-body smart-datatable">
+                        <div class="form-row">
+                          <div class="col-md-6 mb-3">
+                            <label for="ltaProveedorProdRelacionado">Proveedor</label>
+                            <select id="ltaProveedorProdRelacionado" class="form-control" ngModel
+                              (ngModelChange)="listarCategoriasProdRelacionado($event)">
+                              <option [value]="item.value" *ngFor="let item of proveedores">{{item.title}}</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="ltaCategoriaProdRelacionado">Categoria</label>
+                            <select id="ltaCategoriaProdRelacionado" class="form-control" ngModel
+                              (ngModelChange)="listarProductosxCategoria($event)">
+                              <option [value]="item.value" *ngFor="let item of categoriasProdRelacionado">
+                                {{item.title}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="table-responsive">
+                          <ng2-smart-table [settings]="configuracionProductosRelacionados"
+                            [source]="listaProductosRelacionados" (custom)="onCustomAction($event)">
+                          </ng2-smart-table>
+                        </div>
+                        <div *ngIf="listaProductosRelacionadosAsignados?.length >0">
+                        <h5>Productos Asignados</h5>
+                        <div class="table-responsive">
+                          <ng2-smart-table [settings]="confiProductosAsignados"
+                            [source]="listaProductosRelacionadosAsignados" (deleteConfirm)="onElimnar1($event)">
+                          </ng2-smart-table>
+                        </div>
+                      </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- Container-fluid Ends -->
+
+
+              <!-- Container-fluid starts -->
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Asignación de Etiquetas</h5>
+                      </div>
+                      <div class="card-body smart-datatable">
+                        <div class="table-responsive">
+                          <ng2-smart-table [settings]="configuracionEtiquetas" [source]="etiquetasAsignadas"
+                            (createConfirm)="onAsignarEtiqueta($event)"
+                            (editConfirm)="onActualizarAsigEtiqueta($event)"></ng2-smart-table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <button class="btn btn-primary btn-next" type="submit" (click)="finalizar()"
+                [awGoToStep]="{stepIndex: 0}">Finalizar</button>
+              <!-- Container-fluid Ends -->
+            </aw-wizard-step>
+          </aw-wizard>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

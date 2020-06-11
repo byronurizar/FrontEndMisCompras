@@ -1,0 +1,51 @@
+levantar servidor
+ng serve -o
+
+creación de componentes
+ng generate component persona
+
+Instalar boostrap
+npm install bootstrap --save
+
+instalar jquery
+npm install jquery --save
+
+instalar popper
+
+npm install popper.js --save
+
+
+listado-personas>ng g c login --spec=false // para no generar archivo spec}
+
+
+npm install --save firebase
+
+
+para paso a producción
+ng build --prod --aot --base-href /listado-personas/
+ng build --prod --aot --base-href /listado-personas(Nombre de carpeta dentro del servidor)/
+
+
+
+
+https://small-talk-fc6a6.firebaseapp.com/login
+
+crear proyecto
+ng new control-clientes
+
+npm install bootstrap jquery popper.js --save
+
+
+ng g c componentes/cabecero --spec=false
+
+npm install  firebase @angular/fire --save El componente de angular nos ayudara hacer mas facil la comunicacion con firebase
+
+
+
+npm install angular2-flash-messages --save  //Para mandar mensajes cuando se realizen acciones en la aplicación
+
+
+
+Para poder exportar componentes de un modulo a otro modulo
+Se debe de exportar el modulo que se desea en el Nombremodulo.module.ts del componente
+y en el NombreModulo.module.ts se debe de importar el modulo completo y CommonModule

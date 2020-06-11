@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <div class="product-box row">
+      <div class="product-img col-md-6"><img class="img-fluid" [src]="[itemProducto.producto?.pathImagen]" alt="">
+      </div>
+      <div class="product-details col-md-6 text-left">
+        <h1>{{itemProducto.producto?.nombre}}</h1>
+        <div class="product-price">
+          <div *ngIf="itemProducto.producto?.oferta>0">
+            <del>{{itemProducto.producto?.precio | currency:'Q':'symbol'}}</del>{{itemProducto.producto?.oferta | currency:'Q':'symbol'}}
+          </div>
+          <div *ngIf="itemProducto.producto?.oferta==0">
+            {{itemProducto.producto?.precio | currency:'Q':'symbol'}}
+          </div>
+        </div>
+        <hr *ngIf="coloresDisponibles?.length >0">
+        <div class="m-t-15" *ngIf="coloresDisponibles?.length >0">
+          <h6>Colores</h6>
+          <div class="product-size">
+            <ul>
+              <div ngbRadioGroup name="radioColores" [(ngModel)]="colorSeleccionado">
+                <li *ngFor="let color of coloresDisponibles">
+                  <label ngbButtonLabel class="btn btn-outline-light">
+                    <input ngbButton type="radio" [value]="color.id" (click)="cambiarColor(color.id)"> {{color.idColor}}
+                  </label>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="addcart-btn">
+            <button class="btn btn-primary-gradien m-r-10" type="button" data-original-title="btn btn-info-gradien" title="" (click)="cancelar()">Cancelar</button>
+            <button class="btn btn-success-gradien" type="button" data-original-title="btn btn-info-gradien" title="" (click)="continuar()">Continuar</button>
+          </div>
+      </div>
+      
+    </div>
+  </div>

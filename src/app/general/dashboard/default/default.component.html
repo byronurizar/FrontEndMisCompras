@@ -1,0 +1,442 @@
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>default
+                    <small>Universal Admin panel</small>
+                </h3>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">Dashboard</li>
+                    <li class="breadcrumb-item active">Default</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-dashboard">
+                        <div class="media">
+                            <img class="mr-3" src="assets/images/dashboard-icons/document.png"
+                                alt="Generic placeholder image">
+                            <div class="media-body text-right">
+                                <h4 class="total-num counter" [CountTo]="256" [from]="0" [duration]="2"></h4>
+                                <span>New projects</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-chart-container">
+                            <x-chartist [data]="WidgetlineChart1.data" [type]="WidgetlineChart1.type"
+                                [options]="WidgetlineChart1.options">
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-dashboard">
+                        <div class="media">
+                            <img class="mr-3" src="assets/images/dashboard-icons/operator.png"
+                                alt="Generic placeholder image">
+                            <div class="media-body text-right">
+                                <h4 class="total-num counter" [CountTo]="346" [from]="0" [duration]="2"></h4>
+                                <span>New Clients</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-chart-container">
+                            <x-chartist [data]="WidgetlineChart2.data" [type]="WidgetlineChart2.type"
+                                [options]="WidgetlineChart2.options">
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-dashboard">
+                        <div class="media">
+                            <img class="mr-3" src="assets/images/dashboard-icons/chat.png"
+                                alt="Generic placeholder image">
+                            <div class="media-body text-right">
+                                <h4 class="total-num counter" [CountTo]="260" [from]="0" [duration]="2"></h4>
+                                <span>Message</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-chart-container">
+                            <x-chartist [data]="WidgetlineChart3.data" [type]="WidgetlineChart3.type"
+                                [options]="WidgetlineChart3.options">
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-dashboard">
+                        <div class="media">
+                            <img class="mr-3" src="assets/images/dashboard-icons/like.png"
+                                alt="Generic placeholder image">
+                            <div class="media-body text-right">
+                                <h4 class="total-num counter" [CountTo]="956" [from]="0" [duration]="2"></h4>
+                                <span>New Likes</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-chart-container">
+                            <x-chartist [data]="WidgetlineChart4.data" [type]="WidgetlineChart4.type"
+                                [options]="WidgetlineChart4.options">
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Sales Overview</h5>
+                    <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
+                </div>
+                <div class="card-body">
+                    <div class="dashboard-chart-container">
+                        <x-chartist [data]="salesChart.data" [type]="salesChart.type" [options]="salesChart.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+            <div class="card default-widget-count">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="mr-3 left b-primary">
+                            <div class="bg bg-primary"></div>
+                            <i class="icon-user"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h4 class="total-num counter" [CountTo]="256" [from]="0" [duration]="2"></h4>
+                            <span>Happy Clients </span>
+                            <i class="icon-user icon-bg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card default-widget-count">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="mr-3 left b-secondary">
+                            <div class="bg bg-secondary"></div>
+                            <i class="icon-package"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h4 class="total-num counter" [CountTo]="953" [from]="0" [duration]="2"></h4>
+                            <span>Order Complate </span>
+                            <i class="icon-package icon-bg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card default-widget-count">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="mr-3 left b-success">
+                            <div class="bg bg-success"></div>
+                            <i class="icon-money"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h4 class="total-num counter" [CountTo]="103" [from]="0" [duration]="2"></h4>
+                            <span>Early income </span>
+                            <i class="icon-money icon-bg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Monthly Visiter</h5>
+                </div>
+                <div class="card-body">
+                    <canvas baseChart class="chart" [legend]="monthlyChartLegend" [data]="monthlyChartData"
+                        [labels]="monthlyChartLabels" [options]="monthlyChartOptions" [chartType]="monthlyChartType"
+                        [colors]="monthlyChartColors" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Daily Visiter</h5>
+                </div>
+                <div class="card-body">
+                    <canvas baseChart class="chart" [legend]="dailyChartLegend" [data]="dailyChartData"
+                        [labels]="dailyChartLabels" [options]="dailyChartOptions" [chartType]="dailyChartType"
+                        [colors]="dailyChartColors" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-lg-12 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row social-media-counter">
+                                <div class="col text-center">
+                                    <i class="icofont icofont-social-facebook font-primary"></i>
+                                    <h4 class="font-primary mt-2"> <span class="total-num counter" [CountTo]="25"
+                                            [from]="0" [duration]="2"></span>K
+                                    </h4>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="icofont icofont-social-twitter font-secondary"></i>
+                                    <h4 class="font-secondary mt-2"> <span class="total-num counter" [CountTo]="456"
+                                            [from]="0" [duration]="2"></span>K
+                                    </h4>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="icofont icofont-social-instagram font-success"></i>
+                                    <h4 class="font-success mt-2"> <span class="total-num counter" [CountTo]="22"
+                                            [from]="0" [duration]="2"></span>K
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-7">
+                    <div class="card ">
+                        <div class="card-body">
+                            <owl-carousel-o [options]="owlcarouselOptions">
+                                <ng-container *ngFor="let data of owlcarousel">
+                                    <ng-template carouselSlide>
+                                        <div class="slide--item">
+                                            <div>
+                                                <p class="text-center">{{data.desc}}</p>
+                                                <div class="text-center">
+                                                    <div class="media d-inline-flex">
+                                                        <img class="mr-3 img-60" [src]="data.img"
+                                                            alt="Generic placeholder image">
+                                                        <div class="align-self-center">
+                                                            <div class="media-body">
+                                                                <h6 class="mt-2 text-uppercase f-w-700">{{data.name}}
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Top Sale</h5>
+                </div>
+                <div class="card-body">
+                    <div class="top-sale-chart">
+                        <canvas baseChart class="chart" [datasets]="saleChartData" [labels]="saleChartLabels"
+                            [options]="saleChartOptions" [colors]="saleChartColors" [legend]="saleChartLegend"
+                            [chartType]="saleChartType"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <img src="assets/images/user-card/1.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="card-profile">
+                    <img src="assets/images/avtar/3.jpg" class="rounded-circle" alt="">
+                </div>
+                <ul class="card-social">
+                    <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-rss"></i></a></li>
+                </ul>
+                <div class="text-center profile-details">
+                    <h4 class="m-b-15 m-t-5">Mark Jecno</h4>
+                    <h6 class="m-t-15">Manager</h6>
+                </div>
+                <div class="card-footer row">
+                    <div class="col-4 col-sm-4">
+                        <h6 class="dashboard-card">Follower</h6>
+                        <h3 class="total-num counter" [CountTo]="956" [from]="0" [duration]="2"></h3>
+                    </div>
+                    <div class="col-4 col-sm-4">
+                        <h6 class="dashboard-card">Follows</h6>
+                        <h3 class="total-num counter" [CountTo]="49" [from]="0" [duration]="2"></h3>
+                    </div>
+                    <div class="col-4 col-sm-4">
+                        <h6 class="dashboard-card">Total</h6>
+                        <h3 class="total-num counter" [CountTo]="96" [from]="0" [duration]="2"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="card height-equal equal-height-lg">
+                <div class="card-header">
+                    <h5>PRODUCT CART</h5>
+                </div>
+                <div class="card-body">
+                    <div class="user-status height-scroll custom-scrollbar">
+                        <table class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="pt-0">Details</th>
+                                    <th scope="col" class="pt-0">Quantity</th>
+                                    <th scope="col" class="pt-0">Status</th>
+                                    <th scope="col" class="pt-0">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Simply dummy text of the printing</td>
+                                    <td class="digits">1</td>
+                                    <td class="font-secondary">Pending</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Long established</td>
+                                    <td class="digits">5</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>sometimes by accident</td>
+                                    <td class="digits">10</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Classical Latin literature</td>
+                                    <td class="digits">9</td>
+                                    <td class="font-info">Return</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>keep the site on the Internet</td>
+                                    <td class="digits">8</td>
+                                    <td class="font-secondary">Pending</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Molestiae consequatur</td>
+                                    <td class="digits">3</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Classical Latin literature</td>
+                                    <td class="digits">9</td>
+                                    <td class="font-info">Return</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+                                <tr>
+                                    <td>Long established</td>
+                                    <td class="digits">5</td>
+                                    <td class="font-danger">Cancle</td>
+                                    <td class="digits">$6523</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="card height-equal equal-height-lg">
+                <div class="card-header">
+                    <h5>Support ticket</h5>
+                </div>
+                <div class="card-body">
+                    <div class="support-ticket">
+                        <div class="row table-responsive-sm">
+                            <table class="table table-bordernone">
+                                <tbody>
+                                    <tr>
+                                        <td class="pt-0">
+                                            <div class="bg-primary left">A</div>
+                                        </td>
+                                        <td>
+                                            <span class="pt-0">Aredo jeko </span>
+                                            <h6>25 july 2019</h6>
+                                        </td>
+                                        <td class="pt-0">
+                                            <p>Mistaken idea of denouncing pleasure and praising pain was born and I
+                                                will give you a complete account of the system, Lorem Ipsum is simply
+                                                dummy text of the printing and typesetting industry. Lorem Ipsum has
+                                                been</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="bg-secondary left">C</div>
+                                        </td>
+                                        <td>
+                                            <span>Aredo jeko </span>
+                                            <h6>25 july 2019</h6>
+                                        </td>
+                                        <td>
+                                            <p>Mistaken idea of denouncing pleasure and praising pain was born and I
+                                                will give you a complete account of the system, Lorem Ipsum is simply
+                                                dummy text of the printing and typesetting industry. Lorem Ipsum has
+                                                been
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pb-0">
+                                            <div class="bg-success left">H</div>
+                                        </td>
+                                        <td>
+                                            <span>Aredo jeko </span>
+                                            <h6>25 july 2019</h6>
+                                        </td>
+                                        <td class="pb-0">
+                                            <p>Mistaken idea of denouncing pleasure and praising pain was born and I
+                                                will give you a complete account of the system, Lorem Ipsum is simply
+                                                dummy text of the printing and typesetting industry. Lorem Ipsum has
+                                                been
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->

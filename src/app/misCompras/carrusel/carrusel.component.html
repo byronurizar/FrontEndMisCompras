@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body">
+        <owl-carousel-o [options]="carouselMerge">
+            <ng-container *ngFor="let img of carouselImages">
+                <ng-template carouselSlide [id]="img.id">
+                    <a href="www.google.com.gt" title="Nombre producto"> 
+                    <img [src]="img.image">
+                </a>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div>

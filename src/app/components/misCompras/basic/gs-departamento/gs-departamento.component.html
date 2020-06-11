@@ -1,0 +1,43 @@
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Departamento
+                    <small>Gestión de departamentos</small>
+                </h3>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item">Basicos </li>
+                    <li class="breadcrumb-item">Departamentos </li>
+                    <li class="breadcrumb-item active">Gestión</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>LISTADO</h5>
+                </div>
+                <div class="card-body smart-datatable">
+                    <div class="table-responsive">
+                        <ng2-smart-table [settings]="settings" [source]="info" (createConfirm)="onRegistrar($event)"  (deleteConfirm)="onElimnar1($event)" (editConfirm)="onActualizar($event)"
+                         ></ng2-smart-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+

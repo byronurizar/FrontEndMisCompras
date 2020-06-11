@@ -1,0 +1,700 @@
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <h3>E-commerce <small>Universal Admin panel</small></h3>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a [routerLink]="'/dashboard/default'"><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">Dashboard </li>
+                    <li class="breadcrumb-item active">E-commerce</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <!--E-commerce widget Start-->
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="total-num counter" [CountTo]="459" [from]="0" [duration]="2"></h4>
+                            <span>Total Products</span>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icon-package"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="blueBarChart" [data]="WidgetLineChart1.data" [type]="WidgetLineChart1.type"
+                            [options]="WidgetLineChart1.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="total-num"> <span class="total-num counter" [CountTo]="32" [from]="0"
+                                    [duration]="2"></span>K</h4>
+                            <span>Sale Products</span>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icon-bar-chart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="redBarChart" [data]="WidgetLineChart2.data" [type]="WidgetLineChart2.type"
+                            [options]="WidgetLineChart2.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="total-num"> <span class="total-num counter" [CountTo]="96" [from]="0"
+                                    [duration]="2"></span>K</h4>
+                            <span>Total Visiters</span>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icon-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="pinkBarChart" [data]="WidgetLineChart2.data" [type]="WidgetLineChart2.type"
+                            [options]="WidgetLineChart2.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12 xl-50">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="total-num"> <span class="total-num counter" [CountTo]="97" [from]="0"
+                                    [duration]="2"></span>K</h4>
+                            <span>Total Income</span>
+                        </div>
+                        <div class="col-4">
+                            <div class="icon text-md-right">
+                                <i class="icon-server"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flot-chart-container">
+                        <x-chartist class="greenBarChart" [data]="WidgetLineChart1.data" [type]="WidgetLineChart1.type"
+                            [options]="WidgetLineChart1.options">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--E-commerce widget Ends-->
+    <!--Yearly Income chart Start-->
+    <div class="row">
+        <div class="col-xl-8 col-md-12 xl-50">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Yearly Report</h5>
+                    <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
+                </div>
+                <div class="card-body">
+                    <div class="yearly-chart">
+                        <x-chartist [type]="chart1.type" [data]="chart1.data" [options]="chart1.options"
+                            [events]="chart1.events">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" col-xl-4 col-md-12 xl-50">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Over All</h5>
+                </div>
+                <div class="card-body">
+                    <div class="crm-numbers">
+                        <div class="row">
+                            <div class="col">
+                                <span>Yearly</span>
+                                <h4 class="txt-info"> <span class="total-num counter" [CountTo]="25" [from]="0"
+                                        [duration]="2"></span>%</h4>
+                            </div>
+                            <div class="col">
+                                <span>Monthly</span>
+                                <h4 class="txt-danger"> <span class="total-num counter" [CountTo]="36" [from]="0"
+                                        [duration]="2"></span>%</h4>
+                            </div>
+                            <div class="col">
+                                <span>weekly</span>
+                                <h4 class="txt-info"> <span class="total-num counter" [CountTo]="22" [from]="0"
+                                        [duration]="2"></span>%</h4>
+                            </div>
+                            <div class="col">
+                                <span>Daily</span>
+                                <h4 class="txt-danger"> <span class="total-num counter" [CountTo]="24" [from]="0"
+                                        [duration]="2"></span>%</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="crm-overall">
+                        <div class="flot-chart-container-small">
+                            <x-chartist [type]="overAllChart.type" [data]="overAllChart.data"
+                                [options]="overAllChart.options" [events]="overAllChart.events">
+                            </x-chartist>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card browser-widget p-0">
+                <div class="card-body">
+                    <div class="media">
+                        <i class="icofont icofont-presentation-alt font-info align-self-center f-70"></i>
+                        <i class="align-self-center mr-3"></i>
+                        <div class="media-body align-self-center">
+                            <div>
+                                <span>Product</span>
+                                <h4> <span class="total-num counter" [CountTo]="90" [from]="0" [duration]="2"></span>%
+                                </h4>
+                            </div>
+                            <div class="inline-block-sm">
+                                <span>Projects</span>
+                                <h4> <span class="total-num counter" [CountTo]="80" [from]="0" [duration]="2"></span>%
+                                </h4>
+                            </div>
+                            <div>
+                                <span>Income</span>
+                                <h4> <span class="total-num counter" [CountTo]="85" [from]="0" [duration]="2"></span>%
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Yearly Income chart Ends-->
+        <!--E-commerce widget Start-->
+        <div class="col-xl-4 col-lg-12">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <span>New Order</span>
+                            <h3 class="total-num counter" [CountTo]="459" [from]="0" [duration]="2"></h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-md-right">
+                                <ul>
+                                    <li>Profit<span class="product-stts txt-success ml-2">8989<i
+                                                class="icon-angle-up f-12 ml-1"></i></span></li>
+                                    <li>Loss<span class="product-stts txt-danger ml-2">2560<i
+                                                class="icon-angle-down f-12 ml-1"></i></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-showcase">
+                        <div class="progress lg-progress-bar">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <span>Pending</span>
+                            <h4 class="total-num counter" [CountTo]="894" [from]="0" [duration]="2"></h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-md-right">
+                                <ul>
+                                    <li>Profit<span class="product-stts txt-success ml-2">8989<i
+                                                class="icon-angle-up f-12 ml-1"></i></span></li>
+                                    <li>Loss<span class="product-stts txt-danger ml-2">2560<i
+                                                class="icon-angle-down f-12 ml-1"></i></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-showcase">
+                        <div class="progress lg-progress-bar">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+            <div class="card">
+                <div class="ecommerce-widget card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <span>Cancle</span>
+                            <h3 class="total-num counter" [CountTo]="256" [from]="0" [duration]="2"></h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-md-right">
+                                <ul>
+                                    <li>Profit<span class="product-stts txt-success ml-2">8989<i
+                                                class="icon-angle-up f-12 ml-1"></i></span></li>
+                                    <li>Loss<span class="product-stts txt-danger ml-2">2560<i
+                                                class="icon-angle-down f-12 ml-1"></i></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-showcase">
+                        <div class="progress lg-progress-bar">
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 70%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--E-commerce widget Ends-->
+    <!--Customer Product & Review Table Start-->
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Latest Products</h5>
+                    <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive text-center user-status">
+                        <table class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Images</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="bd-t-none" scope="row"><img src="assets/images/product/1.png"
+                                            alt="product-1"></th>
+                                    <td>New USA Home Appliances
+                                        Whaer
+                                    </td>
+                                    <td class="digits">01</td>
+                                    <td>Mark Jecno</td>
+                                    <td>Padding</td>
+                                </tr>
+                                <tr>
+                                    <th class="bd-t-none" scope="row"><img src="assets/images/product/2.png"
+                                            alt="product-1"></th>
+                                    <td>New Smart Samsung Touch
+                                        Mobile
+                                    </td>
+                                    <td class="digits">01</td>
+                                    <td>Dolbi Volo</td>
+                                    <td>Return</td>
+                                </tr>
+                                <tr>
+                                    <th class="bd-t-none" scope="row"><img src="assets/images/product/3.png"
+                                            alt="product-1"></th>
+                                    <td>Men Fashion 30% Fashion
+                                        Men-TSHIRT
+                                    </td>
+                                    <td class="digits">06</td>
+                                    <td>Donalt Hili</td>
+                                    <td>Delievered</td>
+                                </tr>
+                                <tr>
+                                    <th class="bd-t-none pb-0" scope="row"><img src="assets/images/product/4.png"
+                                            alt="product-1"></th>
+                                    <td>Sport Wear Rebiz Sport
+                                        Shoes for men
+                                    </td>
+                                    <td class="digits">03</td>
+                                    <td>Animkl solo</td>
+                                    <td>cancle</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Customer Product & Review Table Ends-->
+    <div class="row">
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="product-box">
+                    <div class="product-img">
+                        <img src="assets/images/ecommerce/product/01.jpg" class="img-fluid" alt="">
+                        <div class="product-hover">
+                            <ul>
+                                <li><i class="icon-shopping-cart"></i></li>
+                                <li><i class="icon-eye"></i></li>
+                                <li><i class="icofont icofont-law-alt-2"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>Woman</h6>
+                        <span>Simply dummy text of the printing.</span>
+                        <div class="product-price">
+                            <del>$350.00 </del>$26.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="product-box">
+                    <div class="product-img">
+                        <div class="ribbon ribbon-danger">Sale</div>
+                        <img src="assets/images/ecommerce/product/02.jpg" class="img-fluid" alt="">
+                        <div class="product-hover">
+                            <ul>
+                                <li><i class="icon-shopping-cart"></i></li>
+                                <li><i class="icon-eye"></i></li>
+                                <li><i class="icofont icofont-law-alt-2"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>Woman</h6>
+                        <span>Simply dummy text of the printing.</span>
+                        <div class="product-price">
+                            <del>$350.00 </del>$26.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="product-box">
+                    <div class="product-img">
+                        <img src="assets/images/ecommerce/product/03.jpg" class="img-fluid" alt="">
+                        <div class="product-hover">
+                            <ul>
+                                <li><i class="icon-shopping-cart"></i></li>
+                                <li><i class="icon-eye"></i></li>
+                                <li><i class="icofont icofont-law-alt-2"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>Woman</h6>
+                        <span>Simply dummy text of the printing.</span>
+                        <div class="product-price">
+                            <del>$350.00 </del>$26.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="product-box">
+                    <div class="product-img">
+                        <div class="ribbon ribbon-success ribbon-right">50%</div>
+                        <img src="assets/images/ecommerce/product/04.jpg" class="img-fluid" alt="">
+                        <div class="product-hover">
+                            <ul>
+                                <li><i class="icon-shopping-cart"></i></li>
+                                <li><i class="icon-eye"></i></li>
+                                <li><i class="icofont icofont-law-alt-2"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h6>Woman</h6>
+                        <span>Simply dummy text of the printing.</span>
+                        <div class="product-price">
+                            <del>$350.00 </del>$26.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>User Status</h5>
+                    <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
+
+                </div>
+                <div class="card-body">
+                    <div class="user-status table-responsive">
+                        <table class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">Popular</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle">
+                                            <img src="assets/images/user/4.jpg" alt="blog"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>John Deo <span class="text-muted digits">(14+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress sm-progress-bar">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: 30%" aria-valuenow="50" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action">
+                                            <ul class="list-inline text-muted">
+                                                <li class="list-inline-item"><i class="icon-close"></i></li>
+                                                <li class="list-inline-item"><i class="icon-na"></i></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle">
+                                            <img src="assets/images/user/1.jpg" alt="blog"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Holio Mako <span class="text-muted digits">(250+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Angola</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress sm-progress-bar">
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 70%" aria-valuenow="50" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action">
+                                            <ul class="list-inline text-muted">
+                                                <li class="list-inline-item"><i class="icon-close"></i></li>
+                                                <li class="list-inline-item"><i class="icon-na"></i></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle">
+                                            <img src="assets/images/user/5.jpg" alt="blog"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Mohsib lara<span class="text-muted digits">(99+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Cuba</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress sm-progress-bar">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 60%"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action">
+                                            <ul class="list-inline text-muted">
+                                                <li class="list-inline-item"><i class="icon-close"></i></li>
+                                                <li class="list-inline-item"><i class="icon-na"></i></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle">
+                                            <img src="assets/images/user/6.jpg" alt="blog"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Hileri Soli <span class="text-muted digits">(150+ Online)</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Italy</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress sm-progress-bar">
+                                                <div class="progress-bar bg-secondary" role="progressbar"
+                                                    style="width: 30%" aria-valuenow="50" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action">
+                                            <ul class="list-inline text-muted">
+                                                <li class="list-inline-item"><i class="icon-close"></i></li>
+                                                <li class="list-inline-item"><i class="icon-na"></i></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bd-t-none">
+                                        <div class="d-inline-block align-middle">
+                                            <img src="assets/images/user/7.jpg" alt="blog"
+                                                class="img-radius img-40 align-top m-r-15 rounded-circle">
+                                            <div class="d-inline-block">
+                                                <h6>Pusiz bianb <span class="text-muted digits">(14+ Online)</span></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Kenya</td>
+                                    <td>
+                                        <div class="progress-showcase">
+                                            <div class="progress sm-progress-bar">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 90%"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action">
+                                            <ul class="list-inline text-muted">
+                                                <li class="list-inline-item"><i class="icon-close"></i></li>
+                                                <li class="list-inline-item"><i class="icon-na"></i></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Blog And User Status Start-->
+    <div class="row">
+        <div class="col-xl-6 col-md-12 col-sm-12">
+            <div class="card height-equal">
+                <div class="card-header">
+                    <h5>Customer Review</h5>
+                    <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
+                </div>
+                <div class="card-body">
+                    <div class="customer-review">
+                        <div class="media">
+                            <img class="align-self-start rounded-circle img-90" alt="Universal-review"
+                                src="assets/images/user/12.png">
+                            <div class="media-body">
+                                <label class="cust-name">Mark Jenco</label><label class="cust-des">Designer</label>
+                                <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as
+                                    necessary, making this the first true generator on the Internet. It uses a
+                                    dictionary of over 200 Latin </p>
+                            </div>
+                        </div>
+                        <div class="media mb-0">
+                            <img class="align-self-start rounded-circle img-90" alt="Universal-review"
+                                src="assets/images/user/13.png">
+                            <div class="media-body">
+                                <label class="cust-name">Heloi Jobuc</label><label class="cust-des">Student</label>
+                                <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                                    default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                                    in their infancy.Lorem Ipsum as their default model</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card height-equal equal-height-lg">
+                        <div class="blog-box blog-grid text-center">
+                            <img src="assets/images/blog/blog-5.png" class="img-fluid top-radius-blog" alt="">
+                            <div class="blog-details-main">
+                                <ul class="blog-social">
+                                    <li class="digits">9 April 2018</li>
+                                    <li class="digits">by: Admin</li>
+                                    <li class="digits">0 Hits</li>
+                                </ul>
+                                <hr>
+                                <h6 class="blog-bottom-details">Perspiciatis unde omnis iste natus error sit.Dummy text
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card height-equal equal-height-lg">
+                        <div class="blog-box blog-grid text-center">
+                            <img src="assets/images/blog/blog-6.png" class="img-fluid top-radius-blog" alt="">
+                            <div class="blog-details-main">
+                                <ul class="blog-social">
+                                    <li class="digits">9 April 2018</li>
+                                    <li class="digits">by: Admin</li>
+                                    <li class="digits">0 Hits</li>
+                                </ul>
+                                <hr>
+                                <h6 class="blog-bottom-details">Perspiciatis unde omnis iste natus error sit.Dummy text
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Blog And User Status Ends-->
+</div>
+<!-- Container-fluid Ends -->

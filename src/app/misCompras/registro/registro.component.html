@@ -1,0 +1,178 @@
+<div class="container-fluid">
+    <!--sign up page start-->
+    <div class="authentication-main">
+        <div class="row">
+            <div class="col-md-4 p-0">
+                <div class="auth-innerleft">
+                    <div class="text-center">
+                        <img src="assets/images/logo-auth.gif" class="logo-login" alt="">
+                        <hr>
+                        <div class="social-media">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><i class="fa fa-facebook" aria-hidden="true"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-google-plus" aria-hidden="true"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-twitter" aria-hidden="true"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-instagram" aria-hidden="true"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-rss" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 p-0">
+                <div class="auth-innerright">
+                    <div class="authentication-box">
+                        <h3 class="text-center">Nuevo Usuario</h3>
+                        <h6 class="text-center">Ingrese los datos del nuevo usuario</h6>
+                        <div class="card mt-4 p-4">
+                            <form #nuevoUsuario="ngForm" class="theme-form" (ngSubmit)="registrar(nuevoUsuario)">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Primer Nombre</label>
+                                            <input type="text" name="primerNombre" #primerNombre="ngModel"
+                                                style="text-transform: capitalize;"
+                                                [(ngModel)]="itemPersona.primerNombre" class="form-control"
+                                                [ngClass]="{'is-invalid': primerNombre.errors && primerNombre.touched}"
+                                                required minlength="3" placeholder="">
+                                            <div [hidden]="!primerNombre.errors?.required" class="invalid-feedback">
+                                                Primer Nombre requerido
+                                            </div>
+                                            <div [hidden]="!primerNombre.errors?.minlength" class="invalid-feedback">
+                                                Debe de contener al menos 3 caracteres
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Segundo Nombre</label>
+                                            <input type="text" name="segundoNombre" #segundoNombre="ngModel"
+                                                style="text-transform: capitalize;"
+                                                [(ngModel)]="itemPersona.segundoNombre" class="form-control"
+                                                placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Primer Apellido</label>
+                                            <input type="text" name="primerApellido" #primerApellido="ngModel"
+                                                style="text-transform: capitalize;"
+                                                [(ngModel)]="itemPersona.primerApellido" class="form-control"
+                                                [ngClass]="{'is-invalid': primerApellido.errors && primerApellido.touched}"
+                                                required minlength="2" placeholder="">
+                                            <div [hidden]="!primerApellido.errors?.required" class="invalid-feedback">
+                                                Primer Apellido requerido
+                                            </div>
+                                            <div [hidden]="!primerApellido.errors?.minlength" class="invalid-feedback">
+                                                Debe de contener al menos 2 caracteres
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Segundo Apellido</label>
+                                            <input type="text" name="segundoApellido" #segundoApellido="ngModel"
+                                                style="text-transform: capitalize;"
+                                                [(ngModel)]="itemPersona.segundoApellido" class="form-control"
+                                                placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Fecha de Nacimiento</label>
+                                            <div class="input-group">
+                                             <input class="form-control" type="date" name="fechaNacimiento" #fechaNacimiento="ngModel" [(ngModel)]="itemPersona.fechaNacimiento" [ngClass]="{'is-invalid': fechaNacimiento.errors && fechaNacimiento.touched}"
+                                             required minlength="10" placeholder="dd/MM/yyyy">
+                                        </div>
+                                       <div [hidden]="!fechaNacimiento.errors?.minlength" class="invalid-feedback">
+                                            Ingrese la fecha en el formato dd/MM/yyyy
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Genero</label>
+                                            <select name="genero" class="form-control" #genero="ngModel"
+                                                [(ngModel)]="itemPersona.genero"
+                                                [ngClass]="{'is-invalid': genero.errors && genero.touched}" required>
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Departamento</label>
+                                            <select name="departamento" class="form-control" (change)="listarMunicipios($event)"> 
+                                                <option [value]="item.value" *ngFor="let item of departamentos"
+                                                    >{{item.title}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Municipio</label>
+                                            <select name="municipio" class="form-control" #municipio="ngModel"
+                                                [(ngModel)]="itemPersona.municipio"
+                                                [ngClass]="{'is-invalid': municipio.errors && municipio.touched}"
+                                                required>
+                                                <option [value]="item.value" *ngFor="let item of municipios">
+                                                    {{item.title}}</option>
+                                            </select>
+                                            <div [hidden]="!municipio.errors?.required" class="invalid-feedback">
+                                                Seleccione un municipio
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-form-label">Correo Electrónico</label>
+                                    <input type="email" name="correo" #correo="ngModel" [(ngModel)]="itemPersona.correo"
+                                        style="text-transform:lowercase;" class="form-control"
+                                        [ngClass]="{'is-invalid': correo.errors && correo.touched}" required
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="required"
+                                        placeholder="">
+                                    <div [hidden]="!correo.errors?.required" class="invalid-feedback">
+                                        El correo es requerido
+                                    </div>
+                                    <div [hidden]="!correo.errors?.pattern" class="invalid-feedback">
+                                        El correo es requerido en el siguiente formato <i>correo@gmail.com</i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">Contraseña</label>
+                                    <input type="password" name="contrasenia" #contrasenia="ngModel"
+                                        [(ngModel)]="itemPersona.contrasenia" class="form-control"
+                                        [ngClass]="{'is-invalid': contrasenia.errors && contrasenia.touched}" required
+                                        minlength="6" class="form-control" placeholder="**********">
+                                    <div [hidden]="!contrasenia.errors?.required" class="invalid-feedback">
+                                        Debe de ingresar una contraseña
+                                    </div>
+                                    <div [hidden]="!contrasenia.errors?.minlength" class="invalid-feedback">
+                                        La contraseña debe de contener por lo menos 6 caracteres
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-sm-3">
+                                        <button type="submit" [disabled]="!nuevoUsuario.valid"
+                                            class="btn btn-secondary">Registrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--sign up page Ends-->
+</div>
