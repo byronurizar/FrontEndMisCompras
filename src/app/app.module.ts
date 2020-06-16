@@ -36,6 +36,8 @@ import { CarruselComponent } from './misCompras/carrusel/carrusel.component';
 import { FooterComponent } from './misCompras/footer/footer.component';
 import { FooterInicioComponent } from './misCompras/footer-inicio/footer-inicio.component';
 
+
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }

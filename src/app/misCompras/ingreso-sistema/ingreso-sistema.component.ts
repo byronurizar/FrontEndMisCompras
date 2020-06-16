@@ -23,6 +23,18 @@ export class IngresoSistemaComponent implements OnInit {
     })
 
   }
+
+
+  ingresar(proveedor) {
+    console.log(proveedor);
+    this.conectorApi.login(proveedor);
+
+  }
+  salir(proveedor) {
+    console.log(proveedor);
+    this.conectorApi.logout();
+
+  }
   login(form: any) {
     if (!form.valid) {
       return false;
@@ -31,6 +43,8 @@ export class IngresoSistemaComponent implements OnInit {
     this.conectorApi.Post("usuario/login", form.value).subscribe(
       (data) => {
         let dat = data as ApiRest;
+        sessionStorage.setItem("token", 'Soy el token');
+        console.log("No ay error");
         if (dat.codigo == 0) {
           if (form.value.recordarme) {
             localStorage.setItem("token", dat.data.token);
@@ -45,6 +59,8 @@ export class IngresoSistemaComponent implements OnInit {
       (dataError) => {
         let dat = dataError.error as ApiRest;
         this.toastrService.error(dat.error, "Alerta!")
+        sessionStorage.setItem("token", 'Soy el token');
+        console.log("Si ay error");
       }
     )
   }

@@ -135,7 +135,7 @@
 
                                 <div class="form-group">
                                     <label class="col-form-label">Correo Electrónico</label>
-                                    <input type="email" name="correo" #correo="ngModel" [(ngModel)]="itemPersona.correo"
+                                    <input type="email" name="correo" #correo="ngModel" [(ngModel)]="itemPersona.email"
                                         style="text-transform:lowercase;" class="form-control"
                                         [ngClass]="{'is-invalid': correo.errors && correo.touched}" required
                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="required"

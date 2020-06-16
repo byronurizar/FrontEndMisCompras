@@ -4,55 +4,81 @@ import { environment } from 'src/environments/environment';
 import { ApiRest } from '../modelos/apiResponse.model';
 import { Observable } from 'rxjs/Observable';
 
+
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
 const urlBase = environment.urlBase;
-let token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTU4MTcyNDA5OH0.DN5iQAocmqKRXH_UszsypoebpfVFiGmWeuzgM-zT6rI';
 
-
-// if(sessionStorage.getItem("token")){
-//   token=sessionStorage.getItem("token");
-//   console.log("Mi token",token);
-// }else{
-//   token=localStorage.getItem("token");
-//}
-console.log("Mi token",token);
-let httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  })
-};
-
-let httpOptionsImagenes = {
-  headers: new HttpHeaders({
-    'Authorization': `Bearer ${token}`
-  })
-};
 
 @Injectable()
 export class ConectorApi {
   resultado: Observable<any>;
+  public usuario: any = {};
+  constructor(private http: HttpClient, public afAuth: AngularFireAuth) {
 
-  constructor(private http: HttpClient) { }
+    this.afAuth.authState.subscribe(user => {
+      console.log('Estado del usuario: ', user);
 
+      if (!user) {
+        return;
+      }
 
-  obtenerToken() {
-    var json = '{"email":"prueba3@gmail.com","password":"123456"}';
-    var a = this.http.post(urlBase + "usuario/login", json, httpOptions);
-    return a;
+      this.usuario.nombre = user.displayName;
+      this.usuario.uid = user.uid;
+      this.usuario.email = user.email;
+      this.usuario.photoURL = user.photoURL;
+      console.log("Info Extraida", this.usuario);
+    });
+  }
+
+  login(proveedor: string) {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+  logout() {
+    this.usuario = {};
+    this.afAuth.auth.signOut();
   }
 
   Post(ruta, jsonSolicitud) {
+    let tokenAcces = sessionStorage.getItem("token") || null;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAcces}`
+      })
+    };
     return this.http.post(urlBase + ruta, jsonSolicitud, httpOptions);
+
   }
 
   Get(ruta): Observable<any> {
+    let tokenAcces = sessionStorage.getItem("token") || null;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAcces}`
+      })
+    };
     return this.resultado = this.http.get(urlBase + ruta, httpOptions);
   }
 
- Patch(ruta, jsonSolicitud) {
+  Patch(ruta, jsonSolicitud) {
+    let tokenAcces = sessionStorage.getItem("token") || null;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAcces}`
+      })
+    };
     return this.http.patch(urlBase + ruta, jsonSolicitud, httpOptions);
   }
   PostImagenes(ruta, jsonSolicitud) {
+    let tokenAcces = sessionStorage.getItem("token") || null;
+    let httpOptionsImagenes = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${tokenAcces}`
+      })
+    };
     return this.http.post(urlBase + ruta, jsonSolicitud, httpOptionsImagenes);
   }
 
