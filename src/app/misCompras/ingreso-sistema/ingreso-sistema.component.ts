@@ -28,7 +28,6 @@ export class IngresoSistemaComponent implements OnInit {
   ingresar(proveedor) {
     console.log(proveedor);
     this.conectorApi.login(proveedor);
-
   }
   salir(proveedor) {
     console.log(proveedor);

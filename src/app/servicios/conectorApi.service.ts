@@ -23,11 +23,20 @@ export class ConectorApi {
         return;
       }
 
-      this.usuario.nombre = user.displayName;
+      this.usuario.name = user.displayName;
       this.usuario.uid = user.uid;
       this.usuario.email = user.email;
-      this.usuario.photoURL = user.photoURL;
-      console.log("Info Extraida", this.usuario);
+      this.usuario.urlfoto = user.photoURL;
+      this.usuario.proveedor = "Google";
+
+      this.Post('usuario/registronuevo', this.usuario).subscribe(
+        (data) => {
+          console.log("data", data);
+        },
+        (error) => {
+          console.log("Error", error);
+        });
+
     });
   }
 

@@ -14,7 +14,9 @@ export const environment = {
     appId: "1:346387311870:web:f726bf4f5f71480c6c09af",
     measurementId: "G-ZFR1FFNQ9W"
   },
-  urlBase:'http://35.222.84.155/apiStore/v1/',
+  // urlBase:'http://35.222.84.155/apiStore/v1/',
+   urlBase:' http://127.0.0.1:3333/apiStore/v1/',
+ 
   urlImagnes:'http://35.222.84.155/'
 };
 
