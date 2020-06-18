@@ -9,6 +9,7 @@ import { content } from "./shared/routes/content.routes";
 import { IngresoSistemaComponent } from './misCompras/ingreso-sistema/ingreso-sistema.component';
 import { RegistroComponent } from './misCompras/registro/registro.component';
 import { InicioComponent } from './misCompras/inicio/inicio.component';
+import { NuevoUsuarioComponent } from './misCompras/nuevo-usuario/nuevo-usuario.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -31,6 +32,10 @@ const appRoutes: Routes = [
   {
     path:'registrarse',
     component:RegistroComponent
+  },
+  {
+    path:'nuevousuario',
+    component:NuevoUsuarioComponent
   },
   {
     path:'inicio',

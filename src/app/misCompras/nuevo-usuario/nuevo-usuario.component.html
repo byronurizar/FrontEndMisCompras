@@ -23,11 +23,22 @@
             <div class="col-md-8 p-0">
                 <div class="auth-innerright">
                     <div class="authentication-box">
-                        <h4>Ingreso al Sistema</h4>
-                        <h6>Por favor digite sus credenciales</h6>
+                        <h4>Registrarse</h4>
+                        <h6>Por favor complete la información solicitada por el formulario</h6>
                         <div class="card mt-4 p-4 mb-0">
 
-                            <form [formGroup]="validationForm" (ngSubmit)="login(validationForm)" novalidate>
+                            <form [formGroup]="validationForm" (ngSubmit)="registrarse(validationForm)" novalidate>
+                                <div class="form-group">
+                                    <label class="col-form-label pt-0">Nombre y Apellidos</label>
+                                    <input type="text" class="form-control form-control-lg"
+                                        required="required" id="name" placeholder="Nombre y Apellidos"
+                                        [formControl]="validationForm.controls['name']" required>
+                                    <div *ngIf="validationForm.controls.name.touched && validationForm.controls.name.errors?.required"
+                                        class="text text-danger">
+                                        Debe de ingresar su nombre y apellidos
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-form-label pt-0">Correo</label>
                                     <input type="email" class="form-control form-control-lg"
@@ -36,7 +47,7 @@
                                         [formControl]="validationForm.controls['email']" required>
                                     <div *ngIf="validationForm.controls.email.touched && validationForm.controls.email.errors?.required"
                                         class="text text-danger">
-                                        Campo obligatorio
+                                        Debe de ingresar su correo electrónico
                                     </div>
                                     <div *ngIf="validationForm.controls['email'].errors?.pattern"
                                         class="text text-danger">
@@ -50,27 +61,14 @@
                                         required>
                                     <div *ngIf="validationForm.controls.password.touched && validationForm.controls.password.errors?.required"
                                         class="text text-danger">
-                                        Campo obligatorio
+                                        Debe de ingresar una contraseña
                                     </div>
                                 </div>
-                                <div class="checkbox p-0">
-                                    <input id="checkbox1" type="checkbox"
-                                        [formControl]="validationForm.controls['recordarme']">
-                                    <label for="checkbox1">Recordarme</label>
-                                </div>
-                                <div class="theme-form">
-                                <div class="social mt-3">
-                               <div class="form-row">
-                                    <div class="col-sm-4">
+                                <div class="form-group form-row mt-3 mb-0">
+                                    <div class="col-md-3">
                                         <button type="submit" [disabled]="!validationForm.valid"
-                                            class="btn social-btn btn-fb mb-2">Ingresar</button>
+                                            class="btn btn-secondary">Registrarse</button>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <button type="button" [routerLink]="['/nuevousuario']"
-                                            class="btn social-btn btn-twitter mb-2">Registrarse</button>
-                                    </div>
-                                </div>
-                                </div>
                                 </div>
                                 <div class="theme-form">
                                     <div class="form-divider"></div>

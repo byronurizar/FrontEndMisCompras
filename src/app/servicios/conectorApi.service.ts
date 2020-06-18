@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 const urlBase = environment.urlBase;
 
 
@@ -15,10 +16,9 @@ const urlBase = environment.urlBase;
 export class ConectorApi {
   resultado: Observable<any>;
   public usuario: any = {};
-  constructor(private http: HttpClient, public afAuth: AngularFireAuth,private router: Router) {
+  constructor(private http: HttpClient, public afAuth: AngularFireAuth, private router: Router, private toastrService: ToastrService) {
 
     this.afAuth.authState.subscribe(user => {
-      console.log('Estado del usuario: ', user);
 
       if (!user) {
         return;
@@ -31,19 +31,26 @@ export class ConectorApi {
       this.usuario.proveedor = "Google";
 
       this.Post('usuario/registronuevo', this.usuario).subscribe(
-        (data) => {
-          console.log("data", data);
-          this.router.navigate(['/dashboard/principal'])
+        (dataResponse) => {
+          if (dataResponse["codigo"] === 0) {
+            let tokenGmail = dataResponse["data"].token.token;
+            sessionStorage.setItem("token", tokenGmail);
+            this.router.navigate(['/dashboard/principal']);
+          } else {
+            this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
+            this.router.navigate(['/login']);
+          }
         },
         (error) => {
           console.log("Error", error);
+          this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
         });
 
     });
   }
 
   login(proveedor: string) {
-      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
   logout() {
     this.usuario = {};

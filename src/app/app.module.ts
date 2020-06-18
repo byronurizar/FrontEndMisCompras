@@ -35,6 +35,7 @@ import { EncabezadoComponent } from './misCompras/encabezado/encabezado.componen
 import { CarruselComponent } from './misCompras/carrusel/carrusel.component';
 import { FooterComponent } from './misCompras/footer/footer.component';
 import { FooterInicioComponent } from './misCompras/footer-inicio/footer-inicio.component';
+import { NuevoUsuarioComponent } from './misCompras/nuevo-usuario/nuevo-usuario.component';
 
 
 
@@ -54,7 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EncabezadoComponent,
     CarruselComponent,
     FooterComponent,
-    FooterInicioComponent
+    FooterInicioComponent,
+    NuevoUsuarioComponent
   ],
   imports: [
     CarouselModule,
