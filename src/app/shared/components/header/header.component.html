@@ -78,7 +78,7 @@
                             alt="header-user" />
                         <div class="media-body">
                             <h6 class="m-0 txt-dark f-16">
-                                My Account
+                                {{nombre}}
                                 <i class="fa fa-angle-down pull-right ml-2"></i>
                             </h6>
                         </div>
@@ -87,13 +87,13 @@
                         <li>
                             <a [routerLink]="['/users/edit']">
                                 <i class="icon-user"></i>
-                                Edit Profile
+                               Pedidos
                             </a>
                         </li>
                         <li>
                             <a [routerLink]="['/email/app']">
                                 <i class="icon-email"></i>
-                                Inbox
+                                Direcciones
                             </a>
                         </li>
                         <li>
@@ -103,17 +103,11 @@
                             </a>
                         </li>
                         <li>
-                            <a [routerLink]="['/chat/app']">
-                                <i class="icon-comments"></i>
-                                Chat
+                            <a href="javascript:void(0)" (click)="salir('google')">
+                                <i class="icon-power-off"></i>
+                                Salir
                             </a>
                         </li>
-                        <!-- <li>
-                            <a href="javascript:void(0)" (click)="authService.SignOut()">
-                                <i class="icon-power-off"></i>
-                                Logout
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
             </ul>

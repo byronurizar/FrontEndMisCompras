@@ -3,6 +3,7 @@ import { NavService, Menu } from '../../service/nav.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { CustomizerService } from '../../service/customizer.service';
+import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 
 var body = document.getElementsByTagName("body")[0];
 
@@ -12,6 +13,8 @@ var body = document.getElementsByTagName("body")[0];
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+public nombre:String;
+
 
   public menuItems: Menu[];
   public items: Menu[];
@@ -27,10 +30,11 @@ export class HeaderComponent implements OnInit {
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
   @Output() toggleEvent = new EventEmitter<boolean>();
 
-  constructor(public navServices: NavService,
+  constructor(public navServices: NavService,private conectorApi: ConectorApi,
     private translate: TranslateService,
     public customize: CustomizerService) {
     translate.setDefaultLang('en');
+    this.nombre=this.conectorApi.usuario.name;
   }
 
   ngOnInit() {
@@ -39,6 +43,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+
+  salir(proveedor) {
+    console.log(proveedor);
+    this.conectorApi.logout();
+  }
 
   clickSearch(){
     this.openSearch = !this.openSearch;

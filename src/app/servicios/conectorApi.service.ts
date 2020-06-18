@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 const urlBase = environment.urlBase;
 
 
@@ -14,7 +15,7 @@ const urlBase = environment.urlBase;
 export class ConectorApi {
   resultado: Observable<any>;
   public usuario: any = {};
-  constructor(private http: HttpClient, public afAuth: AngularFireAuth) {
+  constructor(private http: HttpClient, public afAuth: AngularFireAuth,private router: Router) {
 
     this.afAuth.authState.subscribe(user => {
       console.log('Estado del usuario: ', user);
@@ -32,6 +33,7 @@ export class ConectorApi {
       this.Post('usuario/registronuevo', this.usuario).subscribe(
         (data) => {
           console.log("data", data);
+          this.router.navigate(['/dashboard/principal'])
         },
         (error) => {
           console.log("Error", error);
@@ -41,11 +43,14 @@ export class ConectorApi {
   }
 
   login(proveedor: string) {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
   logout() {
     this.usuario = {};
     this.afAuth.auth.signOut();
+    localStorage.clear();
+    sessionStorage.clear();
+    this.router.navigate(['login'])
   }
 
   Post(ruta, jsonSolicitud) {

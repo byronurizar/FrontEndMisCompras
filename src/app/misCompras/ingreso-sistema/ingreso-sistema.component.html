@@ -30,16 +30,18 @@
                             <form [formGroup]="validationForm" (ngSubmit)="login(validationForm)" novalidate>
                                 <div class="form-group">
                                     <label class="col-form-label pt-0">Correo</label>
-                                    <input type="email" class="form-control form-control-lg" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [email]="true" required="required" id="email" 
-                                        placeholder="Correo electrónico"
+                                    <input type="email" class="form-control form-control-lg"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [email]="true"
+                                        required="required" id="email" placeholder="Correo electrónico"
                                         [formControl]="validationForm.controls['email']" required>
                                     <div *ngIf="validationForm.controls.email.touched && validationForm.controls.email.errors?.required"
                                         class="text text-danger">
                                         Campo obligatorio
                                     </div>
-                                    <div *ngIf="validationForm.controls['email'].errors?.pattern" class="text text-danger">
+                                    <div *ngIf="validationForm.controls['email'].errors?.pattern"
+                                        class="text text-danger">
                                         El correo ingresado no cumple con el formato <i>ejemplo@gmail.com</i>
-                                      </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">Constraseña</label>
@@ -62,21 +64,27 @@
                                             class="btn btn-secondary">Ingresar</button>
                                     </div>
                                 </div>
-
-                                <div class="form-group form-row mt-3 mb-0">
-                                    <div class="col-md-3">
-                                        <button type="button"
-                                            class="btn btn-secondary" (click)="ingresar('google')">GMAIL</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button type="button"
-                                            class="btn btn-secondary" (click)="ingresar('twitter')">TWITTER</button>
+                                <div class="theme-form">
+                                    <div class="form-divider"></div>
+                                    <div class="social mt-3">
+                                        <div class="form-row">
+                                            <!-- <div class="col-sm-4">
+                                                <button class="btn social-btn btn-fb mb-2" (click)="ingresar('facebook')">Facebook</button>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button class="btn social-btn btn-twitter mb-2">Twitter</button>
+                                            </div> -->
+                                            <div class="col-sm-4">
+                                                <button type="button" class="btn social-btn btn-google mb-2"
+                                                    (click)="ingresar('google')">Google</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <button type="button"
-                                class="btn btn-secondary" (click)="salir('google')">SALIR</button>
                             </form>
+                            <!-- <button type="button"
+                                class="btn btn-secondary" (click)="salir('google')">SALIR</button> -->
                         </div>
                     </div>
                 </div>

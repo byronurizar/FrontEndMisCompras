@@ -21,7 +21,6 @@ export class IngresoSistemaComponent implements OnInit {
       password: ['', Validators.required],
       recordarme: [''],
     })
-
   }
 
 
@@ -32,7 +31,6 @@ export class IngresoSistemaComponent implements OnInit {
   salir(proveedor) {
     console.log(proveedor);
     this.conectorApi.logout();
-
   }
   login(form: any) {
     if (!form.valid) {
