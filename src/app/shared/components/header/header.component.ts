@@ -38,7 +38,7 @@ public nombre:String;
   }
 
   ngOnInit() {
-    this.navServices.items.subscribe(menuItems => {
+    this.navServices.items2().subscribe(menuItems => {
       this.items = menuItems
     });
   }

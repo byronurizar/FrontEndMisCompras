@@ -9,7 +9,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject } from 'rxjs';
 const urlBase = environment.urlBase;
 
 
@@ -33,7 +32,6 @@ export class ConectorApi {
 
       this.Post('usuario/registronuevo', this.usuario).subscribe(
         (dataResponse) => {
-         
           if (dataResponse["codigo"] === 0) {
             let tokenGmail = dataResponse["data"].token.token;
             sessionStorage.setItem("token", tokenGmail);
@@ -60,31 +58,6 @@ export class ConectorApi {
     localStorage.clear();
     sessionStorage.clear();
     this.router.navigate(['login'])
-  }
-
-  Post2(ruta, jsonSolicitud): Observable<any> {
-    return Observable.create((behaviorSubject: BehaviorSubject<any>) => {
-      try {
-        let tokenAcces = sessionStorage.getItem("token") || null;
-         let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenAcces}`
-      })
-    };
-    let request=this.http.post(urlBase + ruta, jsonSolicitud, httpOptions);
-    request.subscribe((data)=>{
-      console.log("Data",JSON.parse(atob(data["objBase64"].toString())));
-      const nuevaDAta=JSON.parse(atob(data["objBase64"].toString()));
-      console.log({nuevaDAta});
-      behaviorSubject.next(nuevaDAta);
-    })
-
-      } catch (ex) {
-        console.log("ex", ex);
-      }
-
-    });
   }
 
   Post(ruta, jsonSolicitud) {
