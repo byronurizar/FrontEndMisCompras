@@ -10,8 +10,13 @@ import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.componen
 
 const routes: Routes = [{
   path:'',
-  children:[{
-    path:'productos',
+  children:[
+    {
+      path:'productos',
+      redirectTo:'productos/0/0'
+    },
+    {
+    path:'productos/:idCatalogo/:idCategoria',
     component:ProductosComponent
   },
 {

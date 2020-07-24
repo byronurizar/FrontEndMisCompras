@@ -15,6 +15,8 @@ import { GsCatalogoComponent } from './gs-catalogo/gs-catalogo.component';
 import { GsEstadoPedidoComponent } from './gs-estado-pedido/gs-estado-pedido.component';
 import { GsTipoPagoComponent } from './gs-tipo-pago/gs-tipo-pago.component';
 import { GsDetalleTipoPagoComponent } from './gs-detalle-tipo-pago/gs-detalle-tipo-pago.component';
+import { AuthGuard } from 'src/app/servicios/guardianes/auth.guard';
+
 const routes: Routes = [{
   path:'',
   children:[

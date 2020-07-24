@@ -13,9 +13,6 @@ var body = document.getElementsByTagName("body")[0];
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-public nombre:String;
-
-
   public menuItems: Menu[];
   public items: Menu[];
   public searchResult: boolean = false;
@@ -30,11 +27,10 @@ public nombre:String;
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
   @Output() toggleEvent = new EventEmitter<boolean>();
 
-  constructor(public navServices: NavService,private conectorApi: ConectorApi,
+  constructor(public navServices: NavService,public conectorApi: ConectorApi,
     private translate: TranslateService,
     public customize: CustomizerService) {
     translate.setDefaultLang('en');
-    this.nombre=this.conectorApi.usuario.name;
   }
 
   ngOnInit() {

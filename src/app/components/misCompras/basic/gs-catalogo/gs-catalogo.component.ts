@@ -11,11 +11,11 @@ const Swal = require('sweetalert2')
   styleUrls: ['./gs-catalogo.component.scss']
 })
 export class GsCatalogoComponent implements OnInit {
-  info:any[];
+  info: any[];
   public configuracion: Object;
   proveedores: ElementoLista[] = [];
   proveedoresFiltro: ElementoLista[] = [];
-  constructor(private conectorApi: ConectorApi,private toastrService: ToastrService) { 
+  constructor(private conectorApi: ConectorApi, private toastrService: ToastrService) {
     this.listarProveedores();
   }
 
@@ -28,9 +28,7 @@ export class GsCatalogoComponent implements OnInit {
       this.conectorApi.Get('proveedores/listar').subscribe(
         async (data) => {
           let dat = data as ApiRest;
-          console.log("Todos los departamentos",dat.data);
-        await  dat.data.forEach(item => {
-            //this.departamentos.push(new ElementoLista(departamento.id, departamento.descripcion));
+          await dat.data.forEach(item => {
             this.proveedores.push(new ElementoLista(item.id, item.nombre))
             this.proveedoresFiltro.push(new ElementoLista(item.nombre, item.nombre))
 
@@ -112,42 +110,44 @@ export class GsCatalogoComponent implements OnInit {
           }
         },
         (dataError) => {
-          this.toastrService.error(dataError.error, 'Alerta!');
+          this.toastrService.error(dataError.error.error.message, 'Alerta!');
         }
       )
     } catch (ex) {
+      console.log("Excepcion", ex);
       this.toastrService.error(ex, 'Alerta!');
     }
   }
 
   cargarInformacion() {
-    try{
-    this.conectorApi.Get('catalogos/listar').subscribe(
-      (data) => {
-        let dat = data as ApiRest;
-        this.info = dat.data;
-      },
-      (dataError) => {
-        this.toastrService.error(dataError.error, 'Alerta!');
-      }
-    )
-    }catch(ex){
-      this.toastrService.error(ex, 'Alerta!');
+    try {
+      this.conectorApi.Get('catalogos/listar').subscribe(
+        (data) => {
+          console.log("Data", data);
+          let dat = data as ApiRest;
+          this.info = dat.data;
+        },
+        (dataError) => {
+          this.toastrService.error(dataError.error.error.message, 'Alerta!');
+        }
+      )
+    } catch (ex) {
+      this.toastrService.error(ex.message, 'Alerta!');
     }
-    
+
   }
 
-  onRegistrar(event):void {
+  onRegistrar(event): void {
     try {
       if (event.newData) {
         if (event.newData["descripcion"].trim().length > 0) {
-          if(event.newData["idEstado"].trim().toUpperCase()=="INACTIVO"){
-            event.newData["idEstado"]=2;
-          }else{
-            event.newData["idEstado"]=1;
+          if (event.newData["idEstado"].trim().toUpperCase() == "INACTIVO") {
+            event.newData["idEstado"] = 2;
+          } else {
+            event.newData["idEstado"] = 1;
           }
-          let itemProveedor=this.proveedores.find(item=>item.title==event.newData["idProveedor"]);
-          event.newData["idProveedor"]=itemProveedor.value;
+          let itemProveedor = this.proveedores.find(item => item.title == event.newData["idProveedor"]);
+          event.newData["idProveedor"] = itemProveedor.value;
 
           this.conectorApi.Post('catalogos/registro', event.newData).subscribe(
             (data) => {
@@ -162,8 +162,7 @@ export class GsCatalogoComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
               event.confirm.reject();
             }
           );
@@ -175,22 +174,21 @@ export class GsCatalogoComponent implements OnInit {
       }
     } catch (error) {
       this.toastrService.error(error, 'Alerta!');
-   
-     } 
-  }
 
+    }
+  }
 
   onActualizar(event): void {
     try {
       if (event.newData) {
         if (event.newData["descripcion"].trim().length > 0) {
-          if(event.newData["idEstado"].trim().toUpperCase()=="INACTIVO"){
-            event.newData["idEstado"]=2;
-          }else{
-            event.newData["idEstado"]=1;
+          if (event.newData["idEstado"].trim().toUpperCase() == "INACTIVO") {
+            event.newData["idEstado"] = 2;
+          } else {
+            event.newData["idEstado"] = 1;
           }
-          let itemProveedor=this.proveedores.find(item=>item.title==event.newData["idProveedor"]);
-          event.newData["idProveedor"]=itemProveedor.value;
+          let itemProveedor = this.proveedores.find(item => item.title == event.newData["idProveedor"]);
+          event.newData["idProveedor"] = itemProveedor.value;
 
           this.conectorApi.Patch(`catalogos/actualizar/${event.data["id"]}`, event.newData).subscribe(
             (data) => {
@@ -205,8 +203,8 @@ export class GsCatalogoComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
+              event.confirm.reject();
             }
           );
         } else {
@@ -236,11 +234,11 @@ export class GsCatalogoComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-  
+
         try {
           if (event.data) {
-            let json=JSON.stringify({idEstado:3});
-            this.conectorApi.Patch(`catalogos/actualizar/${event.data["id"]}`,json).subscribe(
+            let json = JSON.stringify({ idEstado: 3 });
+            this.conectorApi.Patch(`catalogos/actualizar/${event.data["id"]}`, json).subscribe(
               (data) => {
                 let apiResult = data as ApiRest;
                 if (apiResult.codigo == 0) {
@@ -253,8 +251,8 @@ export class GsCatalogoComponent implements OnInit {
                 }
               },
               (dataError) => {
-                let apiResult = dataError.error as ApiRest;
-                this.toastrService.error(apiResult.respuesta, 'Alerta!');
+                this.toastrService.error(dataError.error.error.message, 'Alerta!');
+                event.confirm.reject();
               }
             );
           } else {

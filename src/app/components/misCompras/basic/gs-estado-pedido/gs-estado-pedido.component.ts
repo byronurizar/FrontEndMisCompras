@@ -82,7 +82,7 @@ export class GsEstadoPedidoComponent implements OnInit {
         this.info = dat.data;
       },
       (dataError) => {
-        this.toastrService.error(dataError.error, 'Alerta!');
+        this.toastrService.error(dataError.error.error.message, 'Alerta!');
       }
     )
     }catch(ex){
@@ -113,8 +113,7 @@ export class GsEstadoPedidoComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
               event.confirm.reject();
             }
           );
@@ -153,8 +152,8 @@ export class GsEstadoPedidoComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
+              event.confirm.reject();
             }
           );
         } else {
@@ -201,8 +200,8 @@ export class GsEstadoPedidoComponent implements OnInit {
                 }
               },
               (dataError) => {
-                let apiResult = dataError.error as ApiRest;
-                this.toastrService.error(apiResult.respuesta, 'Alerta!');
+                this.toastrService.error(dataError.error.error.message, 'Alerta!');
+                event.confirm.reject();
               }
             );
           } else {

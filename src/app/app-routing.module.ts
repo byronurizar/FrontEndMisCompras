@@ -11,11 +11,11 @@ import { RegistroComponent } from './misCompras/registro/registro.component';
 import { InicioComponent } from './misCompras/inicio/inicio.component';
 import { NuevoUsuarioComponent } from './misCompras/nuevo-usuario/nuevo-usuario.component';
 const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: 'landing',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'landing',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'landing',
     component: LandingComponent
@@ -40,6 +40,10 @@ const appRoutes: Routes = [
   {
     path:'inicio',
     component:InicioComponent
+  },
+  {
+    path:'**',
+    component:IngresoSistemaComponent
   }
 ];
 

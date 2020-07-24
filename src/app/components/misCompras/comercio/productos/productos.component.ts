@@ -22,17 +22,23 @@ export class ProductosComponent implements OnInit {
   public urlImagenes = environment.urlImagnes;
 
 
-  constructor(private conectorApi: ConectorApi, private toastr: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos) { }
+  constructor(private conectorApi: ConectorApi, private toastr: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos) { 
+    console.log("LLego");
+    this.route.params.subscribe(params => {
+      const idCatalogo = +params['idCatalogo'];
+      const idCategoria = +params['idCategoria'];
+      this.listarProductos(idCatalogo,idCategoria);
+    });
+  }
 
-  async listarProductos() {
-    this.conectorApi.Get("productos/comercio/listar").subscribe(
+  async listarProductos(idCatalogo,idCategoria) {
+    this.conectorApi.Get(`productos/comercio/listar/${idCatalogo}/${idCategoria}`).subscribe(
       async (data) => {
         let dat = data as ApiRest;
         if (dat.codigo == 0) {
           this.productos = await dat.data;
           console.log("Productos", this.productos);
         }
-
       },
       (dataError) => {
         console.log("Data Error", dataError);
@@ -40,7 +46,7 @@ export class ProductosComponent implements OnInit {
     )
   }
   ngOnInit() {
-    this.listarProductos();
+    // this.listarProductos();
   }
   abrirDetalle(content, id: number) {
     this.modalService.open(content, { centered: true, size: 'lg' });

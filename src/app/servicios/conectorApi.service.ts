@@ -36,6 +36,9 @@ export class ConectorApi {
          
           if (dataResponse["codigo"] === 0) {
             let tokenGmail = dataResponse["data"].token.token;
+            let codigoRol=dataResponse["data"].usuario.codigoRol;
+            this.usuario.token=tokenGmail;
+            this.usuario.codigoRol=codigoRol;
             sessionStorage.setItem("token", tokenGmail);
             this.router.navigate(['/dashboard/principal']);
           } else {

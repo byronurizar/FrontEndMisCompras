@@ -33,7 +33,7 @@ export class Carrito {
           if (idColorActual == color.idColor) {
             let cantidadTotal = parseInt((productos[index].cantidad)) + parseInt('' + cantidad);
             productos[index]["cantidad"] = cantidadTotal;
-            this.toastrService.success('Producto agregado exitosamente');
+            this.toastrService.success('Producto agregado al carrito exitosamente');
             localStorage.setItem('carritoItems', JSON.stringify(productos));
             return true;
           } else {
@@ -48,7 +48,7 @@ export class Carrito {
     if (!productoExistente) {
       nuevoProducto = { producto, cantidad, colores, color, tallas, talla };
       productos.push(nuevoProducto);
-      this.toastrService.success('Producto agregado exitosamente');
+      this.toastrService.success('Producto agregado al carrito exitosamente');
     }
     localStorage.setItem('carritoItems', JSON.stringify(productos));
     return true;

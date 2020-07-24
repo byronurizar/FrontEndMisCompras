@@ -14,6 +14,7 @@ export class GsTipoPagoComponent implements OnInit {
   info: any[];
 
   ngOnInit() {
+    console.log(this.conectorApi.usuario);
     this.cargarInformacion();
   }
 
@@ -137,8 +138,7 @@ export class GsTipoPagoComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
               event.confirm.reject();
             }
           );
@@ -177,8 +177,8 @@ export class GsTipoPagoComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
+              event.confirm.reject();
             }
           );
         } else {
@@ -225,8 +225,8 @@ export class GsTipoPagoComponent implements OnInit {
                 }
               },
               (dataError) => {
-                let apiResult = dataError.error as ApiRest;
-                this.toastrService.error(apiResult.respuesta, 'Alerta!');
+                this.toastrService.error(dataError.error.error.message, 'Alerta!');
+                event.confirm.reject();
               }
             );
           } else {

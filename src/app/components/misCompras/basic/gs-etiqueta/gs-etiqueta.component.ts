@@ -84,7 +84,7 @@ export class GsEtiquetaComponent implements OnInit {
         this.info = dat.data;
       },
       (dataError) => {
-        this.toastrService.error(dataError.error, 'Alerta!');
+        this.toastrService.error(dataError.error.error.message, 'Alerta!');
       }
     )
     }catch(ex){
@@ -115,8 +115,7 @@ export class GsEtiquetaComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
               event.confirm.reject();
             }
           );
@@ -155,8 +154,8 @@ export class GsEtiquetaComponent implements OnInit {
               }
             },
             (dataError) => {
-              let apiResult = dataError.error as ApiRest;
-              this.toastrService.error(apiResult.respuesta, 'Alerta!');
+              this.toastrService.error(dataError.error.error.message, 'Alerta!');
+              event.confirm.reject();
             }
           );
         } else {
@@ -203,8 +202,8 @@ export class GsEtiquetaComponent implements OnInit {
                 }
               },
               (dataError) => {
-                let apiResult = dataError.error as ApiRest;
-                this.toastrService.error(apiResult.respuesta, 'Alerta!');
+                this.toastrService.error(dataError.error.error.message, 'Alerta!');
+                event.confirm.reject();
               }
             );
           } else {
