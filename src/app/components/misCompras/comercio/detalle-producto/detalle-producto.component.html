@@ -45,11 +45,7 @@
 
             <div class="col-xl-8">
                 <div class="product-page-details">
-                    <h5>{{producto.nombre}}</h5>
-                    <div class="d-flex">
-                        <span>{{producto.precio}}</span>&nbsp;Visitas&nbsp;|&nbsp;<span>{{producto.precio}}</span>&nbsp;Pedidos
-                    </div>
-                    
+                    <h5><strong>{{producto.nombre}}</strong></h5>
                 </div>
                 <hr>
                 <p>{{producto.descripcion}}</p>
@@ -78,12 +74,30 @@
                             <tr>
                                 <td><b>Disponibilidad: </b>En base a pedido</td>
                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div>
+                    <table class="product-page-width">
+                        <tbody>
                             <tr>
-                                <td><b>Tiempo de Entrega: </b>De 8 a 10 días</td>
+                                <td><b>Tiempos de entrega: </b></td>
+                            </tr>
+                            <tr>
+                                <td>En la capital, recíbelo de {{producto.num_dias_minimo_ciudad}} a {{producto.num_dias_maximo_ciudad}} días hábiles</td>
+                            </tr>
+                            <tr>
+                                <td> En el interior, recíbelo de {{producto.num_dias_minimo_interior}} a {{producto.num_dias_maximo_interior}} días hábiles</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <hr *ngIf="producto.observaciones">
+               
+                <div class="m-t-15" *ngIf="producto.observaciones">
+                    <strong>Observaciones</strong>
+                    <p>{{producto.observaciones}}</p></div>
                 <hr *ngIf="tallasDisponibles?.length >0">
                 <div class="m-t-15" *ngIf="tallasDisponibles?.length >0">
                     <h6>Tallas</h6>

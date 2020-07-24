@@ -55,6 +55,8 @@ export class NavService {
   items2(): Observable<Menu[]> {
     return Observable.create((behaviorSubject: BehaviorSubject<Menu[]>) => {
       try {
+        let tokenAcces = sessionStorage.getItem("token") || null;
+
         this.conectorApi.Get('menu/mimenu').subscribe(
           (data) => {
             let dat = data as ApiRest;
@@ -84,6 +86,43 @@ export class NavService {
               });
               console.log({ MenuPerfil: miMenuPerfil });
               behaviorSubject.next(miMenuPerfil);
+            } else if (dat.codigo == 2) {
+              this.menuBd = dat.data;
+              let miMenuPerfil = new Array();
+              const titulos = this.menuBd.filter(item => item.id.includes('prov'));
+              titulos.map(filaTitulo => {
+                let itemTitulo = {
+                  headTitle: filaTitulo.descripcion
+                }
+                const padres = this.menuBd.filter(item => item.idpadre == filaTitulo.id);
+                if (padres.length > 0) {
+                  miMenuPerfil.push(itemTitulo);
+                  padres.map(filaPadre => {
+                    let itemPadre: Menu;
+                    let itemsHijos = new Array();
+                    let idPadre = filaPadre.id;
+                    let hijosItemActual = this.menuBd.filter(i => i.idpadre === idPadre);
+
+                    if (hijosItemActual.length > 0) {
+                      hijosItemActual.map(itemHijo => {
+                        let itemHijoActual: Menu;
+                        itemHijoActual = {
+                          path: itemHijo.href, title: itemHijo.descripcion, type: 'link'
+                        }
+                        itemsHijos.push(itemHijoActual);
+                      });
+
+                      itemPadre = {
+                        title: filaPadre.descripcion, icon: filaPadre.icono, type: 'sub', active: false, children: itemsHijos
+                      }
+                      miMenuPerfil.push(itemPadre);
+                    }
+                  });
+                }
+              });
+
+              console.log({ MenuPerfil: miMenuPerfil });
+              behaviorSubject.next(miMenuPerfil);
             }
 
           },
@@ -91,6 +130,7 @@ export class NavService {
             console.log("Error", dataError);
           }
         )
+
       } catch (ex) {
         console.log("ex", ex);
       }

@@ -54,7 +54,22 @@ export class GsProveedorComponent implements OnInit {
       },      
       direccion: {
         title: 'Dirección'
-      },      
+      },    
+      num_dias_minimo_ciudad: {
+        title: 'Dias Mínimo Ciudad'
+      },
+      num_dias_maximo_ciudad: {
+        title: 'Dias Máximo Ciudad'
+      },
+      num_dias_minimo_interior: {
+        title: 'Dias Mínimo Interior'
+      },
+      num_dias_maximo_interior: {
+        title: 'Dias Máximo Interior'
+      }, 
+      observaciones: {
+        title: 'Observaciones'
+      },  
       idEstado: {
         title: 'Estado',
         filter: {
