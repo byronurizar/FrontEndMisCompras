@@ -24,7 +24,7 @@ export class ListaDeseos {
 
 
     public agregarProducto(producto: any) {
-        console.log("Agregar", producto);
+        //console.log("Agregar", producto);
         let productoExistente = productos.find((items, index) => {
             if (items.id == producto.id) {
                 this.toastrService.success('El producto ya se encuentra en la lista de deseos');

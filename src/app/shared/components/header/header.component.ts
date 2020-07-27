@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
 
 
   salir(proveedor) {
-    console.log(proveedor);
+    //console.log(proveedor);
     this.conectorApi.logout();
   }
 

@@ -31,21 +31,6 @@ export class NuevoUsuarioComponent implements OnInit {
     if (!form.valid) {
       return false;
     }
-
-    this.conectorApi.Post("usuario/registronuevo", form.value).subscribe(
-      (data) => {
-        let dat = data as ApiRest;
-        if (dat.codigo == 0) {
-            localStorage.setItem("token", dat.data.token);
-          this.router.navigate(['/dashboard/principal'])
-        } else {
-          this.toastrService.error(dat.error, "Alerta!")
-        }
-      },
-      (dataError) => {
-        let dat = dataError.error as ApiRest;
-        this.toastrService.error(dat.error, "Alerta!")
-      }
-    )
+    this.conectorApi.registronuevo(form.value);
   }
 }

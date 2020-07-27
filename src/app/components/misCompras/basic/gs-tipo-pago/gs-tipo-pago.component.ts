@@ -14,7 +14,7 @@ export class GsTipoPagoComponent implements OnInit {
   info: any[];
 
   ngOnInit() {
-    console.log(this.conectorApi.usuario);
+    //console.log(this.conectorApi.usuario);
     this.cargarInformacion();
   }
 

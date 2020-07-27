@@ -42,7 +42,7 @@ export class ConectorApi {
           }
         },
         (error) => {
-          console.log("Error", error);
+          //console.log("Error", error);
           this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
         });
 

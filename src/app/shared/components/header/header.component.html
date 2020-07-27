@@ -23,13 +23,13 @@
                    <input type="text">
                 </li> -->
                 <li *ngIf="!conectorApi.usuario.codigoRol">
-                 <a class="text-dark" [routerLink]="['/comercio/carrito']" title="Mi Carrito">
+                    <a class="text-dark" [routerLink]="['/comercio/carrito']" title="Mi Carrito">
                         <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/carrito.png"
                             alt="Carrito de compras">
                     </a>
                 </li>
 
-                  <!--
+                <!--
                 <li class="onhover-dropdown">
                     <a href="javascript:void(0)" class="txt-dark">
                         <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/notification.png"
@@ -77,19 +77,14 @@
 
                 </li>
 -->
-<li>
-    <div class="media  align-items-center" *ngIf="!conectorApi.usuario.email">
-        <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/user.png"
-            alt="header-user" />
-        <div class="media-body">
-                <a [routerLink]="['/login']">
-                    <h6 class="m-0 txt-dark f-16">
-                    Ingresar
-                </h6>
-                </a>
-        </div>
-    </div>
-</li>
+                <li>
+                    <div class="media  align-items-center" *ngIf="!conectorApi.usuario.email">
+                        <a [routerLink]="['/login']" title="Ingresar">
+                        <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/user.png"
+                            alt="header-user" />
+                        </a>
+                    </div>
+                </li>
 
                 <li class="onhover-dropdown" *ngIf="conectorApi.usuario.email">
                     <div class="media  align-items-center">
@@ -103,10 +98,10 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div p-20">
-                        <li  *ngIf="!conectorApi.usuario.codigoRol">
+                        <li *ngIf="!conectorApi.usuario.codigoRol">
                             <a [routerLink]="['/users/edit']">
                                 <i class="icon-user"></i>
-                               Pedidos
+                                Pedidos
                             </a>
                         </li>
                         <li *ngIf="!conectorApi.usuario.codigoRol">

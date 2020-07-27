@@ -56,8 +56,8 @@ export class FinalizarPedidoComponent implements OnInit {
     //   return;
     // }
     this.userInfo = this.checkoutForm.value;
-    console.log("Info formulario",this.userInfo);
-    console.log("info",this.checkOutItems);
+    //console.log("Info formulario",this.userInfo);
+    //console.log("info",this.checkOutItems);
     this.checkOutItems.forEach(item=>{
      let itemPedido={
         id:item.producto.id,
@@ -115,7 +115,7 @@ let json={
       this.conectorApi.Get('departamentos/listar').subscribe(
         async (data) => {
           let dat = data as ApiRest;
-          // console.log("Todos los departamentos", dat.data);
+          // //console.log("Todos los departamentos", dat.data);
           await dat.data.forEach(departamento => {
             this.departamentos.push(new ElementoLista(departamento.id, departamento.descripcion))
           });
@@ -132,14 +132,14 @@ let json={
   async listarMunicipios(event) {
     try {
       this.municipios = [];
-      console.log(event);
+      //console.log(event);
       let idDepto = event.target.value;
       if (idDepto > 0) {
         this.municipios.push(new ElementoLista('', 'Seleccione un municipio'))
         this.conectorApi.Get('municipios/listar/departamento/' + idDepto).subscribe(
           async (data) => {
             let dat = data as ApiRest;
-            console.log("Todos los municipios", dat.data);
+            //console.log("Todos los municipios", dat.data);
             await dat.data.forEach(muni => {
               this.municipios.push(new ElementoLista(muni.id, muni.descripcion))
             });

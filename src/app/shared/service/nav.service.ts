@@ -2,6 +2,7 @@ import { Injectable, HostListener } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
+import { ToastrService } from 'ngx-toastr';
 
 // Menu
 export interface Menu {
@@ -25,30 +26,10 @@ export class NavService {
   public openToggle: boolean = false;
 
   public menuBd;
-  constructor(public conectorApi: ConectorApi) {
+  constructor(public conectorApi: ConectorApi,private toastrService: ToastrService) {
     this.onResize();
     if (this.screenWidth < 1199) {
       this.openToggle = true;
-    }
-  }
-
-  async listarMenuBd() {
-    try {
-      this.conectorApi.Get('menu/mimenu').subscribe(
-        async (data) => {
-          let dat = data as ApiRest;
-          if (dat.codigo == 0) {
-            this.menuBd = await dat.data;
-            console.log("Mi menu desde bd", this.menuBd);
-          }
-
-        },
-        (dataError) => {
-          console.log("Error", dataError);
-        }
-      )
-    } catch (ex) {
-      console.log("ex", ex);
     }
   }
 
@@ -84,7 +65,6 @@ export class NavService {
                 miMenuPerfil.push(itemPadre);
 
               });
-              console.log({ MenuPerfil: miMenuPerfil });
               behaviorSubject.next(miMenuPerfil);
             } else if (dat.codigo == 2) {
               this.menuBd = dat.data;
@@ -120,19 +100,16 @@ export class NavService {
                   });
                 }
               });
-
-              console.log({ MenuPerfil: miMenuPerfil });
               behaviorSubject.next(miMenuPerfil);
             }
-
           },
           (dataError) => {
-            console.log("Error", dataError);
+            this.toastrService.error('Ocurrió un error al cargar el menu por favor intenta nuevamente', 'Alerta!');
           }
         )
 
       } catch (ex) {
-        console.log("ex", ex);
+        this.toastrService.error('Ocurrió un error al cargar el menu por favor intenta nuevamente', 'Alerta!');
       }
 
     });

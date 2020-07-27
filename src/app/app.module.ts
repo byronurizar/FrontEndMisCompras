@@ -37,8 +37,6 @@ import { FooterComponent } from './misCompras/footer/footer.component';
 import { FooterInicioComponent } from './misCompras/footer-inicio/footer-inicio.component';
 import { NuevoUsuarioComponent } from './misCompras/nuevo-usuario/nuevo-usuario.component';
 
-
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }

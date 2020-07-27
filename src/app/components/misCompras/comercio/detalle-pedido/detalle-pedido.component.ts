@@ -34,7 +34,7 @@ export class DetallePedidoComponent implements OnInit {
             if (dat.codigo == 0) {
               
               this.datosPedido =await dat.data[0];
-              console.log("Producto", this.datosPedido);
+              //console.log("Producto", this.datosPedido);
             } else {
               this.toastrService.error(dat.error, 'Alerta!');
             }
@@ -53,11 +53,11 @@ export class DetallePedidoComponent implements OnInit {
       if (idPedido) {
         this.conectorApi.Get(`pedido/detalle/${idPedido}`).subscribe(
          async (data) => {
-           console.log("DAta",data);
+           //console.log("DAta",data);
             let dat =await data as ApiRest;
             if (dat.codigo == 0) {
               this.detalleProd=await dat.data;
-              console.log("detalleProd",dat.data);
+              //console.log("detalleProd",dat.data);
               const sumarTotal = (acum, { Precio,cantidad }) => acum + (Precio*cantidad)
               this.total=this.detalleProd.reduce(sumarTotal,0)
             } else {

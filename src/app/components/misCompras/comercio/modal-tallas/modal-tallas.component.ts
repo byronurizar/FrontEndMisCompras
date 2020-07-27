@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { Carrito } from 'src/app/servicios/carrito.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-tallas',
@@ -15,7 +16,7 @@ export class ModalTallasComponent implements OnInit {
   tallasDisponibles: any;
   tallaSeleccionada = 0;
   nuevatalla=0;
-
+  public urlImagenes = environment.urlImagnes;
   constructor(private toastrService: ToastrService,private carrito:Carrito) { }
 
   ngOnInit() {

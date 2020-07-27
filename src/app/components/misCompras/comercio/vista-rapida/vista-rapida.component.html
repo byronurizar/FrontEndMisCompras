@@ -12,7 +12,7 @@
           {{productoDetalleVistaRapida?.precio | currency:'Q':'symbol'}}
         </div>
       </div>
-      <div class="product-view">
+      <div class="product-view" *ngIf="productoDetalleVistaRapida?.descripcion">
         <h6 class="f-w-600">Detalle de Producto</h6>
         <p class="mb-0">{{productoDetalleVistaRapida.descripcion}}</p>
       </div>
@@ -58,10 +58,10 @@
         </div>
         <div class="addcart-btn">
           <button class="btn btn-primary-gradien m-r-10" type="button" data-original-title="btn btn-info-gradien"
-            [routerLink]="['/comercio/carrito']" (click)=agregarProducto(productoDetalleVistaRapida,qty.value) title="">
+             (click)=agregarProducto(productoDetalleVistaRapida,qty.value) title="">
             Añadir al carrito</button>
           <button class="btn btn-success-gradien" type="button" data-original-title="btn btn-info-gradien"
-            (click)=buyNow(productoDetalleVistaRapida,qty.value) title="">Compra ahora</button>
+            (click)=agregarProducto(productoDetalleVistaRapida,qty.value,true) title="">Compra ahora</button>
         </div>
       </div>
     </div>

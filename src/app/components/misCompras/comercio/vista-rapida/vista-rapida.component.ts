@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { NgbRatingConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbRatingConfig, NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Products } from 'src/app/shared/model/e-commerce/product.model';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class VistaRapidaComponent implements OnInit {
   @Input() productoDetalleVistaRapida: any;
+  @Output() accionModal: EventEmitter<any> = new EventEmitter();
   public cantidad: number = 1;
   tallasDisponibles: any[] = [];
   coloresDisponibles: any[] = [];
@@ -26,6 +27,7 @@ export class VistaRapidaComponent implements OnInit {
   public detailCnt = [];
   public slidesPerPage = 4;
   public urlImagenes = environment.urlImagnes;
+  
   public incrementar() {
     this.cantidad += 1;
   }
@@ -36,7 +38,9 @@ export class VistaRapidaComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private conectorApi: ConectorApi, private toastrService: ToastrService, private route: ActivatedRoute, config: NgbRatingConfig, private cartService: Carrito, private ngb: NgbModal) {
+  constructor(private router: Router, private conectorApi: ConectorApi, 
+    private toastrService: ToastrService, private route: ActivatedRoute, 
+    config: NgbRatingConfig, private cartService: Carrito, private ngb: NgbModal,private modalService: NgbActiveModal) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.ngb.dismissAll();
@@ -50,7 +54,7 @@ export class VistaRapidaComponent implements OnInit {
     // this.cartService.addToCart(product, parseInt(quantity));
   }
 
-  public agregarProducto(producto: any, cantidad: number) {
+  public agregarProducto(producto: any, cantidad: number,esComprarAhora:boolean=false) {
     if (cantidad == 0) {
       return false;
     } else {
@@ -60,8 +64,9 @@ export class VistaRapidaComponent implements OnInit {
           let itemTalla = this.tallasDisponibles.find(item => item.id == this.tallaSeleccionada);
           let descTalla = itemTalla.idTalla;
           talla = { idTalla: this.tallaSeleccionada, descripcion: descTalla }
-        } else {
           this.tallaValido = true;
+        } else {
+          this.tallaValido = false;
           this.toastrService.error("Debe de seleccionar una talla", 'Alerta!');
         }
       }
@@ -71,16 +76,25 @@ export class VistaRapidaComponent implements OnInit {
           let itemColor = this.coloresDisponibles.find(item => item.id == this.colorSeleccionado);
           let descColor = itemColor.idColor;
           color = { idColor: this.colorSeleccionado, descripcion: descColor }
+          this.colorValido = true;
         } else {
           this.colorValido = false;
           this.toastrService.error("Debe de selecciónar un color", 'Alerta!');
         }
       }
+      
       if (this.tallaValido && this.colorValido) {
         if(producto.oferta>0){
           producto.precio=producto.oferta;
         }
         this.cartService.agregarProducto(producto, cantidad, this.coloresDisponibles, color, this.tallasDisponibles, talla);
+        if(esComprarAhora){
+          this.router.navigate(['/comercio/finalizarpedido']);
+        }else{
+          //this.router.navigate(['/comercio/carrito']);
+          this.accionModal.emit('close');
+        }
+        //this.modalService.close("cerrar");
       }
 
     }

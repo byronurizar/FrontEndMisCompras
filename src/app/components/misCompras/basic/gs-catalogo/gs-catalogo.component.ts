@@ -114,7 +114,7 @@ export class GsCatalogoComponent implements OnInit {
         }
       )
     } catch (ex) {
-      console.log("Excepcion", ex);
+      //console.log("Excepcion", ex);
       this.toastrService.error(ex, 'Alerta!');
     }
   }
@@ -123,7 +123,7 @@ export class GsCatalogoComponent implements OnInit {
     try {
       this.conectorApi.Get('catalogos/listar').subscribe(
         (data) => {
-          console.log("Data", data);
+          //console.log("Data", data);
           let dat = data as ApiRest;
           this.info = dat.data;
         },

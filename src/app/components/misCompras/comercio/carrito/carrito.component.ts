@@ -15,11 +15,13 @@ export class CarritoComponent implements OnInit {
   public selectCartItems: any[] = [];
   modalReference: NgbModalRef;
   public urlImagenes = environment.urlImagnes;
-  constructor(private route: ActivatedRoute, private cartService: Carrito,private modalService: NgbModal) {
+  constructor(private route: ActivatedRoute, 
+    private cartService: Carrito,
+    private modalService: NgbModal) {
   }
 
   remove(item) {
-    console.log("Data item",item);
+    //console.log("Data item",item);
     this.cartService.eliminarItem(item);
   }
   

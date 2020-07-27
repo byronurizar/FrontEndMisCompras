@@ -1,0 +1,68 @@
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="page-header">
+        
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Mis Direcciones
+                        <button (click)="abrirModal(content2)" class="btn btn-info">Nueva</button>
+                    </h5>
+                </div>
+                <div class="card-body smart-datatable">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Opciones</th>
+                                    <th scope="col">Departamento</th>
+                                    <th scope="col">Municipio</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">Punto de Referencia</th>
+                                    <th scope="col">Creación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of info; let i=index">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>
+                                        <a  (click)="abrirModal(content1)"><i class="fa fa-edit"></i></a>|
+                                        <a><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                    <td>{{item.Departamento}}</td>
+                                    <td>{{item.Municipio}}</td>
+                                    <td>{{item.direccion}}</td>
+                                    <td>{{item.puntoReferencia}}</td>
+                                    <td>{{item.Creacion}}</td>
+
+                                    <ng-template #content1 let-modal>
+                                          <app-modal-edit-direccion (accionModal)="cerrarModalTalla($event)">
+                                          </app-modal-edit-direccion>
+                                    </ng-template>
+                                      
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #content2 let-modal>
+      <app-moda-registrar-direccion (accionModal)="cerrarModalTalla($event)">
+      </app-moda-registrar-direccion>
+  </ng-template>
+  
+<!-- Container-fluid Ends -->
+

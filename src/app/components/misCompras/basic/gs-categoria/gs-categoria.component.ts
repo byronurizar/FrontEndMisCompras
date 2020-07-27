@@ -96,7 +96,7 @@ export class GsCategoriaComponent implements OnInit {
   onRegistrar(event):void {
     try {
       if (event.newData) {
-        if (event.newData["descripcion"].trim().length > 5) {
+        if (event.newData["descripcion"].trim().length > 2) {
           if(event.newData["idEstado"].trim().toUpperCase()=="INACTIVO"){
             event.newData["idEstado"]=2;
           }else{
@@ -135,7 +135,7 @@ export class GsCategoriaComponent implements OnInit {
   onActualizar(event): void {
     try {
       if (event.newData) {
-        if (event.newData["descripcion"].trim().length > 5) {
+        if (event.newData["descripcion"].trim().length > 2) {
           if(event.newData["idEstado"].trim().toUpperCase()=="INACTIVO"){
             event.newData["idEstado"]=2;
           }else{

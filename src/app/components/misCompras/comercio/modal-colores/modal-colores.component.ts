@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Carrito } from 'src/app/servicios/carrito.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-colores',
@@ -14,6 +15,7 @@ export class ModalColoresComponent implements OnInit {
   coloresDisponibles: any;
   colorSeleccionado = 0;
   nuevoColor=0;
+  public urlImagenes = environment.urlImagnes;
   constructor(private toastrService: ToastrService,private carrito:Carrito) { }
 
   ngOnInit() {

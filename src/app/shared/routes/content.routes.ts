@@ -16,7 +16,7 @@ export const content: Routes = [
     loadChildren:() => import('../../components/misCompras/producto/producto.module').then(m=>m.ProductoModule),
   },
   {
-    path:'dashboard',
+    path:'miscompras',
     loadChildren:() => import('../../components/misCompras/dashboard/dashboard.module').then(m=>m.DashboardModule),
   },
   {

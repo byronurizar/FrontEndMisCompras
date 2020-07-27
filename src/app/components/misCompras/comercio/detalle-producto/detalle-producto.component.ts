@@ -83,7 +83,7 @@ export class DetalleProductoComponent implements OnInit {
 
   }
   ngOnInit() {
-    console.log("Detalle de producto");
+    //console.log("Detalle de producto");
 
   }
 
@@ -97,7 +97,7 @@ export class DetalleProductoComponent implements OnInit {
             if (dat.codigo == 0) {
               this.dataProducto = dat.data;
               this.producto = this.dataProducto[0];
-              console.log("Producto", this.producto);
+              //console.log("Producto", this.producto);
               this.listarImagenes(idProducto);
             } else {
               this.toastrService.error(dat.error, 'Alerta!');
@@ -121,7 +121,7 @@ export class DetalleProductoComponent implements OnInit {
             let dat = data as ApiRest;
             if (dat.codigo == 0) {
               this.imagenesProducto = dat.data;
-              console.log("DAta",this.imagenesProducto);
+              //console.log("DAta",this.imagenesProducto);
             } else {
               this.toastrService.error(dat.error, 'Alerta!');
             }
@@ -183,12 +183,12 @@ export class DetalleProductoComponent implements OnInit {
         let dat = data as ApiRest;
         if (dat.codigo == 0) {
           this.productosRelacionados = await dat.data;
-          console.log("Productos", this.productosRelacionados);
+          //console.log("Productos", this.productosRelacionados);
         }
 
       },
       (dataError) => {
-        console.log("Data Error", dataError);
+        //console.log("Data Error", dataError);
       }
     )
   }
@@ -206,14 +206,16 @@ export class DetalleProductoComponent implements OnInit {
   }
 
   public agregarProducto(producto: any) {
+    
     let talla = { idTalla: 0, descripcion: 'N/A' }
     if (this.coloresDisponibles.length > 0) {
       if (this.tallaSeleccionada > 0) {
         let itemTalla = this.tallasDisponibles.find(item => item.id == this.tallaSeleccionada);
         let descTalla = itemTalla.idTalla;
         talla = { idTalla: this.tallaSeleccionada, descripcion: descTalla }
-      } else {
         this.tallaValido = true;
+      } else {
+        this.tallaValido = false;
         this.toastrService.error("Debe de seleccionar una talla", 'Alerta!');
       }
     }
@@ -223,11 +225,15 @@ export class DetalleProductoComponent implements OnInit {
         let itemColor = this.coloresDisponibles.find(item => item.id == this.colorSeleccionado);
         let descColor = itemColor.idColor;
         color = { idColor: this.colorSeleccionado, descripcion: descColor }
+        this.colorValido = true;
       } else {
         this.colorValido = false;
         this.toastrService.error("Debe de selecciónar un color", 'Alerta!');
       }
     }
+    console.log("INtentando");
+    console.log("this.tallaValido",this.tallaValido);
+    console.log("this.colorValido",this.colorValido);
     if (this.tallaValido && this.colorValido) {
       if (producto.oferta > 0) {
         producto.precio = producto.oferta;

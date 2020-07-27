@@ -11,11 +11,11 @@ import { RegistroComponent } from './misCompras/registro/registro.component';
 import { InicioComponent } from './misCompras/inicio/inicio.component';
 import { NuevoUsuarioComponent } from './misCompras/nuevo-usuario/nuevo-usuario.component';
 const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'landing',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    redirectTo: 'comercio/productos',
+    pathMatch: 'full',
+  },
   {
     path: 'landing',
     component: LandingComponent

@@ -62,12 +62,12 @@
                             <div class="col-md-12 mb-3">
                               <label for="descripcion">Descripción</label>
                               <textarea type="text" class="form-control" id="descripcion" placeholder="Descripción"
-                                rows="2" [formControl]="validationForm.controls['descripcion']" required></textarea>
-                              <div
+                                rows="2"></textarea>
+                              <!-- <div
                                 *ngIf="validationForm.controls.descripcion.touched && validationForm.controls.descripcion.errors?.required"
                                 class="text text-danger">
                                 Debe de ingresar una descripción
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                           <div class="form-row">
@@ -75,7 +75,7 @@
                               <label for="descripcionCorta">Descripción Corta</label>
                               <input type="text" class="form-control" id="descripcionCorta"
                                 placeholder="Descripción Corta"
-                                [formControl]="validationForm.controls['descripcionCorta']" required>
+                                >
                             </div>
                             <div class="col-md-3 mb-3">
                               <label for="Precio">Precio Normal</label>
@@ -90,12 +90,12 @@
                             <div class="col-md-3 mb-3">
                               <label for="Precio">Precio Oferta</label>
                               <input type="number" class="form-control" id="oferta" placeholder="Precio oferta"
-                                value="0" [formControl]="validationForm.controls['oferta']" required>
-                              <div
+                                value="0">
+                              <!-- <div
                                 *ngIf="validationForm.controls.oferta.touched && validationForm.controls.oferta.errors?.required"
                                 class="text text-danger">
                                 Debe de ingresar un precio de Oferta
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                           <div class="form-row">
@@ -129,12 +129,12 @@
                             <div class="col-md-4 mb-3">
                               <label for="nopagina">Número de Página</label>
                               <input type="number" class="form-control" id="nopagina" placeholder="Número de página"
-                                [formControl]="validationForm.controls['nopagina']" required>
-                              <div
+                                >
+                              <!-- <div
                                 *ngIf="validationForm.controls.nopagina.touched && validationForm.controls.nopagina.errors?.required"
                                 class="text text-danger">
                                 Debe de ingresar un número de página
-                              </div>
+                              </div> -->
                             </div>
                           </div>
 

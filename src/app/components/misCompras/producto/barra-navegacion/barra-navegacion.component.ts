@@ -167,13 +167,13 @@ export class BarraNavegacionComponent implements OnInit {
     this.validationForm = this.fb.group({
       nombre: ['', Validators.required],
       codigo: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      descripcion: ['', []],
       descripcionCorta: ['', []],
       precio: ['', Validators.required],
-      oferta: ['', Validators.required],
+      oferta: ['', []],
       proveedor: ['', Validators.required],
       idCatalogo: ['', Validators.required],
-      nopagina: ['', Validators.required],
+      nopagina: ['', []],
       idCategoria: ['', Validators.required]
     })
   }
@@ -361,6 +361,19 @@ this.idCatalogo = event;
     }
 
     try {
+      let {oferta,nopagina}=form.value;
+      if(oferta==""){
+        form.value.oferta=0;
+      }else if(Number(oferta)<0){
+        form.value.oferta=0;
+      }
+
+      if(nopagina==""){
+        form.value.nopagina=0;
+      }else if(Number(nopagina)<0){
+        form.value.nopagina=0;
+      }
+
       this.conectorApi.Post("productos/registro", form.value).subscribe(
       async  (data) => {
           let info = data as ApiRest;
@@ -397,7 +410,7 @@ this.idCatalogo = event;
         }
 
         formData.append('idEstado', '1');
-        console.log("from data", formData);
+        //console.log("from data", formData);
         this.conectorApi.PostImagenes("productos/imagenes/registro", formData).subscribe(
           (data) => {
             let info = data as ApiRest;
@@ -420,17 +433,17 @@ this.idCatalogo = event;
   }
 
   onFilesAdded(event) {
-    console.log(event);
+    //console.log(event);
     this.files.push(...event.addedFiles);
     this.conImagenes = true;
   }
 
   onFilesRejected(event) {
-    console.log(event);
+    //console.log(event);
   }
 
   onRemove(event) {
-    console.log(event);
+    //console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
     if (this.files.length == 0) {
       this.conImagenes = false;
@@ -878,7 +891,7 @@ this.idCatalogo = event;
   }
 
   onCustomAction(event) {
-    console.log("Evento custom",event);
+    //console.log("Evento custom",event);
     switch (event.action) {
       case 'relacionar':
         this.onAsignarProductoRelacionado(event);
@@ -889,22 +902,22 @@ this.idCatalogo = event;
   async onAsignarProductoRelacionado(event) {
     try {
       if (event.data) {
-        console.log("id producto cruzado", this.idProductoCruzado);
+        //console.log("id producto cruzado", this.idProductoCruzado);
         if (this.idProductoCruzado === 0) {
 
           let jsonSolicitud = JSON.stringify({
             idProducto: this.idProducto,
             idEstado: 1
           });
-          console.log("Producto", event);
+          //console.log("Producto", event);
           this.conectorApi.Post("productoscruzados/registro", jsonSolicitud).subscribe(
             async (data) => {
               let apiResult = await data as ApiRest;
               if (apiResult.codigo == 0) {
                 this.toastrService.success(apiResult.respuesta, 'Información!');
                 this.idProductoCruzado = await apiResult.data.id;
-                console.log("Data result ", apiResult.data);
-                console.log("idProducto cruzado", this.idProductoCruzado)
+                //console.log("Data result ", apiResult.data);
+                //console.log("idProducto cruzado", this.idProductoCruzado)
                 let jsonDetalle = await JSON.stringify({
                   idProductoCruzado: this.idProductoCruzado,
                   idProducto: event.data["id"],

@@ -33,27 +33,88 @@ export class ConectorApi {
 
       this.Post('usuario/registronuevo', this.usuario).subscribe(
         (dataResponse) => {
-         
+
           if (dataResponse["codigo"] === 0) {
             let tokenGmail = dataResponse["data"].token.token;
-            let codigoRol=dataResponse["data"].usuario.codigoRol;
-            this.usuario.token=tokenGmail;
-            this.usuario.codigoRol=codigoRol;
+            let codigoRol = dataResponse["data"].usuario.codigoRol;
+            this.usuario.token = tokenGmail;
+            this.usuario.codigoRol = codigoRol;
             sessionStorage.setItem("token", tokenGmail);
-            this.router.navigate(['/dashboard/principal']);
+            if (!this.usuario.codigoRol) {
+              this.router.navigate(['/'])
+            } else {
+              this.router.navigate(['/producto'])
+            }
           } else {
             this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
             this.router.navigate(['/login']);
           }
         },
         (error) => {
-          console.log("Error", error);
           this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
         });
 
     });
   }
 
+  iniciosession(info, recordarme) {
+    this.Post("usuario/login", info).subscribe(
+      (data) => {
+        let dat = data as ApiRest;
+        if (dat.codigo == 0) {
+
+          this.usuario.name = dat.data.usuario.name;
+          this.usuario.uid = "";
+          this.usuario.email = dat.data.usuario.email;
+          this.usuario.urlfoto = "";
+          this.usuario.token = dat.data.token.token;;
+          this.usuario.proveedor = "";
+          this.usuario.codigoRol = dat.data.usuario.codigoRol;
+          if (recordarme) {
+            sessionStorage.setItem("token", this.usuario.token);
+            localStorage.setItem("token", this.usuario.token);
+          } else {
+            sessionStorage.setItem("token", this.usuario.token);
+          }
+          if (!this.usuario.codigoRol) {
+            this.router.navigate(['/'])
+          } else {
+            this.router.navigate(['/producto'])
+          }
+        } else {
+          this.toastrService.error(dat.respuesta, "Alerta!")
+        }
+      },
+      (dataError) => {
+        //console.log({ dataError });
+        this.toastrService.error(dataError.error.respuesta, 'Alerta!');
+      }
+    )
+  }
+  registronuevo(info){
+    this.Post('usuario/registronuevo',info).subscribe(
+      (dataResponse) => {
+
+        if (dataResponse["codigo"] === 0) {
+          let tokenGmail = dataResponse["data"].token.token;
+          let codigoRol = dataResponse["data"].usuario.codigoRol;
+          this.usuario.token = tokenGmail;
+          this.usuario.codigoRol = codigoRol;
+          sessionStorage.setItem("token", tokenGmail);
+          if (!this.usuario.codigoRol) {
+            this.router.navigate(['/'])
+          } else {
+            this.router.navigate(['/producto'])
+          }
+        } else {
+          this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
+          this.router.navigate(['/login']);
+        }
+      },
+      (error) => {
+        this.toastrService.error("No fue posible ingresar por favor intente nuevamente", "Alerta!");
+      });
+  }
   login(proveedor: string) {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
@@ -69,22 +130,22 @@ export class ConectorApi {
     return Observable.create((behaviorSubject: BehaviorSubject<any>) => {
       try {
         let tokenAcces = sessionStorage.getItem("token") || null;
-         let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenAcces}`
-      })
-    };
-    let request=this.http.post(urlBase + ruta, jsonSolicitud, httpOptions);
-    request.subscribe((data)=>{
-      console.log("Data",JSON.parse(atob(data["objBase64"].toString())));
-      const nuevaDAta=JSON.parse(atob(data["objBase64"].toString()));
-      console.log({nuevaDAta});
-      behaviorSubject.next(nuevaDAta);
-    })
+        let httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenAcces}`
+          })
+        };
+        let request = this.http.post(urlBase + ruta, jsonSolicitud, httpOptions);
+        request.subscribe((data) => {
+          //console.log("Data", JSON.parse(atob(data["objBase64"].toString())));
+          const nuevaDAta = JSON.parse(atob(data["objBase64"].toString()));
+          //console.log({ nuevaDAta });
+          behaviorSubject.next(nuevaDAta);
+        })
 
       } catch (ex) {
-        console.log("ex", ex);
+        //console.log("ex", ex);
       }
 
     });

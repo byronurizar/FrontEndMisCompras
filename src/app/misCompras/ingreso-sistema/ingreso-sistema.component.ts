@@ -34,26 +34,6 @@ export class IngresoSistemaComponent implements OnInit {
     if (!form.valid) {
       return false;
     }
-
-    this.conectorApi.Post("usuario/login", form.value).subscribe(
-      (data) => {
-        let dat = data as ApiRest;
-        if (dat.codigo == 0) {
-          if (form.value.recordarme) {
-            sessionStorage.setItem("token", dat.data.token);
-            localStorage.setItem("token", dat.data.token);
-          } else {
-            sessionStorage.setItem("token", dat.data.token);
-          }
-          this.router.navigate(['/dashboard/principal'])
-        } else {
-          this.toastrService.error(dat.error, "Alerta!")
-        }
-      },
-      (dataError) => {
-        let dat = dataError.error as ApiRest;
-        this.toastrService.error(dat.error, "Alerta!")
-      }
-    )
+    this.conectorApi.iniciosession(form.value,form.value.recordarme);
   }
 }

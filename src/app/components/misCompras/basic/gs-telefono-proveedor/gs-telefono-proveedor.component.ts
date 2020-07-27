@@ -27,7 +27,7 @@ export class GsTelefonoProveedorComponent implements OnInit {
       this.conectorApi.Get('proveedores/listar').subscribe(
         async (data) => {
           let dat = data as ApiRest;
-          console.log("Todos los departamentos",dat.data);
+          //console.log("Todos los departamentos",dat.data);
         await  dat.data.forEach(departamento => {
             //this.departamentos.push(new ElementoLista(departamento.id, departamento.descripcion));
             this.proveedores.push(new ElementoLista(departamento.id, departamento.nombre))

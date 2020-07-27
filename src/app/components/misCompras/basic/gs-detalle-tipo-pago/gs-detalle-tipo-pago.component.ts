@@ -28,7 +28,7 @@ export class GsDetalleTipoPagoComponent implements OnInit {
       this.conectorApi.Get('tipopago/listar').subscribe(
         async (data) => {
           let dat = data as ApiRest;
-          console.log("Todos los departamentos",dat.data);
+          //console.log("Todos los departamentos",dat.data);
         await  dat.data.forEach(departamento => {
             //this.departamentos.push(new ElementoLista(departamento.id, departamento.descripcion));
             this.listaTipoPago.push(new ElementoLista(departamento.id, departamento.descripcion))

@@ -45,7 +45,6 @@ export class RegistroComponent implements OnInit {
       this.conectorApi.Get('departamentos/listar').subscribe(
         async (data) => {
           let dat = data as ApiRest;
-          console.log("Todos los departamentos", dat.data);
           await dat.data.forEach(departamento => {
             this.departamentos.push(new ElementoLista(departamento.id, departamento.descripcion))
           });
@@ -61,12 +60,12 @@ export class RegistroComponent implements OnInit {
   files: File[] = [];
  
   onSelect(event) {
-    console.log(event);
+    //console.log(event);
     this.files.push(...event.addedFiles);
   }
    
   onRemove(event) {
-    console.log(event);
+    //console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
   async listarMunicipios(event) {
@@ -77,7 +76,7 @@ export class RegistroComponent implements OnInit {
         this.conectorApi.Get('municipios/listar/departamento/' + idDepto).subscribe(
           async (data) => {
             let dat = data as ApiRest;
-            console.log("Todos los municipios", dat.data);
+            //console.log("Todos los municipios", dat.data);
             await dat.data.forEach(muni => {
               this.municipios.push(new ElementoLista(muni.id, muni.descripcion))
             });
@@ -97,23 +96,8 @@ export class RegistroComponent implements OnInit {
   }
 
   async registrar({ value, valid }: { value: Persona, valid: boolean }) {
-    console.log("Data formulario", value);
     if (valid) {
-      this.conectorApi.Post("usuario/registrarUsuario", value).subscribe(
-        async (data) => {
-          let dat = data as ApiRest;
-          if (dat.codigo == 0) {
-            this.toastrService.success(dat.respuesta, 'Información!');
-            localStorage.setItem("token", dat.data.token);
-            this.router.navigate(['/dashboard/principal'])
-          } else {
-            this.toastrService.error(dat.error, 'Alerta!');
-          }
-        },
-        (dataError) => {
-          this.toastrService.error(dataError.error, 'Alerta!');
-        }
-      )
+      this.conectorApi.registronuevo(value);
     }else{
       this.toastrService.error("Por favor complete la información requerida por el formulario", 'Alerta!');
     }

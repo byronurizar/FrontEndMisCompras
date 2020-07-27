@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate() {
         let codigoRol = this.conectorApi.usuario.codigoRol;
-        console.log("Guardian",codigoRol);
+        // //console.log("Guardian",codigoRol);
         if (codigoRol === 1) {
             return true;
         } else {

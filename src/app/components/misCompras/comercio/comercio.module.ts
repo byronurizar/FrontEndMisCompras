@@ -19,9 +19,12 @@ import { ModalColoresComponent } from './modal-colores/modal-colores.component';
 import { ListaDeseosComponent } from './lista-deseos/lista-deseos.component';
 import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.component';
 import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
+import { MisdireccionesComponent } from './misdirecciones/misdirecciones.component';
+import { ModaRegistrarDireccionComponent } from './moda-registrar-direccion/moda-registrar-direccion.component';
+import { ModalEditDireccionComponent } from './modal-edit-direccion/modal-edit-direccion.component';
 
 @NgModule({
-  declarations: [ProductosComponent, VistaRapidaComponent, DetalleProductoComponent, CarritoComponent, ModalTallasComponent, ModalColoresComponent, ListaDeseosComponent, FinalizarPedidoComponent, DetallePedidoComponent],
+  declarations: [ProductosComponent, VistaRapidaComponent, DetalleProductoComponent, CarritoComponent, ModalTallasComponent, ModalColoresComponent, ListaDeseosComponent, FinalizarPedidoComponent, DetallePedidoComponent, MisdireccionesComponent, ModaRegistrarDireccionComponent, ModalEditDireccionComponent],
   imports: [
     CommonModule,
     ComercioRoutingModule,

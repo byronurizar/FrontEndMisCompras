@@ -43,7 +43,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body" style="padding: 0%;">
-                                        <app-vista-rapida [productoDetalleVistaRapida]="productoDetalleVistaRapida">
+                                        <app-vista-rapida (accionModal)="cerrarModal($event)" [productoDetalleVistaRapida]="productoDetalleVistaRapida">
                                         </app-vista-rapida>
                                     </div>
                                 </ng-template>

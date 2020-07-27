@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Products } from 'src/app/shared/model/e-commerce/product.model';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { Producto } from 'src/app/modelos/producto.model';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
@@ -17,13 +17,13 @@ import { environment } from 'src/environments/environment';
 export class ProductosComponent implements OnInit {
   @Output() productDetail: any;
   @Output() productoDetalleVistaRapida: any;
+  modalReference: NgbModalRef;
   public productos: Producto[] = [];
 
   public urlImagenes = environment.urlImagnes;
 
 
-  constructor(private conectorApi: ConectorApi, private toastr: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos) { 
-    console.log("LLego");
+  constructor(private conectorApi: ConectorApi, private toastrService: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos) { 
     this.route.params.subscribe(params => {
       const idCatalogo = +params['idCatalogo'];
       const idCategoria = +params['idCategoria'];
@@ -37,11 +37,10 @@ export class ProductosComponent implements OnInit {
         let dat = data as ApiRest;
         if (dat.codigo == 0) {
           this.productos = await dat.data;
-          console.log("Productos", this.productos);
         }
       },
       (dataError) => {
-        console.log("Data Error", dataError);
+        this.toastrService.error(dataError.error.error.message, 'Alerta!');
       }
     )
   }
@@ -49,7 +48,7 @@ export class ProductosComponent implements OnInit {
     // this.listarProductos();
   }
   abrirDetalle(content, id: number) {
-    this.modalService.open(content, { centered: true, size: 'lg' });
+    this.modalReference=this.modalService.open(content, { centered: true, size: 'lg' });
     this.productoDetalleVistaRapida = this.productos.find(item => item.id == id);
   }
 
@@ -67,6 +66,9 @@ export class ProductosComponent implements OnInit {
 
   public agregarListaDeseos(producto: any) {
     this.listaDeseos.agregarProducto(producto);
+  }
+  public cerrarModal(event){
+    this.modalReference.close();
   }
 
 }

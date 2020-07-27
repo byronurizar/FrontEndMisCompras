@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <h4 class="modal-title">Actualizar Dirección</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="checkoutForm" novalidate>
+        <div class="form-group">
+          <label for="inputState">Departamento</label>
+          <select name="departamento" formControlName="departamento" class="form-control" (change)="listarMunicipios($event)">
+            <option [value]="item.value" *ngFor="let item of departamentos"
+            >{{item.title}}</option>
+          </select>
+          <div *ngIf="checkoutForm.controls['departamento'].touched && checkoutForm.controls['departamento'].errors?.required"
+            class="text text-danger">
+            Debe de seleccionar un departamento.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputState">Municipio</label>
+          <select name="idMunicipio" formControlName="idMunicipio" class="form-control">
+            <option [value]="item.value" *ngFor="let item of municipios">
+              {{item.title}}</option>
+          </select>
+          <div *ngIf="checkoutForm.controls['idMunicipio'].touched && checkoutForm.controls['idMunicipio'].errors?.required"
+            class="text text-danger">
+            Debe de seleccionar un municipio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Dirección</label>
+          <textarea class="form-control" type="text" formControlName="direccion" class="form-control"></textarea>
+          <div *ngIf="checkoutForm.controls['direccion'].touched && checkoutForm.controls['direccion'].errors?.required"
+            class="text text-danger">
+            Debe de ingresar una dirección.
+          </div>
+          <div
+            *ngIf="checkoutForm.controls['direccion'].touched && checkoutForm.controls['direccion'].errors?.minlength"
+            class="text text-danger">
+            Debe de ingresar por lo menos 20 caracteres.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Punto de referencia</label>
+          <textarea class="form-control" type="text" formControlName="puntoReferencia" class="form-control"></textarea>
+          <div *ngIf="checkoutForm.controls['puntoReferencia'].touched && checkoutForm.controls['puntoReferencia'].errors?.required"
+            class="text text-danger">
+            Debe de ingresar un punto de referencia.
+          </div>
+          <div
+            *ngIf="checkoutForm.controls['puntoReferencia'].touched && checkoutForm.controls['puntoReferencia'].errors?.minlength"
+            class="text text-danger">
+            Debe de ingresar por lo menos 20 caracteres.
+          </div>
+        </div>
+      </form>
+</div>
+<div class="modal-footer">
+    <button [disabled]="!checkoutForm.valid" class="btn btn-primary" type="submit" 
+    (click)="onSubmit()">Registrar
+  </button>
+    <button type="button" class="btn btn-light" (click)="cancelar()">Close</button>
+</div>
