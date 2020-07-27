@@ -1,0 +1,95 @@
+<div class="modal-header">
+    <h4 class="modal-title">Detalle de Pedido</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card-body smart-datatable">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <td>0000001</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Ingreso</th>
+                        <td>01/08/2020</td>
+                    </tr>
+                    <tr>
+                        <th>Estado</th>
+                        <td>Activo</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td>Q. 350.00</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de Pago</th>
+                        <td>Pago contra Entrega</td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones</th>
+                        <td>Sin observaciones</td>
+                    </tr>
+                    <tr>
+                        <th>Departamento</th>
+                        <td>Guatemala</td>
+                    </tr>
+                    <tr>
+                        <th>Municipio</th>
+                        <td>Guatemal</td>
+                    </tr>
+                    <tr>
+                        <th>Direccion</th>
+                        <td>Cerca de asdf asd fasdf asdfasdfasdfa fa</td>
+                    </tr>
+                    <tr>
+                        <th>Punto Referencia</th>
+                        <td>Cerca de asdf asd fasdf asdfasdfasdfa fa</td>
+                    </tr>
+                    <tr>
+                        <th>Teléfono</th>
+                        <td>58868596</td>
+                    </tr>
+                </thead>
+            </table>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Talla</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Producto de prueba</td>
+                        <td>Compra con el proveedor</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>1</td>
+                        <td>Q. 350.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td>Total</td>
+                        <td>Q. 350.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="cancelar()">Cerrar</button>
+</div>

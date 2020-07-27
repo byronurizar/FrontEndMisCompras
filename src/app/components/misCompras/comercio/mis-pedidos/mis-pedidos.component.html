@@ -1,0 +1,57 @@
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="page-header">
+        
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Mis Pedidos</h5>
+                </div>
+                <div class="card-body smart-datatable">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ver</th>
+                                    <th scope="col">Fecha de Ingreso</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Tipo de pago</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             <tr>
+                                 <td>1</td>
+                                 <td><a (click)="abrirModal(content1)"><i class="icon-eye"></i></a></td>
+                                 <td>27/07/2020</td>
+                                 <td>Compra con el proveedor</td>
+                                 <td>Q. 350.00</td>
+                                 <td>Pago contra Entrega</td>
+                                 <td>Sin observaciones</td>
+                                 <ng-template #content1 let-modal>
+                                    <app-modal-detalle-pedido (accionModal)="cerrarModalTalla($event)">
+                                    </app-modal-detalle-pedido>
+                              </ng-template>
+
+                             </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+  
+<!-- Container-fluid Ends -->
+

@@ -7,6 +7,7 @@ import { ListaDeseosComponent } from './lista-deseos/lista-deseos.component';
 import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.component';
 import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
 import { MisdireccionesComponent } from './misdirecciones/misdirecciones.component';
+import { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
 
 
 const routes: Routes = [{
@@ -43,6 +44,10 @@ const routes: Routes = [{
     {
       path: 'direcciones',
       component: MisdireccionesComponent
+    },
+    {
+      path: 'mispedidos',
+      component: MisPedidosComponent
     }
   ]
 }];

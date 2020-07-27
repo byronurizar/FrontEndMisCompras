@@ -27,6 +27,7 @@
                                     <th scope="col">Municipio</th>
                                     <th scope="col">Dirección</th>
                                     <th scope="col">Punto de Referencia</th>
+                                    <th scope="col">Teléfono</th>
                                     <th scope="col">Creación</th>
                                 </tr>
                             </thead>
@@ -34,17 +35,18 @@
                                 <tr *ngFor="let item of info; let i=index">
                                     <th scope="row">{{i+1}}</th>
                                     <td>
-                                        <a  (click)="abrirModal(content1)"><i class="fa fa-edit"></i></a>|
-                                        <a><i class="fa fa-trash-o"></i></a>
+                                        <a  (click)="abrirModal(content1,true,item)"><i class="fa fa-edit"></i></a>|
+                                        <a (click)="eliminar(item.id)"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                     <td>{{item.Departamento}}</td>
                                     <td>{{item.Municipio}}</td>
                                     <td>{{item.direccion}}</td>
                                     <td>{{item.puntoReferencia}}</td>
+                                    <td>58544114</td>
                                     <td>{{item.Creacion}}</td>
 
                                     <ng-template #content1 let-modal>
-                                          <app-modal-edit-direccion (accionModal)="cerrarModalTalla($event)">
+                                          <app-modal-edit-direccion (accionModal)="cerrarModalTalla($event)" [itemDireccion]="itemDireccion">
                                           </app-modal-edit-direccion>
                                     </ng-template>
                                       

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
@@ -12,47 +12,58 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal-edit-direccion.component.scss']
 })
 export class ModalEditDireccionComponent implements OnInit {
-
+  @Input() itemDireccion: any;
   @Output() accionModal: EventEmitter<any> = new EventEmitter();
   departamentos: ElementoLista[] = [];
   municipios: ElementoLista[] = [];
-  public validationForm: FormGroup;
   public checkoutForm: FormGroup;
   constructor(private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService, private router: Router) {
-    this.createForm();
-   }
+
+  }
 
   ngOnInit() {
+    this.createForm();
     this.listarDepartamentos();
+    this.listarMunicipios(null, this.itemDireccion.idDepartamento);
   }
   createForm() {
     this.checkoutForm = this.fb.group({
-      departamento: ['', Validators.required],
+      idDepartamento: ['', Validators.required],
       idMunicipio: ['', Validators.required],
       direccion: ['', [Validators.required, Validators.minLength(20)]],
       puntoReferencia: ['', [Validators.required, Validators.minLength(20)]],
+      telefono: ['', [Validators.required, Validators.minLength(8)]]
+    });
+    this.checkoutForm.setValue({
+      idDepartamento:this.itemDireccion.idDepartamento,
+      idMunicipio:this.itemDireccion.idMunicipio,
+      direccion:this.itemDireccion.direccion,
+      puntoReferencia:this.itemDireccion.puntoReferencia,
+      telefono:''
     });
   }
-  public cancelar(){
+  public cancelar() {
     this.accionModal.emit('close');
   }
-  
+
   async onSubmit() {
-    await  this.conectorApi.Post("usuario/direcciones/registro",this.checkoutForm.value).subscribe(
-      (data)=>{
+    await this.conectorApi.Patch(`usuario/direcciones/actualizar/${this.itemDireccion.id}`, this.checkoutForm.value).subscribe(
+      (data) => {
         let dat = data as ApiRest;
-        if(dat.codigo==0){
+        if (dat.codigo == 0) {
           this.toastrService.success(dat.respuesta, 'Información!');
           this.accionModal.emit('close');
-        }else{
+        } else {
           this.toastrService.error(dat.error, 'Alerta!');
         }
       },
-      (dataError)=>{
-        this.toastrService.error(dataError.error.respuesta, 'Alerta!');
+      (dataError) => {
+        console.log("Data error", dataError);
+        this.toastrService.error(dataError.error.error.message, 'Alerta!');
       }
     )
   }
+
   async listarDepartamentos() {
     try {
       this.departamentos.push(new ElementoLista('', 'Seleccione un departamento'))
@@ -71,18 +82,21 @@ export class ModalEditDireccionComponent implements OnInit {
       this.toastrService.error(ex.message, 'Alerta!');
     }
   }
-  
-  async listarMunicipios(event) {
+
+  async listarMunicipios(event, idDepartamento) {
     try {
+      let idDepto = 0;
       this.municipios = [];
-      //console.log(event);
-      let idDepto = event.target.value;
+      if (event) {
+        idDepto = event.target.value;
+      } else {
+        idDepto = idDepartamento;
+      }
       if (idDepto > 0) {
         this.municipios.push(new ElementoLista('', 'Seleccione un municipio'))
         this.conectorApi.Get('municipios/listar/departamento/' + idDepto).subscribe(
           async (data) => {
             let dat = data as ApiRest;
-            //console.log("Todos los municipios", dat.data);
             await dat.data.forEach(muni => {
               this.municipios.push(new ElementoLista(muni.id, muni.descripcion))
             });

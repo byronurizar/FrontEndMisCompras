@@ -28,7 +28,6 @@ export class RegistroComponent implements OnInit {
     municipio: 0,
     email: '',
     contrasenia: ''
-
   }
 
   @ViewChild("nuevoUsuario", { static: false }) nuevoUsuario: NgForm;

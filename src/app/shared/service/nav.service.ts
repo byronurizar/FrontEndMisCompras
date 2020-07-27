@@ -76,7 +76,7 @@ export class NavService {
                 }
                 const padres = this.menuBd.filter(item => item.idpadre == filaTitulo.id);
                 if (padres.length > 0) {
-                  miMenuPerfil.push(itemTitulo);
+                  
                   padres.map(filaPadre => {
                     let itemPadre: Menu;
                     let itemsHijos = new Array();
@@ -84,6 +84,7 @@ export class NavService {
                     let hijosItemActual = this.menuBd.filter(i => i.idpadre === idPadre);
 
                     if (hijosItemActual.length > 0) {
+                      miMenuPerfil.push(itemTitulo);
                       hijosItemActual.map(itemHijo => {
                         let itemHijoActual: Menu;
                         itemHijoActual = {

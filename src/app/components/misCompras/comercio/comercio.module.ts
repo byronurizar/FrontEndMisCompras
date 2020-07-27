@@ -22,9 +22,11 @@ import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.componen
 import { MisdireccionesComponent } from './misdirecciones/misdirecciones.component';
 import { ModaRegistrarDireccionComponent } from './moda-registrar-direccion/moda-registrar-direccion.component';
 import { ModalEditDireccionComponent } from './modal-edit-direccion/modal-edit-direccion.component';
+import { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
+import { ModalDetallePedidoComponent } from './modal-detalle-pedido/modal-detalle-pedido.component';
 
 @NgModule({
-  declarations: [ProductosComponent, VistaRapidaComponent, DetalleProductoComponent, CarritoComponent, ModalTallasComponent, ModalColoresComponent, ListaDeseosComponent, FinalizarPedidoComponent, DetallePedidoComponent, MisdireccionesComponent, ModaRegistrarDireccionComponent, ModalEditDireccionComponent],
+  declarations: [ProductosComponent, VistaRapidaComponent, DetalleProductoComponent, CarritoComponent, ModalTallasComponent, ModalColoresComponent, ListaDeseosComponent, FinalizarPedidoComponent, DetallePedidoComponent, MisdireccionesComponent, ModaRegistrarDireccionComponent, ModalEditDireccionComponent, MisPedidosComponent, ModalDetallePedidoComponent],
   imports: [
     CommonModule,
     ComercioRoutingModule,

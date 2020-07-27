@@ -6,6 +6,46 @@
 </div>
 <div class="modal-body">
     <form [formGroup]="checkoutForm" novalidate>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input class="form-control" type="text" formControlName="nombre" class="form-control"/>
+        <div *ngIf="checkoutForm.controls['nombre'].touched && checkoutForm.controls['nombre'].errors?.required"
+          class="text text-danger">
+          Debe de ingresar un nombre
+        </div>
+        <div
+          *ngIf="checkoutForm.controls['nombre'].touched && checkoutForm.controls['nombre'].errors?.minlength"
+          class="text text-danger">
+        El nombre debe de contener mas de 2 carácteres
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nombre">Apellido</label>
+        <input class="form-control" type="text" formControlName="apellido" class="form-control"/>
+        <div *ngIf="checkoutForm.controls['apellido'].touched && checkoutForm.controls['apellido'].errors?.required"
+          class="text text-danger">
+          Debe de ingresar un apellido
+        </div>
+        <div
+          *ngIf="checkoutForm.controls['apellido'].touched && checkoutForm.controls['apellido'].errors?.minlength"
+          class="text text-danger">
+        El apellido debe de contener mas de 2 carácteres
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="inputAddress2">Teléfono</label>
+        <input class="form-control" type="text" formControlName="telefono" class="form-control"/>
+        <div *ngIf="checkoutForm.controls['telefono'].touched && checkoutForm.controls['telefono'].errors?.required"
+          class="text text-danger">
+          Debe de ingresar un número de teléfono
+        </div>
+        <div
+          *ngIf="checkoutForm.controls['telefono'].touched && checkoutForm.controls['telefono'].errors?.minlength"
+          class="text text-danger">
+        Debe de ingresar un teléfono válido
+        </div>
+      </div>
         <div class="form-group">
           <label for="inputState">Departamento</label>
           <select name="departamento" formControlName="departamento" class="form-control" (change)="listarMunicipios($event)">
@@ -54,11 +94,12 @@
             Debe de ingresar por lo menos 20 caracteres.
           </div>
         </div>
+   
       </form>
 </div>
 <div class="modal-footer">
     <button [disabled]="!checkoutForm.valid" class="btn btn-primary" type="submit" 
     (click)="onSubmit()">Registrar
   </button>
-    <button type="button" class="btn btn-light" (click)="cancelar()">Close</button>
+    <button type="button" class="btn btn-light" (click)="cancelar()">Cerrar</button>
 </div>
