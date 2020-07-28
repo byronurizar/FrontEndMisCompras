@@ -22,6 +22,7 @@ export class ModalEditDireccionComponent implements OnInit {
   }
 
   ngOnInit() {
+   // console.log("Info direccion",this.itemDireccion);
     this.createForm();
     this.listarDepartamentos();
     this.listarMunicipios(null, this.itemDireccion.idDepartamento);
@@ -32,6 +33,8 @@ export class ModalEditDireccionComponent implements OnInit {
       idMunicipio: ['', Validators.required],
       direccion: ['', [Validators.required, Validators.minLength(20)]],
       puntoReferencia: ['', [Validators.required, Validators.minLength(20)]],
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellido: ['', [Validators.required, Validators.minLength(2)]],
       telefono: ['', [Validators.required, Validators.minLength(8)]]
     });
     this.checkoutForm.setValue({
@@ -39,7 +42,9 @@ export class ModalEditDireccionComponent implements OnInit {
       idMunicipio:this.itemDireccion.idMunicipio,
       direccion:this.itemDireccion.direccion,
       puntoReferencia:this.itemDireccion.puntoReferencia,
-      telefono:''
+      nombre:this.itemDireccion.nombre,
+      apellido:this.itemDireccion.apellido,
+      telefono:this.itemDireccion.telefono
     });
   }
   public cancelar() {

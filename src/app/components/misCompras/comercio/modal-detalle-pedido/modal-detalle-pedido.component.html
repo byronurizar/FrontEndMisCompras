@@ -11,48 +11,53 @@
                 <thead>
                     <tr>
                         <th>Codigo</th>
-                        <td>0000001</td>
+                        <td>00000{{infoPedido.idPedido}}</td>
                     </tr>
                     <tr>
-                        <th>Fecha de Ingreso</th>
-                        <td>01/08/2020</td>
-                    </tr>
-                    <tr>
-                        <th>Estado</th>
-                        <td>Activo</td>
-                    </tr>
-                    <tr>
-                        <th>Total</th>
-                        <td>Q. 350.00</td>
-                    </tr>
-                    <tr>
-                        <th>Tipo de Pago</th>
-                        <td>Pago contra Entrega</td>
-                    </tr>
-                    <tr>
-                        <th>Observaciones</th>
-                        <td>Sin observaciones</td>
-                    </tr>
-                    <tr>
-                        <th>Departamento</th>
-                        <td>Guatemala</td>
-                    </tr>
-                    <tr>
-                        <th>Municipio</th>
-                        <td>Guatemal</td>
-                    </tr>
-                    <tr>
-                        <th>Direccion</th>
-                        <td>Cerca de asdf asd fasdf asdfasdfasdfa fa</td>
-                    </tr>
-                    <tr>
-                        <th>Punto Referencia</th>
-                        <td>Cerca de asdf asd fasdf asdfasdfasdfa fa</td>
+                        <th>Nombre</th>
+                        <td>{{infoPedido.nombre}} {{infoPedido.apellido}}</td>
                     </tr>
                     <tr>
                         <th>Teléfono</th>
-                        <td>58868596</td>
+                        <td>{{infoPedido.telefono}}</td>
                     </tr>
+                    <tr>
+                        <th>Fecha de Ingreso</th>
+                        <td>{{infoPedido.fechaIngreso}}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado</th>
+                        <td>{{infoPedido.estado}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td>Q. {{infoPedido.total}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de Pago</th>
+                        <td>{{infoPedido.tipoPago}}</td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones</th>
+                        <td>{{infoPedido.observaciones}}</td>
+                    </tr>
+                    <tr>
+                        <th>Departamento</th>
+                        <td>{{infoPedido.departamento}}</td>
+                    </tr>
+                    <tr>
+                        <th>Municipio</th>
+                        <td>{{infoPedido.municipio}}</td>
+                    </tr>
+                    <tr>
+                        <th>Direccion</th>
+                        <td>{{infoPedido.direccion}}</td>
+                    </tr>
+                    <tr>
+                        <th>Punto Referencia</th>
+                        <td>{{infoPedido.puntoReferencia}}</td>
+                    </tr>
+                    
                 </thead>
             </table>
             <hr />
@@ -65,25 +70,27 @@
                         <th scope="col">Talla</th>
                         <th scope="col">Color</th>
                         <th scope="col">Cantidad</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Precio C/U</th>
+                        <th scope="col">SubTotal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Producto de prueba</td>
-                        <td>Compra con el proveedor</td>
-                        <td>N/A</td>
-                        <td>N/A</td>
-                        <td>1</td>
-                        <td>Q. 350.00</td>
+                    <tr *ngFor="let item of detalleProd;let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.Producto}}</td>
+                        <td>{{item.proveedor}}</td>
+                        <td>{{item.Talla}}</td>
+                        <td>{{item.Color}}</td>
+                        <td>{{item.cantidad}}</td>
+                        <td>{{item.Precio}}</td>
+                        <td>Q{{item.cantidad*item.Precio}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5"></td>
+                        <td colspan="6"></td>
                         <td>Total</td>
-                        <td>Q. 350.00</td>
+                        <td>Q{{total}}</td>
                     </tr>
                 </tfoot>
             </table>

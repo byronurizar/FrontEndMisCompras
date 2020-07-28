@@ -63,12 +63,12 @@ export class MisdireccionesComponent implements OnInit {
             let dat = data as ApiRest;
             if (dat.codigo == 0) {
               this.toastrService.success("Dirección eliminada exitosamente", 'Información!');
+              this.cargarInformacion();
             } else {
               this.toastrService.error(dat.error, 'Alerta!');
             }
           },
           (dataError) => {
-            console.log("Data error", dataError);
             this.toastrService.error(dataError.error.error.message, 'Alerta!');
           }
         )

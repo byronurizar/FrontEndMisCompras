@@ -19,7 +19,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Código</th>
                                     <th scope="col">Ver</th>
                                     <th scope="col">Fecha de Ingreso</th>
                                     <th scope="col">Estado</th>
@@ -29,16 +29,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             <tr>
-                                 <td>1</td>
-                                 <td><a (click)="abrirModal(content1)"><i class="icon-eye"></i></a></td>
-                                 <td>27/07/2020</td>
-                                 <td>Compra con el proveedor</td>
-                                 <td>Q. 350.00</td>
-                                 <td>Pago contra Entrega</td>
-                                 <td>Sin observaciones</td>
+                             <tr *ngFor="let item of info">
+                                 <td>00000{{item.idPedido}}</td>
+                                 <td><a (click)="abrirModal(content1,item)"><i class="icon-eye"></i></a></td>
+                                 <td>{{item.fechaIngreso}}</td>
+                                 <td>{{item.estado}}</td>
+                                 <td>Q.{{item.total}}</td>
+                                 <td>{{item.tipoPago}}</td>
+                                 <td>{{item.observaciones}}</td>
                                  <ng-template #content1 let-modal>
-                                    <app-modal-detalle-pedido (accionModal)="cerrarModalTalla($event)">
+                                    <app-modal-detalle-pedido (accionModal)="cerrarModalTalla($event)" [infoPedido]="infoPedido">
                                     </app-modal-detalle-pedido>
                               </ng-template>
 

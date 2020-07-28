@@ -18,12 +18,33 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-6 col-sm-12">
+          <div class="table-responsive">
+          <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Direccion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td></td>
+                  <td>Byron López Urizar</td>
+                  <td>3 calle B 2-3 Zona 3, Boca del Monte Guatemala</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+        <hr/>
+
+
           <h5>Información de quien recibe</h5>
           <form [formGroup]="checkoutForm" novalidate>
             <div class="form-row">
               <div class="form-group col-sm-6">
                 <div class="field-label">Nombres</div>
-                <input type="text" name="nombres" formControlName="nombres" class="form-control" placeholder="">
+                <input type="text" name="nombres" formControlName="nombres" class="form-control" placeholder="" readonly>
                 <div
                   *ngIf="checkoutForm.controls['nombres'].touched && checkoutForm.controls['nombres'].errors?.required"
                   class="text text-danger">
