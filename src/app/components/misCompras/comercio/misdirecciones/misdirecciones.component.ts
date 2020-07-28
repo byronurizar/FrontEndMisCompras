@@ -40,7 +40,7 @@ export class MisdireccionesComponent implements OnInit {
     if (esEdit) {
       this.itemDireccion = item;
     }
-    this.modalReference = this.modalService.open(content, { centered: true, size: 'lg' });
+    this.modalReference = this.modalService.open(content);
   }
   public cerrarModalTalla(event) {
     this.modalReference.close();

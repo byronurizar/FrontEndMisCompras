@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <th>Total</th>
-                        <td>Q. {{infoPedido.total}}</td>
+                        <td>{{infoPedido.total | currency:'Q':'symbol'}}</td>
                     </tr>
                     <tr>
                         <th>Tipo de Pago</th>
@@ -82,15 +82,15 @@
                         <td>{{item.Talla}}</td>
                         <td>{{item.Color}}</td>
                         <td>{{item.cantidad}}</td>
-                        <td>{{item.Precio}}</td>
-                        <td>Q{{item.cantidad*item.Precio}}</td>
+                        <td>{{item.Precio | currency:'Q':'symbol'}}</td>
+                        <td>{{(item.cantidad*item.Precio) | currency:'Q':'symbol'}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="6"></td>
                         <td>Total</td>
-                        <td>Q{{total}}</td>
+                        <td>{{total|currency:'Q':'symbol'}}</td>
                     </tr>
                 </tfoot>
             </table>

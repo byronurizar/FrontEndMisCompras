@@ -34,7 +34,7 @@
                                  <td><a (click)="abrirModal(content1,item)"><i class="icon-eye"></i></a></td>
                                  <td>{{item.fechaIngreso}}</td>
                                  <td>{{item.estado}}</td>
-                                 <td>Q.{{item.total}}</td>
+                                 <td>{{item.total | currency:'Q':'symbol'}}</td>
                                  <td>{{item.tipoPago}}</td>
                                  <td>{{item.observaciones}}</td>
                                  <ng-template #content1 let-modal>

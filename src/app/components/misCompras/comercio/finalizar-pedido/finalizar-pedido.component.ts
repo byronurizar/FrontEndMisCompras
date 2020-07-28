@@ -7,6 +7,7 @@ import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { Carrito } from 'src/app/servicios/carrito.service';
 import { Router } from '@angular/router';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 declare var require
 const Swal = require('sweetalert2')
 
@@ -16,6 +17,8 @@ const Swal = require('sweetalert2')
   styleUrls: ['./finalizar-pedido.component.scss']
 })
 export class FinalizarPedidoComponent implements OnInit {
+  direcciones:any[];
+  itemDireccion:any={};
   tipoPagoSeleccionado=0;
   nuevoTipoPago=0;
   departamentos: ElementoLista[] = [];
@@ -24,30 +27,31 @@ export class FinalizarPedidoComponent implements OnInit {
   detallePedido:any[]=[];
   public cartItems: Observable<any[]> = of([]);
   public checkOutItems: any;
-  public checkoutForm: FormGroup;
   public amount: number;
   public submitted = false;
   public userInfo: string;
-  constructor(private router: Router,private fb: FormBuilder,private conectorApi: ConectorApi, private toastrService: ToastrService,private carrito:Carrito) {
-    this.createForm();
+  modalReference: NgbModalRef;
+  constructor(private router: Router,private fb: FormBuilder,private conectorApi: ConectorApi, private toastrService: ToastrService,private carrito:Carrito, private modalService: NgbModal) {
+    this.listarMisDirecciones();
   }
 
-  createForm() {
-    this.checkoutForm = this.fb.group({
-      nombres: ['', [Validators.required, Validators.pattern('[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
-      apellidos: ['', [Validators.required, Validators.pattern('[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
-      telefonos: ['', [Validators.required, Validators.pattern('[0-9]+')]],
-      departamento: ['', Validators.required],
-      municipio: ['', Validators.required],
-      direccion: ['', [Validators.required, Validators.minLength(20)]],
-      puntoReferencia: ['', [Validators.required, Validators.minLength(20)]],
-    });
+  public seleccionarDireccion(item){
+    this.itemDireccion=item;
   }
 
   public cambiarTipoPago(idtipo){
     this.nuevoTipoPago=idtipo;
   }
+
+  public abrirModal(content) {
+    this.modalReference = this.modalService.open(content);
+  }
+  public cerrarModal(event) {
+    this.modalReference.close();
+    this.listarMisDirecciones();
+  }
   
+  /*
   async onSubmit() {
     this.detallePedido=[];
     let dataPedido;
@@ -99,6 +103,7 @@ let json={
       }
     )
   }
+  */
   public getTotal(): Observable<number> {
     return this.carrito.getCantidadTotal();
   }
@@ -106,54 +111,9 @@ let json={
     this.cartItems = this.carrito.getTodos();
     this.cartItems.subscribe(products => this.checkOutItems = products);
     this.carrito.getCantidadTotal().subscribe(amount => this.amount = amount);
-    this.listarDepartamentos();
     this.listarTipoPago();
   }
-  async listarDepartamentos() {
-    try {
-      this.departamentos.push(new ElementoLista('', 'Seleccione un departamento'))
-      this.conectorApi.Get('departamentos/listar').subscribe(
-        async (data) => {
-          let dat = data as ApiRest;
-          // //console.log("Todos los departamentos", dat.data);
-          await dat.data.forEach(departamento => {
-            this.departamentos.push(new ElementoLista(departamento.id, departamento.descripcion))
-          });
-        },
-        (dataError) => {
-          this.toastrService.error(dataError.error, 'Alerta!');
-        }
-      )
-    } catch (ex) {
-      this.toastrService.error(ex, 'Alerta!');
-    }
-  }
   
-  async listarMunicipios(event) {
-    try {
-      this.municipios = [];
-      //console.log(event);
-      let idDepto = event.target.value;
-      if (idDepto > 0) {
-        this.municipios.push(new ElementoLista('', 'Seleccione un municipio'))
-        this.conectorApi.Get('municipios/listar/departamento/' + idDepto).subscribe(
-          async (data) => {
-            let dat = data as ApiRest;
-            //console.log("Todos los municipios", dat.data);
-            await dat.data.forEach(muni => {
-              this.municipios.push(new ElementoLista(muni.id, muni.descripcion))
-            });
-          },
-          (dataError) => {
-            this.toastrService.error(dataError.error, 'Alerta!');
-          }
-        )
-      }
-    } catch (ex) {
-      this.toastrService.error(ex, 'Alerta!');
-    }
-
-  }
   async listarTipoPago() {
     try {
       this.tiposPago=[];
@@ -175,6 +135,25 @@ let json={
       this.toastrService.error(ex, 'Alerta!');
     }
   }
+
+  listarMisDirecciones() {
+    try {
+      this.conectorApi.Get('usuario/misdirecciones').subscribe(
+        (data) => {
+          let dat = data as ApiRest;
+          this.direcciones = dat.data;
+          this.itemDireccion=this.direcciones[0];
+        },
+        (dataError) => {
+          this.toastrService.error(dataError.error.error.message, 'Alerta!');
+        }
+      )
+    } catch (ex) {
+      this.toastrService.error(ex.message, 'Alerta!');
+    }
+
+  }
+
 
 
 
