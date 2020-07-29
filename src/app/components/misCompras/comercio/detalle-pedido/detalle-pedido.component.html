@@ -80,15 +80,22 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td class="Rate"><h6 class="mb-0 p-2">Costo de Envio</h6></td>
+                                            <td class="payment digits"><h6 class="mb-0 p-2">{{datosPedido.costoEnvio| currency:'Q':'symbol'}}</h6></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td class="Rate"><h6 class="mb-0 p-2">Total</h6></td>
-                                            <td class="payment digits"><h6 class="mb-0 p-2">{{total| currency:'Q':'symbol'}}</h6></td>
+                                            <td class="payment digits"><h6 class="mb-0 p-2">{{(total+datosPedido.costoEnvio)| currency:'Q':'symbol'}}</h6></td>
                                         </tr>
                                     </table>
                                 </div><!--End Table-->
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div>
-                                            <p class="legal"><strong>Gracias por comprar con nosotros</strong>  nos estaremos comunicando con su persona para informale el estado de su pedido.
+                                            <p class="legal"><strong>Gracias por comprar con nosotros</strong> pronto nos estaremos comunicando con su persona para informale el estado de su pedido.
                                             </p>
                                         </div>
                                     </div>
@@ -98,10 +105,10 @@
   
                         </div>
   
-                        <div class="col-sm-12 text-center mt-3">
+                        <!-- <div class="col-sm-12 text-center mt-3">
                             <button type="button" class="btn btn btn-primary mr-2">Imprimir</button>
                             <button type="button" class="btn btn-secondary">Cancelar</button>
-                        </div>
+                        </div> -->
                         <!--End Invoice-->
   
                     </div>

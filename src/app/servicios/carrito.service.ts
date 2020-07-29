@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subscriber, Observable } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import 'rxjs/add/operator/map';
-let productos = JSON.parse(localStorage.getItem("carritoItems")) || [];
+let productos =[];// JSON.parse(sessionStorage.getItem("carritoItems")) || [];
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +21,11 @@ export class Carrito {
     });
     return <Observable<any[]>>itemsList;
   }
+  public limpiarCarrito(){
+    productos=[];
+    this.itemsCarrito.subscribe(productos => productos = productos);
+    //sessionStorage.removeItem("carritoItems");
+  }
 
 
   public agregarProducto(producto: any, cantidad: number, colores: any[], color: any, tallas: any[], talla: any) {
@@ -34,7 +39,7 @@ export class Carrito {
             let cantidadTotal = parseInt((productos[index].cantidad)) + parseInt('' + cantidad);
             productos[index]["cantidad"] = cantidadTotal;
             this.toastrService.success('Producto agregado al carrito exitosamente');
-            localStorage.setItem('carritoItems', JSON.stringify(productos));
+            //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
             return true;
           } else {
             return false;
@@ -50,7 +55,7 @@ export class Carrito {
       productos.push(nuevoProducto);
       this.toastrService.success('Producto agregado al carrito exitosamente');
     }
-    localStorage.setItem('carritoItems', JSON.stringify(productos));
+    //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
     return true;
 
   }
@@ -69,29 +74,29 @@ export class Carrito {
     } else {
       const index = productos.indexOf(item);
       productos.splice(index, 1);
-      localStorage.setItem('carritoItems', JSON.stringify(productos));
+      //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
     }
   }
 
   public actualizarCantidad(item: any, index: number, cantidad: number) {
     let cantidadTotal = parseInt(productos[index].cantidad) + cantidad;
     productos[index]["cantidad"] = cantidadTotal;
-    localStorage.setItem('carritoItems', JSON.stringify(productos));
+    //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
     if (cantidadTotal <= 0) {
       productos.splice(index, 1);
-      localStorage.setItem('carritoItems', JSON.stringify(productos));
+      //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
     }
     return true;
   }
   public actualizarColor(index: number, color: any) {
     productos[index].color = color;
-    localStorage.setItem('carritoItems', JSON.stringify(productos));
+    //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
     return true;
   }
 
   public actualizarTalla(index: number, talla: any) {
     productos[index].talla = talla;
-    localStorage.setItem('carritoItems', JSON.stringify(productos));
+    //sessionStorage.setItem('carritoItems', JSON.stringify(productos));
     return true;
   }
 }

@@ -21,7 +21,7 @@ export class DetallePedidoComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = +params['id'];
       this.PedidoId=id;
-    
+      this.infoPedido(this.PedidoId);
     });
 
   }
@@ -75,6 +75,6 @@ export class DetallePedidoComponent implements OnInit {
   }
   ngOnInit() {
     this.detallePedido(this.PedidoId);
-    this.infoPedido(this.PedidoId);
+    
   }
 }

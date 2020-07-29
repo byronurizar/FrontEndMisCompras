@@ -97,7 +97,8 @@
             </table>
             <div class="card-footer">
               <a class="btn btn-primary mr-1" [routerLink]="['/comercio/productos']">Continuar Comprando</a>
-              <a class="btn btn-success cart-btn-transform" [routerLink]="['/comercio/finalizarpedido']">Continuar con
+              <!-- <a class="btn btn-success cart-btn-transform" [routerLink]="['/comercio/finalizarpedido']">Continuar con -->
+                <a class="btn btn-success cart-btn-transform" (click)="continuarPedido()" >Continuar con
                 pedido</a>
             </div>
 

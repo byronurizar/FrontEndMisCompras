@@ -156,7 +156,7 @@ export class ConectorApi {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenAcces}`
+        'Authorization': `Bearer ${this.usuario.token}`
       })
     };
     return this.http.post(urlBase + ruta, jsonSolicitud, httpOptions);
@@ -168,7 +168,7 @@ export class ConectorApi {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenAcces}`
+        'Authorization': `Bearer ${this.usuario.token}`
       })
     };
     return this.resultado = this.http.get(urlBase + ruta, httpOptions);
@@ -179,7 +179,7 @@ export class ConectorApi {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenAcces}`
+        'Authorization': `Bearer ${this.usuario.token}`
       })
     };
     return this.http.patch(urlBase + ruta, jsonSolicitud, httpOptions);
@@ -188,7 +188,7 @@ export class ConectorApi {
     let tokenAcces = sessionStorage.getItem("token") || null;
     let httpOptionsImagenes = {
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${tokenAcces}`
+        'Authorization': `Bearer ${this.usuario.token}`
       })
     };
     return this.http.post(urlBase + ruta, jsonSolicitud, httpOptionsImagenes);

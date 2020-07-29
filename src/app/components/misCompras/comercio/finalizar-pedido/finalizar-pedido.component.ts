@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ElementoLista } from 'src/app/modelos/elementoLista.model';
 import { ToastrService } from 'ngx-toastr';
@@ -17,30 +17,32 @@ const Swal = require('sweetalert2')
   styleUrls: ['./finalizar-pedido.component.scss']
 })
 export class FinalizarPedidoComponent implements OnInit {
-  direcciones:any[];
-  itemDireccion:any={};
-  tipoPagoSeleccionado=0;
-  nuevoTipoPago=0;
+  direcciones: any[];
+  itemDireccion: any = {};
+  tipoPagoSeleccionado = 0;
+  nuevoTipoPago = 0;
   departamentos: ElementoLista[] = [];
   municipios: ElementoLista[] = [];
-  tiposPago:any[]=[];
-  detallePedido:any[]=[];
+  tiposPago: any[] = [];
+  detallePedido: any[] = [];
   public cartItems: Observable<any[]> = of([]);
   public checkOutItems: any;
-  public amount: number;
+  public totalPedido: number;
+  public costoEnvio: number;
   public submitted = false;
   public userInfo: string;
   modalReference: NgbModalRef;
-  constructor(private router: Router,private fb: FormBuilder,private conectorApi: ConectorApi, private toastrService: ToastrService,private carrito:Carrito, private modalService: NgbModal) {
+  public observaciones: string = "";
+  constructor(private router: Router, private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService, private carrito: Carrito, private modalService: NgbModal) {
     this.listarMisDirecciones();
   }
 
-  public seleccionarDireccion(item){
-    this.itemDireccion=item;
+  public seleccionarDireccion(item) {
+    this.itemDireccion = item;
   }
 
-  public cambiarTipoPago(idtipo){
-    this.nuevoTipoPago=idtipo;
+  public cambiarTipoPago(idtipo) {
+    this.nuevoTipoPago = idtipo;
   }
 
   public abrirModal(content) {
@@ -50,80 +52,83 @@ export class FinalizarPedidoComponent implements OnInit {
     this.modalReference.close();
     this.listarMisDirecciones();
   }
-  
-  /*
-  async onSubmit() {
-    this.detallePedido=[];
-    let dataPedido;
-    this.submitted = true;
-    // if (this.checkoutForm.invalid) {
-    //   return;
-    // }
-    this.userInfo = this.checkoutForm.value;
-    //console.log("Info formulario",this.userInfo);
-    //console.log("info",this.checkOutItems);
-    this.checkOutItems.forEach(item=>{
-     let itemPedido={
-        id:item.producto.id,
-        idTalla:item.talla.idTalla,
-        idColor:item.color.idColor,
-        cantidad:item.cantidad
-      }
-      this.detallePedido.push(itemPedido);
-    })
 
-let json={
-  data:this.userInfo,
-  detallePedido:this.detallePedido,
-  idTipoPago:this.tipoPagoSeleccionado
-}
+  async registrarPedido() {
+    this.detallePedido = [];
+    if (this.itemDireccion.id > 0) {
 
-
-
-  await  this.conectorApi.Post("pedido/recibe/registro", json).subscribe(
-      (data)=>{
-        let dat = data as ApiRest;
-        if(dat.codigo==0){
-          const {idPedido}=dat.data;
-          Swal.fire({
-            title: 'Informacion?',
-            text: "Pedido generado exitosamente",
-            type: 'success',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-          }).then((result) => {
-            this.router.navigate(['/comercio/detallepedido/'+idPedido]);  
-          });
-        }else{
-          this.toastrService.error(dat.error, 'Alerta!');
+      this.checkOutItems.forEach(item => {
+        let itemPedido = {
+          id: item.producto.id,
+          idTalla: item.talla.idTalla,
+          idColor: item.color.idColor,
+          cantidad: item.cantidad
         }
-      },
-      (dataErrror)=>{
-        this.toastrService.error(dataErrror.error, 'Alerta!');
+        this.detallePedido.push(itemPedido);
+      });
+      let json = {
+        idDireccionUsuario: this.itemDireccion.id,
+        costoEnvio: this.costoEnvio,
+        idTipoPago: this.tipoPagoSeleccionado,
+        observaciones: this.observaciones,
+        detallePedido: this.detallePedido,
       }
-    )
+      await this.conectorApi.Post("pedido/registro", json).subscribe(
+        (data) => {
+          let dat = data as ApiRest;
+          if (dat.codigo == 0) {
+            const idPedido  = dat.data;
+            Swal.fire({
+              title: 'Informacion?',
+              text: "Pedido generado exitosamente",
+              type: 'success',
+              showCancelButton: false,
+              confirmButtonColor: '#3085d6',
+            }).then((result) => {
+              this.carrito.limpiarCarrito();
+              this.router.navigate(['/comercio/detallepedido/' + idPedido]);
+            });
+          } else {
+            this.toastrService.error(dat.error, 'Alerta!');
+          }
+        },
+        (dataErrror) => {
+          this.toastrService.error(dataErrror.error, 'Alerta!');
+        }
+      )
+
+      console.log("Informacion pedido", json);
+    } else {
+      this.toastrService.error("Debe de seleccionar una dirección para poder realizar la entrega", "Alerta!");
+    }
   }
-  */
+
   public getTotal(): Observable<number> {
     return this.carrito.getCantidadTotal();
   }
   ngOnInit() {
     this.cartItems = this.carrito.getTodos();
     this.cartItems.subscribe(products => this.checkOutItems = products);
-    this.carrito.getCantidadTotal().subscribe(amount => this.amount = amount);
+    this.carrito.getCantidadTotal().subscribe(amount => this.totalPedido = amount);
+    if (this.totalPedido > 500) {
+      this.costoEnvio = 0;
+    } else {
+      this.costoEnvio = 30;
+    }
+    this.totalPedido += this.costoEnvio;
     this.listarTipoPago();
   }
-  
+
   async listarTipoPago() {
     try {
-      this.tiposPago=[];
+      this.tiposPago = [];
       this.conectorApi.Get('tipopago/listar').subscribe(
         (data) => {
           let dat = data as ApiRest;
-          if(dat.codigo==0){
-            this.tiposPago=dat.data;
-            if(this.tiposPago.length==1){
-              this.tipoPagoSeleccionado=1;
+          if (dat.codigo == 0) {
+            this.tiposPago = dat.data;
+            if (this.tiposPago.length == 1) {
+              this.tipoPagoSeleccionado = 1;
             }
           }
         },
@@ -142,7 +147,7 @@ let json={
         (data) => {
           let dat = data as ApiRest;
           this.direcciones = dat.data;
-          this.itemDireccion=this.direcciones[0];
+          this.itemDireccion = this.direcciones[0];
         },
         (dataError) => {
           this.toastrService.error(dataError.error.error.message, 'Alerta!');
