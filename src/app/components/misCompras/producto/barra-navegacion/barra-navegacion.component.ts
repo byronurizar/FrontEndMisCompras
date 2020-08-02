@@ -38,12 +38,12 @@ export class BarraNavegacionComponent implements OnInit {
   public idProductoCruzado = 0;
 
   listaProductosRelacionados: any[] = [];
-  listaProductosRelacionadosAsignados:any[] = [];
+  listaProductosRelacionadosAsignados: any[] = [];
 
   conImagenes = false;
 
   resultadoPadre: number;
-  idCatalogo=0;
+  idCatalogo = 0;
   constructor(private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService) {
 
     this.promListarColores.then((data1) => {
@@ -280,7 +280,7 @@ export class BarraNavegacionComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-  
+
         try {
           if (event.data) {
             event.data["idEstado"] = '3';
@@ -319,7 +319,7 @@ export class BarraNavegacionComponent implements OnInit {
 
   async listarProductosxCategoria(event) {
     try {
-this.idCatalogo = event;
+      this.idCatalogo = event;
       if (this.idCatalogo) {
         this.conectorApi.Get(`productos/categoria/${this.idCatalogo}/${this.idProducto}`).subscribe(
           async (data) => {
@@ -339,7 +339,7 @@ this.idCatalogo = event;
 
   async listaProductosCruzadosAsignados() {
     try {
-      if (this.idProducto>0) {
+      if (this.idProducto > 0) {
         this.conectorApi.Get(`productoscruzados/detalle/listar/producto/${this.idProducto}`).subscribe(
           async (data) => {
             let dat = data as ApiRest;
@@ -361,25 +361,26 @@ this.idCatalogo = event;
     }
 
     try {
-      let {oferta,nopagina}=form.value;
-      if(oferta==""){
-        form.value.oferta=0;
-      }else if(Number(oferta)<0){
-        form.value.oferta=0;
+      let { oferta, nopagina } = form.value;
+      console.log("oferta",oferta);
+      if (oferta == "" || oferta==null) {
+        form.value.oferta = 0;
+      } else if (Number(oferta) < 0) {
+        form.value.oferta = 0;
       }
 
-      if(nopagina==""){
-        form.value.nopagina=0;
-      }else if(Number(nopagina)<0){
-        form.value.nopagina=0;
+      if (nopagina == "") {
+        form.value.nopagina = 0;
+      } else if (Number(nopagina) < 0) {
+        form.value.nopagina = 0;
       }
 
       this.conectorApi.Post("productos/registro", form.value).subscribe(
-      async  (data) => {
+        async (data) => {
           let info = data as ApiRest;
           if (info.codigo == 0) {
             this.toastrService.success(info.respuesta, 'Información!');
-            this.idProducto =await info.data.id;
+            this.idProducto = await info.data.id;
           } else {
             this.toastrService.error(info.error, 'Alerta!');
           }
@@ -402,7 +403,7 @@ this.idCatalogo = event;
       this.files.forEach(archivo => {
         const formData = new FormData();
         formData.append('imagen', archivo, archivo.name);
-        formData.append('idProducto',""+ this.idProducto);
+        formData.append('idProducto', "" + this.idProducto);
         if (contador == 0) {
           formData.append('esImagenPrincipal', '1');
         } else {
@@ -1044,6 +1045,11 @@ this.idCatalogo = event;
     this.coloresAsignados = [];
     this.tallasAsignados = [];
     this.etiquetasAsignadas = [];
+    this.categoriasProdRelacionado = [];
+    this.listaProductosRelacionadosAsignados=[];
+    this.idProductoCruzado = 0;
+    this.info = [];
+
     let json = JSON.stringify({ idEstado: 1 })
     this.conectorApi.Patch(`productos/actualizar/${this.idProducto}`, json).subscribe(
       (data) => {
@@ -1053,6 +1059,7 @@ this.idCatalogo = event;
         } else {
           this.toastrService.error(apiResult.error, 'Alerta!');
         }
+        this.idProducto = 0;
       },
       (dataError) => {
         this.toastrService.success(dataError.error.error, 'Alerta!');

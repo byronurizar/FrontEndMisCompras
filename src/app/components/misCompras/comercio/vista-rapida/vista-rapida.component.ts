@@ -89,7 +89,11 @@ export class VistaRapidaComponent implements OnInit {
         }
         this.cartService.agregarProducto(producto, cantidad, this.coloresDisponibles, color, this.tallasDisponibles, talla);
         if(esComprarAhora){
-          this.router.navigate(['/comercio/finalizarpedido']);
+          if(this.conectorApi.usuario.email){
+            this.router.navigate(['/comercio/finalizarpedido']);
+          }else{
+            this.toastrService.warning("Para poder continuar con el pedido debe de iniciar sesión",'Alerta!');
+          }
         }else{
           //this.router.navigate(['/comercio/carrito']);
           this.accionModal.emit('close');

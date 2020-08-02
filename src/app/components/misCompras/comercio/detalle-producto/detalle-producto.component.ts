@@ -231,9 +231,6 @@ export class DetalleProductoComponent implements OnInit {
         this.toastrService.error("Debe de selecciónar un color", 'Alerta!');
       }
     }
-    console.log("INtentando");
-    console.log("this.tallaValido",this.tallaValido);
-    console.log("this.colorValido",this.colorValido);
     if (this.tallaValido && this.colorValido) {
       if (producto.oferta > 0) {
         producto.precio = producto.oferta;
@@ -241,5 +238,14 @@ export class DetalleProductoComponent implements OnInit {
       this.cartService.agregarProducto(producto, 1, this.coloresDisponibles, color, this.tallasDisponibles, talla);
     }
     
+  }
+  comprarAhora(producto: any){
+    this.agregarProducto(producto);
+    console.log("Datos usuario",this.conectorApi.usuario);
+    if(this.conectorApi.usuario.email){
+      this.router.navigate(['/comercio/finalizarpedido']);
+    }else{
+      this.toastrService.warning("Para poder continuar con el pedido debe de iniciar sesión",'Alerta!');
+    }
   }
 }

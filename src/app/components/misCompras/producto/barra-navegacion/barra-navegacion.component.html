@@ -62,6 +62,7 @@
                             <div class="col-md-12 mb-3">
                               <label for="descripcion">Descripción</label>
                               <textarea type="text" class="form-control" id="descripcion" placeholder="Descripción"
+                              [formControl]="validationForm.controls['descripcion']"
                                 rows="2"></textarea>
                               <!-- <div
                                 *ngIf="validationForm.controls.descripcion.touched && validationForm.controls.descripcion.errors?.required"
@@ -74,12 +75,13 @@
                             <div class="col-md-6 mb-3">
                               <label for="descripcionCorta">Descripción Corta</label>
                               <input type="text" class="form-control" id="descripcionCorta"
+                              [formControl]="validationForm.controls['descripcionCorta']"
                                 placeholder="Descripción Corta"
                                 >
                             </div>
                             <div class="col-md-3 mb-3">
                               <label for="Precio">Precio Normal</label>
-                              <input type="number" class="form-control" id="precio" placeholder="Precio normal"
+                              <input type="number" class="form-control" id="precio" placeholder="Precio normal" value="0"
                                 [formControl]="validationForm.controls['precio']" required>
                               <div
                                 *ngIf="validationForm.controls.precio.touched && validationForm.controls.precio.errors?.required"
@@ -128,7 +130,7 @@
 
                             <div class="col-md-4 mb-3">
                               <label for="nopagina">Número de Página</label>
-                              <input type="number" class="form-control" id="nopagina" placeholder="Número de página"
+                              <input type="number" class="form-control" id="nopagina" placeholder="Número de página" value="0"
                                 >
                               <!-- <div
                                 *ngIf="validationForm.controls.nopagina.touched && validationForm.controls.nopagina.errors?.required"
