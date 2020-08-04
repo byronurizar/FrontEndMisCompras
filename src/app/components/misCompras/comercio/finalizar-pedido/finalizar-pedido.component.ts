@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ElementoLista } from 'src/app/modelos/elementoLista.model';
@@ -46,6 +46,7 @@ export class FinalizarPedidoComponent implements OnInit {
   }
 
   public abrirModal(content) {
+    console.log("content",content);
     this.modalReference = this.modalService.open(content);
   }
   public cerrarModal(event) {
@@ -148,6 +149,10 @@ export class FinalizarPedidoComponent implements OnInit {
           let dat = data as ApiRest;
           this.direcciones = dat.data;
           this.itemDireccion = this.direcciones[0];
+          console.log("Direcciones",this.itemDireccion);
+          if(this.itemDireccion.length<=0){
+            this.modalService.open('content2');
+          }
         },
         (dataError) => {
           this.toastrService.error(dataError.error.error.message, 'Alerta!');

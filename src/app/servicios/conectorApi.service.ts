@@ -100,6 +100,8 @@ export class ConectorApi {
           let codigoRol = dataResponse["data"].usuario.codigoRol;
           this.usuario.token = tokenGmail;
           this.usuario.codigoRol = codigoRol;
+          this.usuario.name = dataResponse["data"].usuario.nombre;
+          this.usuario.email =  dataResponse["data"].usuario.correo;
           sessionStorage.setItem("token", tokenGmail);
           if (!this.usuario.codigoRol) {
             this.router.navigate(['/'])
