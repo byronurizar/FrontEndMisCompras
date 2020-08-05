@@ -42,7 +42,9 @@
 
 
           <h5>Información de quien recibe</h5>
-          <form novalidate>
+<app-moda-registrar-direccion [isModal]="false" (registroExitoso)="actualizarLista($event)" *ngIf="!this.itemDireccion.nombre" ></app-moda-registrar-direccion>
+
+          <form novalidate *ngIf="this.itemDireccion.nombre">
             <div class="form-row">
               <div class="form-group col-sm-6">
                 <label for="inputEmail4">Nombre</label>
@@ -124,7 +126,7 @@
                 </div>
               </div>
               <div class="text-right">
-                <button class="btn btn-primary" type="button" (click)="registrarPedido()">Realizar pedido
+                <button class="btn btn-primary" type="button" (click)="registrarPedido()" disabled=this.itemDireccion.id>Realizar pedido
                 </button>
               </div>
             </div>
@@ -140,6 +142,6 @@
 </div>
 
 <ng-template #content2 let-modal>
-  <app-moda-registrar-direccion (accionModal)="cerrarModal($event)">
+  <app-moda-registrar-direccion (accionModal)="cerrarModal($event)" (registroExitoso)="actualizarLista($event)">
   </app-moda-registrar-direccion>
 </ng-template>

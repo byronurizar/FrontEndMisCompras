@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,9 @@ import { ApiRest } from 'src/app/modelos/apiResponse.model';
   styleUrls: ['./moda-registrar-direccion.component.scss']
 })
 export class ModaRegistrarDireccionComponent implements OnInit {
+  @Input() isModal: boolean=true;
   @Output() accionModal: EventEmitter<any> = new EventEmitter();
+  @Output() registroExitoso: EventEmitter<any> = new EventEmitter();
   departamentos: ElementoLista[] = [];
   municipios: ElementoLista[] = [];
   public validationForm: FormGroup;
@@ -45,6 +47,8 @@ export class ModaRegistrarDireccionComponent implements OnInit {
         let dat = data as ApiRest;
         if(dat.codigo==0){
           this.toastrService.success(dat.respuesta, 'Información!');
+          const {id}=dat.data;
+          this.registroExitoso.emit(id);
           this.accionModal.emit('close');
         }else{
           this.toastrService.error(dat.error, 'Alerta!');

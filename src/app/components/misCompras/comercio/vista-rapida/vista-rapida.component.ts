@@ -95,8 +95,8 @@ export class VistaRapidaComponent implements OnInit {
             this.toastrService.warning("Para poder continuar con el pedido debe de iniciar sesión",'Alerta!');
           }
         }else{
-          //this.router.navigate(['/comercio/carrito']);
-          this.accionModal.emit('close');
+          this.router.navigate(['/comercio/carrito']);
+          // this.accionModal.emit('close');
         }
         //this.modalService.close("cerrar");
       }

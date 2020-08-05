@@ -1,10 +1,10 @@
-<div class="modal-header">
+<div class="modal-header" *ngIf="isModal">
     <h4 class="modal-title">Registrar Dirección</h4>
     <button type="button" class="close" aria-label="Close" (click)="cancelar()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
+  <div [class]="isModal?'modal-body':''">
     <form [formGroup]="checkoutForm" novalidate>
       <div class="form-group">
         <label for="nombre">Nombre</label>
@@ -97,9 +97,9 @@
    
       </form>
 </div>
-<div class="modal-footer">
+<div [class]="isModal?'modal-footer':''">
     <button [disabled]="!checkoutForm.valid" class="btn btn-primary" type="submit" 
-    (click)="onSubmit()">Registrar
+    (click)="onSubmit()">{{isModal==true?'Registrar':'Registrar dirección'}}
   </button>
-    <button type="button" class="btn btn-light" (click)="cancelar()">Cerrar</button>
+    <button type="button" class="btn btn-light" (click)="cancelar()" *ngIf="isModal">Cerrar</button>
 </div>

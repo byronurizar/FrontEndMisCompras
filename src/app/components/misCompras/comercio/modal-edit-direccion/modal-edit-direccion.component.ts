@@ -16,7 +16,7 @@ export class ModalEditDireccionComponent implements OnInit {
   @Output() accionModal: EventEmitter<any> = new EventEmitter();
   departamentos: ElementoLista[] = [];
   municipios: ElementoLista[] = [];
-  public checkoutForm: FormGroup;
+  public checkoutForm: FormGroup;z
   constructor(private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService, private router: Router) {
 
   }

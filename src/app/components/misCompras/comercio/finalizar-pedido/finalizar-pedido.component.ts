@@ -34,7 +34,7 @@ export class FinalizarPedidoComponent implements OnInit {
   modalReference: NgbModalRef;
   public observaciones: string = "";
   constructor(private router: Router, private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService, private carrito: Carrito, private modalService: NgbModal) {
-    this.listarMisDirecciones();
+    this.listarMisDirecciones(0);
   }
 
   public seleccionarDireccion(item) {
@@ -46,14 +46,19 @@ export class FinalizarPedidoComponent implements OnInit {
   }
 
   public abrirModal(content) {
-    console.log("content",content);
     this.modalReference = this.modalService.open(content);
   }
   public cerrarModal(event) {
+    console.log("Evento cerrar",event);
     this.modalReference.close();
-    this.listarMisDirecciones();
   }
 
+  public actualizarLista(idDireccion){
+    console.log("Evento",event);
+if(idDireccion){
+    this.listarMisDirecciones(idDireccion);
+}
+  }
   async registrarPedido() {
     this.detallePedido = [];
     if (this.itemDireccion.id > 0) {
@@ -142,16 +147,20 @@ export class FinalizarPedidoComponent implements OnInit {
     }
   }
 
-  listarMisDirecciones() {
+  listarMisDirecciones(idDireccion) {
     try {
       this.conectorApi.Get('usuario/misdirecciones').subscribe(
         (data) => {
           let dat = data as ApiRest;
           this.direcciones = dat.data;
-          this.itemDireccion = this.direcciones[0];
-          console.log("Direcciones",this.itemDireccion);
-          if(this.itemDireccion.length<=0){
-            this.modalService.open('content2');
+          if(idDireccion>0){
+            this.itemDireccion=this.direcciones.find(item=>item.id===idDireccion);
+            console.log("Item direccion registrado",this.itemDireccion);
+          
+          }else if(idDireccion==0){
+            if(this.direcciones.length>0){
+              this.itemDireccion = this.direcciones[0];
+            }
           }
         },
         (dataError) => {
