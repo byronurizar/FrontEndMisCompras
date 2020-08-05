@@ -19,6 +19,16 @@
                             alt="Carrito vacio" />
     <h3><strong>Agrega algun artículo :)</strong></h3>
   </div>
+
+  <div *ngIf="!selectCartItems.length">
+    <hr>
+    <div class="row">
+      <div class="col-md-5"></div>
+      <a class="col-md-2 btn btn-primary mr-1" [routerLink]="['/comercio/productos']">Ver productos</a>
+      <div class="col-md-5"></div>
+    </div>
+  </div>
+
   <div class="row" *ngIf='selectCartItems.length'>
     <div class="col-sm-12">
       <div class="card">
@@ -96,10 +106,13 @@
               </tbody>
             </table>
             <div class="card-footer">
-              <a class="btn btn-primary mr-1" [routerLink]="['/comercio/productos']">Continuar Comprando</a>
+              <div class="row">
+                <div class="col-md-5"></div>
+              
+              <a class="col-md-3 btn btn-primary mr-1" [routerLink]="['/comercio/productos']">Continuar Comprando</a>
               <!-- <a class="btn btn-success cart-btn-transform" [routerLink]="['/comercio/finalizarpedido']">Continuar con -->
-                <a class="btn btn-success cart-btn-transform" (click)="continuarPedido()" >Continuar con
-                pedido</a>
+                <a class="col-md-3 btn btn-success mr-1" (click)="continuarPedido()" >Continuar con pedido</a>
+              </div>
             </div>
 
           </div>

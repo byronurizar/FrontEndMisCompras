@@ -17,66 +17,37 @@
                 </label>
             </div>
         </div>
+        
         <div class="nav-right col">
             <ul class="nav-menus" [class.open]="open">
-                <!-- <li>
-                   <input type="text">
-                </li> -->
-                <li *ngIf="!conectorApi.usuario.codigoRol">
-                    <a class="text-dark" [routerLink]="['/comercio/carrito']" title="Mi Carrito">
+                <li class="onhover-dropdown" *ngIf="!conectorApi.usuario.codigoRol">
+                    <a [routerLink]="['/comercio/carrito']" class="txt-dark">
                         <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/carrito.png"
-                            alt="Carrito de compras">
-                    </a>
-                </li>
-
-                <!--
-                <li class="onhover-dropdown">
-                    <a href="javascript:void(0)" class="txt-dark">
-                        <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/notification.png"
                             alt="header-notification">
-                        <span class="badge badge-pill badge-primary notification">3</span>
+                        <span class="badge badge-pill badge-primary notification" *ngIf="selectCartItems.length>0">{{selectCartItems.length}}</span>
                     </a>
                     <ul class="notification-dropdown onhover-show-div">
-                        <li>Notification <span
-                                class="badge badge-pill badge-secondary text-white text-uppercase pull-right">3
-                                New</span></li>
-                        <li>
+                        <li *ngIf="selectCartItems.length>0">Carrito <span
+                                class="badge badge-pill badge-secondary text-white text-uppercase pull-right">{{selectCartItems.length}}
+                                Prod..</span></li>
+                        <li *ngIf="selectCartItems.length==0">El carrito esta vacio</li>
+                        <li *ngFor="let item of selectCartItems">
+                            <a [routerLink]="['/comercio/detalle',item.producto.id]">
                             <div class="media">
-                                <i
-                                    class="align-self-center notification-icon icofont icofont-shopping-cart bg-primary"></i>
+                                    <img class="align-self-center img-fluid img-60" [src]="urlImagenes+[item.producto.pathImagen]" alt="Producto">
                                 <div class="media-body">
-                                    <h6 class="mt-0">Your order ready for Ship..!</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                    <span><i class="icofont icofont-clock-time p-r-5"></i>Just Now</span>
+                                    <h6 class="mt-0">{{item.producto.nombre}} x {{item.cantidad}}</h6>
+                                    <p class="mb-0">{{item.producto.descripcionCorta}}</p>
+                                    <span><i class="icofont p-r-5">C/u</i>{{item.producto.oferta>0?item.producto.oferta:item.producto.precio | currency:'Q':'symbol'}}</span>
                                 </div>
                             </div>
+                        </a>
                         </li>
-                        <li>
-                            <div class="media">
-                                <i
-                                    class="align-self-center notification-icon icofont icofont-download-alt bg-success"></i>
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-success">Download Complete</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                    <span><i class="icofont icofont-clock-time p-r-5"></i>5 minutes ago</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <i class="align-self-center notification-icon icofont icofont-recycle bg-danger"></i>
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-danger">250 MB trush files</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                    <span><i class="icofont icofont-clock-time p-r-5"></i>25 minutes ago</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="text-center">You have Check <a href="javascript:void(0)">all</a> notification </li>
+                        <li class="text-center" *ngIf="selectCartItems.length>0"><a [routerLink]="['/comercio/carrito']">Ver detalle</a></li>
                     </ul>
 
                 </li>
--->
+
                 <li>
                     <div class="media  align-items-center" *ngIf="!conectorApi.usuario.email">
                         <a [routerLink]="['/login']" title="Ingresar">
@@ -109,12 +80,6 @@
                                 Direcciones
                             </a>
                         </li>
-                        <!-- <li>
-                            <a [routerLink]="['/to-do/todo']">
-                                <i class="icon-check-box"></i>
-                                Task
-                            </a>
-                        </li> -->
                         <li>
                             <a href="javascript:void(0)" (click)="salir('google')">
                                 <i class="icon-power-off"></i>

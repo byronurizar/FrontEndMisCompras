@@ -4,6 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { CustomizerService } from '../../service/customizer.service';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
+import { Observable, of } from 'rxjs';
+import { Carrito } from 'src/app/servicios/carrito.service';
+import { environment } from 'src/environments/environment';
 
 var body = document.getElementsByTagName("body")[0];
 
@@ -23,20 +26,24 @@ export class HeaderComponent implements OnInit {
   public openToggle: boolean = false;
   public open : boolean = false;
   public openSearch : boolean = false;
-
+  public cartItems: Observable<any[]> = of([]);
+  public selectCartItems: any[] = [];
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
   @Output() toggleEvent = new EventEmitter<boolean>();
-
+  public urlImagenes = environment.urlImagnes;
   constructor(public navServices: NavService,public conectorApi: ConectorApi,
     private translate: TranslateService,
-    public customize: CustomizerService) {
-    translate.setDefaultLang('en');
+    public customize: CustomizerService, private cartService: Carrito,) {
+    // translate.setDefaultLang('en');
   }
 
   ngOnInit() {
     this.navServices.items2().subscribe(menuItems => {
       this.items = menuItems
     });
+    this.cartItems = this.cartService.getTodos();
+    this.cartItems.subscribe(selectCartItems => this.selectCartItems = selectCartItems)
+    console.log("Datos carrito",this.selectCartItems);
   }
 
 
