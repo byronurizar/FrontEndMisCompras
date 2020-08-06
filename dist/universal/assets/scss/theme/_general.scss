@@ -1,0 +1,525 @@
+/**=====================
+     01. General CSS Start
+==========================**/
+//Custom css Start
+
+body {
+    background-color: rgba(246, 246, 246, 0.6);
+    font-size: $theme-font-size;
+    overflow-x: hidden;
+    font-family: $font-raleway !important;
+    color: $theme-body-font-color;
+}
+ul {
+    padding-left: 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+* a {
+    color: $primary-color ;
+    &:hover {
+        color: $primary-color;
+    }
+}
+*.btn:focus{
+    box-shadow : none !important;
+}
+p {
+    font-size: 13px;
+    line-height: 1.7;
+    letter-spacing: 0.7px;
+}
+.btn {
+    font-size: 14px;
+    padding: 0.375rem 1.75rem;
+}
+code{
+    color: $primary-color !important;
+    background-color: $light-color;
+    padding: 3px;
+    margin: 0 3px;
+    border-radius: 2px;
+}
+blockquote{
+    border-left: 4px solid $light-gray;
+    padding: 15px;
+}
+blockquote{
+    &.text-center{
+        border: none;
+        padding: 15px;
+    }
+}
+blockquote{
+    &.text-right{
+        border-left: none;
+        border-right: 4px solid $light-gray;
+        padding: 15px;
+    }
+}
+:focus{
+    outline-color: $primary-color;
+}
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.ace-editor {
+    height: 400px;
+    width: 100%;
+}
+.editor-toolbar
+{
+    width: 100% !important;
+}
+.CodeMirror
+{
+    top:0!important;
+}
+
+//Custom css End
+
+//Typography css start
+
+.typography {
+    h1,.h1,
+    h2,.h2,
+    h3,.h3,
+    h4,.h4,
+    h5,.h5,
+    h6,.h6 {
+        margin: 20px 0;
+        margin-top: 0;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+    small {
+        padding-left: 10px;
+        color: $dark-color;
+    }
+}
+pre{
+    background-color: #f9f7ff;
+    padding: 20px;
+}
+
+a{
+    &:hover{
+        text-decoration: none;
+    }
+}
+//Typography css end
+
+.owl-theme {
+    .owl-dots {
+        .owl-dot{
+            span{
+                background: lighten($primary-color, 20%);
+            }
+            &.active,&:hover {
+                span {
+                    background: $primary-color;
+                }
+            }
+        }
+    }
+    .owl-nav{
+        &.disabled {
+            &+ .owl-dots {
+                margin-bottom: -10px;
+                margin-top: 25px;
+            }
+        }
+    }
+}
+
+.click2edit{
+    &~.note-editor{
+        &.note-frame{
+            margin-bottom: 30px;
+        }
+    }
+}
+.note-editor{
+    &.note-frame {
+        border-color: $light-color;
+    }
+}
+.note-editor{
+    &.note-frame {
+        border-color: $light-color;
+    }
+}
+// modal page
+.modal-dialog{
+    .modal-content{
+        .modal-body{
+           p{
+               a{
+                   margin-right: 0;
+               }
+           }
+        }
+    }
+}
+/* range slider page */
+
+.ng5-slider {
+    .ng5-slider-pointer {
+        background-color: $primary-color !important;
+        &.ng5-slider-active:after {
+            background-color: #2a3142 !important;
+        }
+    }
+    .ng5-slider-selection {
+        background: $primary-color !important;
+    }
+}
+
+.custom-slider .ng5-slider {
+    .ng5-slider-bar {
+        background: #d8e0f3 !important;
+    }
+    .ng5-slider-selection {
+        background: $primary-color !important;
+    }
+    .ng5-slider-tick {
+        &.ng5-slider-selected {
+            background: $primary-color !important;
+        }
+        background: #d8e0f3 !important;
+    }
+}
+
+.ng5-slider {
+    &[disabled] .ng5-slider-tick.ng5-slider-selected {
+        background: #8b91a2 !important;
+    }
+    .ng5-slider-tick.ng5-slider-selected {
+        background: $primary-color !important;
+    }
+}
+// rating
+ngb-rating {
+    &:focus {
+        outline-color: $transparent-color;
+    }
+}
+.rating-size  {
+    span {
+        font-size: 25px;
+    }
+}
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    color: #b0c4de;
+}
+.editable-rating  {
+    position: relative;
+    .btn-position {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+}
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;
+}
+.full {
+    color: red;
+}
+.filled {
+    color: #1e90ff;
+    &.bad {
+        color: #ff1e1e;
+    }
+}
+// typeahead page
+ngb-typeahead-window {
+    .dropdown-item {
+        &.active, &:active {
+            background-color: $primary-color;
+        }
+    }
+}
+// scrollable page css
+
+.ps {
+    .ps__rail-x {
+        &:hover {
+            background: $transparent-color !important;
+        }
+        &:focus {
+            background: $transparent-color !important;
+        }
+    }
+    .ps__rail-y {
+        &:hover {
+            background: $transparent-color !important;
+        }
+        &:focus {
+            background: $transparent-color !important;
+        }
+    }
+    .ps__rail-x.ps--clicking {
+        background: $transparent-color !important;
+    }
+    .ps__rail-y.ps--clicking {
+        background: $transparent-color !important;
+    }
+}
+perfect-scrollbar {
+    >.ps.ps--scrolling-y {
+        >.ps__rail-y {
+            background-color: $transparent-color !important;
+        }
+    }
+    >.ps.ps--scrolling-x {
+        >.ps__rail-x {
+            background-color: $transparent-color !important;
+        }
+    }
+}
+// sweetalert2 page css
+.swal2-popup {
+    .swal2-styled {
+        font-size: 14px !important;
+        background-color: $primary-color !important;
+    }
+    .swal2-title {
+        font-size: 26px !important;
+    }
+    .swal2-actions {
+        button {
+            + button {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+.swal2-content {
+    #swal2-content {
+        .btn {
+            margin-bottom: 5px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+// upload page css
+.my-drop-zone {
+    border: dotted 3px lightgray;
+}
+.nv-file-over {
+    border: dotted 3px red;
+}
+.another-file-over-class {
+    border: dotted 3px green;
+}
+.my-drop-zone {
+    padding: 50px;
+    width: 49%;
+    display: inline-block;
+    background-color: $light;
+    font-size: 20px;
+    &:first-child {
+        margin-right: 2%;
+    }
+    + .my-drop-zone {
+        margin-bottom: 0;
+    }
+}
+.fill-progress {
+    margin: 30px 0;
+    .progress {
+        margin-top: 5px;
+        .progress-bar {
+            background-color: $primary-color;
+        }
+    }
+}
+.upload-input {
+    input {
+        border: 1px solid $light-semi-gray;
+        padding: 6px 10px;
+        margin-bottom: 15px;
+    }
+}
+.upload-table {
+    table {
+        border: 1px solid $light-semi-gray;
+    }
+}
+// toastr page css
+.toast-success {
+    background-color: $success-color !important;
+}
+.toast-error {
+    background-color: $danger-color !important;
+}
+.toast-info {
+    background-color: $primary-color !important;
+}
+.toast-warning {
+    background-color: $warning-color !important;
+}
+.ngx-toastr {
+    background-color: $primary-color;
+    .toast-close-button {
+        top: 1px;
+    }
+}
+// map page css
+.map-js-height {
+    height: 500px;
+}
+// draggable page
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+}
+
+// drag and drop page css
+.drag-n-drop{
+    &.spill-radius {
+        border-radius: 8px;
+        .container {
+            &:nth-child(odd) {
+                border-radius: 8px;
+            }
+        }
+    }
+    .group-handle {
+        display: block;
+        margin-bottom: 15px;
+    }
+    .tagline {
+        margin-top: 0;
+    }
+    .promo {
+        margin-bottom: 0;
+        font-style: italic;
+        padding: 10px;
+        background-color: #ff4020 !important;
+        border-bottom: 5px solid #c00 !important;
+    }
+    &.parent {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    .gh-fork {
+        position: fixed;
+        top: 0;
+        right: 0;
+        border: 0;
+    }
+    .wrapper {
+        display: table;
+    }
+    .container div, .gu-mirror:not(.container) {
+        margin: 10px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        transition: opacity 0.4s ease-in-out;
+        border-radius: 4px;
+        &.ex-moved {
+            background-color: $secondary-color !important;
+        }
+    }
+    .container {
+        display: table-cell;
+        background-color: lighten($primary-color , 5%);
+        width: 50%;
+        padding: 15px;
+        &:nth-child(odd) {
+            background-color: $primary-color;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        &:nth-child(even) {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        div {
+            cursor: move;
+            cursor: grab;
+        }
+    }
+    div
+    {
+        color: white;
+    }
+
+    .container {
+    }
+    .gu-mirror {
+        cursor: grabbing;
+    }
+    .handle {
+        padding: 0 5px;
+        margin-right: 5px;
+        background-color: rgba(0, 0, 0, 0.4);
+        cursor: move;
+    }
+}
+
+// contact
+.contact-profile-form {
+    padding-bottom: 30px;
+    margin: 0 auto;
+}
+.contact-search {
+  margin-top: 8px;
+}
+.contact-filter {
+    display: flex;
+    align-items: center;
+    h5 {
+        width: 200px;
+    }
+}
+.contact-table {
+    table {
+        th, td {
+            border-top: none;
+            padding: 30px;
+            vertical-align: middle;
+        }
+        tr {
+            td {
+                border-bottom: 1px solid $light-semi-gray;
+            }
+            &:last-child {
+                td {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+.change-img-button {
+    margin: 0 auto;
+}
+.contact-profile {
+    img {
+        position: relative;
+    }
+    .icon-wrapper {
+        position: absolute;
+        top: 18%;
+        left: 52%;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 25px;
+    }
+}
+/**=====================
+      01. General CSS Ends
+==========================**/
