@@ -20,6 +20,17 @@
         
         <div class="nav-right col">
             <ul class="nav-menus" [class.open]="open">
+                <li>
+                    <form class="form-inline search-form">
+                        <div class="form-group">
+                            <label class="sr-only">Email</label>
+                            <input type="search" class="form-control-plaintext" [class.open]="openSearch"
+                                placeholder="Buscar..">
+                            <span class="d-sm-none mobile-search" (click)="clickSearch()">
+                            </span>
+                        </div>
+                    </form>
+                </li>
                 <li class="onhover-dropdown" *ngIf="!conectorApi.usuario.codigoRol">
                     <a [routerLink]="['/comercio/carrito']" class="txt-dark">
                         <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/carrito.png"
