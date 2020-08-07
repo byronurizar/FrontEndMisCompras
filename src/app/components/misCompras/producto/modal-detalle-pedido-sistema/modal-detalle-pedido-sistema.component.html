@@ -27,7 +27,23 @@
                     </tr>
                     <tr>
                         <th>Estado</th>
-                        <td>{{infoPedido.estado}}</td>
+                        <!-- <td>"</td> -->
+                        <td>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select class="form-control" [disabled]="editEstado" (change)="cambiarEstado($event)">
+                                        <option [value]="item.value" *ngFor="let item of estadosPedido">
+                                          {{item.descripcion}}
+                                        </option>
+                                      </select>
+                                      <!-- <input class="form-control" value={{infoPedido.estado}} *ngIf="textoBoton=='Cambiar'" readonly> -->
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success"  (click)="actualizarEstado()">{{textoBoton}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <th>Total</th>

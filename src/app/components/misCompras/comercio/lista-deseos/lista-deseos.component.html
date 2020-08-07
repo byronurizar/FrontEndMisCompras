@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of selectCartItems">
-                    <td><img class="img-fluid img-60" [src]="[item.pathImagen]" alt="#"></td>
+                    <td><img class="img-fluid img-60" [src]="urlImagenes+[item.pathImagen]" alt="#"></td>
                     <td>
                       <div class="product-name"><a
                           [routerLink]="['/comercio/detalle', item.id]">{{item.nombre}}</a></div>

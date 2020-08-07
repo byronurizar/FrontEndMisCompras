@@ -14,13 +14,64 @@ export class ModalDetallePedidoSistemaComponent implements OnInit {
   @Input() infoPedido: any;
   @Output() accionModal: EventEmitter<any> = new EventEmitter();
   public detalleProd:any[]=[];
+  public estadosPedido:any[]=[];
+      
+  public idEstadoPedido=0;
+  public textoBoton='Cambiar';
+  public editEstado:boolean=true;
   constructor(private conectorApi:ConectorApi,private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.detallePedido(this.infoPedido.idPedido);
+    this.idEstadoPedido=this.infoPedido.idEstadoPedido
+    this.getEstadosPedido();
   }
   public cancelar() {
     this.accionModal.emit('close');
+  }
+  async getEstadosPedido(){
+    try{
+      this.conectorApi.Get('estadopedido/listar').subscribe(
+        (data) => {
+          let dat = data as ApiRest;
+          this.estadosPedido = dat.data.filter(i=>i.idEstado==="Activo");
+        },
+        (dataError) => {
+          this.toastrService.error(dataError.error.error.message, 'Alerta!');
+        }
+      )
+      }catch(ex){
+        this.toastrService.error('Ocurrió un error al intentar obtener los estados de los pedidos', 'Alerta!');
+      }
+  }
+  public cambiarEstado(event){
+this.idEstadoPedido= event.target.value;
+  }
+  async actualizarEstado(){
+    this.editEstado=!this.editEstado;
+    console.log("Estado seleccionado",this.idEstadoPedido);
+    if(this.textoBoton==="Cambiar"){
+      this.textoBoton="Actualizar";
+      let jsonEStado={
+        idEstadoPedido:this.idEstadoPedido
+      }
+      this.conectorApi.Patch(`pedido/actualizar/${this.infoPedido.idPedido}`,jsonEStado).subscribe(
+        (data) => {
+          let apiResult = data as ApiRest;
+          if (apiResult.codigo == 0) {
+            this.toastrService.success(apiResult.respuesta, 'Información!');
+          } else {
+            this.toastrService.success(apiResult.respuesta, 'Alerta!');
+          }
+        },
+        (dataError) => {
+          this.toastrService.error("Ocurrió une error al intentar realizar la actualización del estado", 'Alerta!');
+        }
+      );
+
+    }else{
+      this.textoBoton='Cambiar';
+    }
   }
   async detallePedido(idPedido) {
     try {

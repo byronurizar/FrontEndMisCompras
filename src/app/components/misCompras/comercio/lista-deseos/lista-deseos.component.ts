@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/shared/model/e-commerce/cart.model';
 import { Observable, of } from 'rxjs';
 import { ListaDeseos } from 'src/app/servicios/listadeseos.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lista-deseos',
@@ -13,7 +14,8 @@ export class ListaDeseosComponent implements OnInit {
 
   public cartItems: Observable<any[]> = of([]);
   public selectCartItems: any[] = [];
-
+  public urlImagenes = environment.urlImagnes;
+  
   constructor(private listaDeseso:ListaDeseos) {
   }
 

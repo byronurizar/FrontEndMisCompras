@@ -91,6 +91,13 @@
                                 Direcciones
                             </a>
                         </li>
+                        <li *ngIf="!conectorApi.usuario.codigoRol">
+                            <a [routerLink]="['/comercio/listadeseos']">
+                                <i class="icon-list"></i>
+                                Lista de deseos
+                            </a>
+                        </li>
+                        
                         <li>
                             <a href="javascript:void(0)" (click)="salir('google')">
                                 <i class="icon-power-off"></i>
