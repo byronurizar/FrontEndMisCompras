@@ -1,0 +1,6 @@
+crear modulo 
+
+ng g m nombreModulo --routing true
+
+creacion de componente
+ng g c nombrecomponente 

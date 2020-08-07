@@ -21,6 +21,11 @@ export class PedidosSistemaComponent implements OnInit {
     this.modalReference = this.modalService.open(content, { centered: true, size: 'lg' });
     this.infoPedido=item;
   }
+  public actualizarListado(event){
+    if(event){
+      this.cargarInformacion();
+    }
+  }
   public cerrarModalTalla(event) {
     this.modalReference.close();
   }

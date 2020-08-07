@@ -9,13 +9,14 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { PedidosSistemaComponent } from './pedidos-sistema/pedidos-sistema.component';
 import { ModalDetallePedidoSistemaComponent } from './modal-detalle-pedido-sistema/modal-detalle-pedido-sistema.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [BarraNavegacionComponent,ProductoComponent, PedidosSistemaComponent, ModalDetallePedidoSistemaComponent],
   imports: [
     CommonModule,
     FormsModule,
+    NgbModule,
     ProductoRoutingModule,
     ReactiveFormsModule,
     ArchwizardModule,

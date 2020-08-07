@@ -1,5 +1,5 @@
 <!-- Container-fluid starts -->
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="productos.length>0">
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
@@ -18,6 +18,12 @@
         </div>
     </div>
 </div>
+<br *ngIf="productos.length<=0"/>
+<div class="col-lg-6" *ngIf="productos.length<=0">
+    <h3>
+        No se logro encontrar ningún producto con los criterios especificados
+    </h3>
+</div>
 <!-- Container-fluid Ends -->
 
 <!-- Container-fluid starts-->
@@ -31,9 +37,6 @@
                         <img class="img-fluid" [src]="urlImagenes+[product.pathImagen]" alt="">
                         <div class="product-hover">
                             <ul>
-                                <!-- <li><i class="icon-shopping-cart" [routerLink]="['/comercio/carrito']"
-                                        (click)=addToCart(product)></i>
-                                </li> -->
                                 <li (click)="abrirDetalle(content,product.id)"><i class="icon-eye"></i></li>
                                 <ng-template #content let-modal>
                                     <div class="modal-header" style="border-bottom: 0px;">

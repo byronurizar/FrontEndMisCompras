@@ -38,7 +38,7 @@
                                  <td>{{item.tipoPago}}</td>
                                  <td>{{item.observaciones}}</td>
                                  <ng-template #content1 let-modal>
-                                    <app-modal-detalle-pedido-sistema (accionModal)="cerrarModalTalla($event)" [infoPedido]="infoPedido">
+                                    <app-modal-detalle-pedido-sistema (accionModal)="cerrarModalTalla($event)" [infoPedido]="infoPedido" (actualizarListado)="actualizarListado($event)">
                                     </app-modal-detalle-pedido-sistema>
                               </ng-template>
 

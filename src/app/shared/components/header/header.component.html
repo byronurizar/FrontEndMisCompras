@@ -2,7 +2,7 @@
 <div class="page-main-header">
     <div class="main-header-left" [attr.semilight-bg-color]="customize.data.header.semiLightbgColor">
         <div class="logo-wrapper">
-            <a [routerLink]="'/landing'">
+            <a [routerLink]="'/comercio/productos'">
                 <img src="assets/images/logo-light.png" class="image-dark" alt="" />
                 <img src="assets/images/logo-light-dark-layout.png" class="image-light" alt="" />
             </a>
@@ -20,7 +20,7 @@
         
         <div class="nav-right col">
             <ul class="nav-menus" [class.open]="open">
-                <li>
+                <li *ngIf="false">
                     <form class="form-inline search-form">
                         <div class="form-group">
                             <label class="sr-only">Email</label>

@@ -32,14 +32,14 @@
 
                             <div class="form-group">
                                 <div class="input-group">
-                                    <select class="form-control" [disabled]="editEstado" (change)="cambiarEstado($event)">
-                                        <option [value]="item.value" *ngFor="let item of estadosPedido">
+                                    <select class="form-control" [disabled]="editEstado" [(ngModel)]="idEstadoPedido" >
+                                        <option [value]="item.id" *ngFor="let item of estadosPedido">
                                           {{item.descripcion}}
                                         </option>
                                       </select>
                                       <!-- <input class="form-control" value={{infoPedido.estado}} *ngIf="textoBoton=='Cambiar'" readonly> -->
                                     <div class="input-group-append">
-                                        <button class="btn btn-success"  (click)="actualizarEstado()">{{textoBoton}}</button>
+                                        <button class="btn btn-success"  (click)="actualizarEstado()">{{editEstado==true?"Cambiar":"Actualizar"}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -76,11 +76,41 @@
                     
                 </thead>
             </table>
-            <hr />
+            <hr  *ngIf="!isCollapsed"/>
+            <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                    <div class="card-header">
+                        <h6>Actualizar fila</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <td colspan="3">{{itemDetallePedido["Producto"]}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Proveedor</th>
+                                    <td>{{itemDetallePedido["proveedor"]}}</td>
+                                    <th>Cantidad</th>
+                                    <td><input class="form-control form-control-sm" [(ngModel)]="itemDetallePedido['cantidad']" /></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                        <div class="col-md-5"></div>
+                        <button class="col-md-4 btn btn-info" (click)="actualizarDetallePedido(false)">Producto no disponible</button>
+                        <button class="col-md-3 btn btn-success" (click)="actualizarDetallePedido(true)">Actualizar</button>
+                    </div>    
+                    </div>
+            </div>
+            <hr  *ngIf="!isCollapsed"/>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Edit.</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Proveedor</th>
                         <th scope="col">Talla</th>
@@ -92,7 +122,10 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of detalleProd;let i=index">
+                      
                         <td>{{i+1}}</td>
+                        <td><a class="fa fa-edit" (click)="selecionarItemDetalle(item)"
+                            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Editar</a> </td>
                         <td>{{item.Producto}}</td>
                         <td>{{item.proveedor}}</td>
                         <td>{{item.Talla}}</td>
@@ -100,6 +133,7 @@
                         <td>{{item.cantidad}}</td>
                         <td>{{item.Precio | currency:'Q':'symbol'}}</td>
                         <td>{{(item.cantidad*item.Precio) | currency:'Q':'symbol'}}</td>
+                    
                     </tr>
                 </tbody>
                 <tfoot>
