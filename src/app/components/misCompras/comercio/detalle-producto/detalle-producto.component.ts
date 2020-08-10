@@ -31,7 +31,9 @@ export class DetalleProductoComponent implements OnInit {
   public active: boolean = false;
   public type: string = "Febric"
   public nav: any;
-
+  public infoAdicional:any=[];
+  public itemInfoAdicionalActivo:string="1";
+  public InfoAdicionalActiva=[];
   colorValido = true;
   tallaValido = true;
 
@@ -75,7 +77,7 @@ export class DetalleProductoComponent implements OnInit {
       const id = +params['id'];
       this.infoProducto(id);
       this.listarProductosCruzados(id);
-
+      this.listarInformacionAdicional(id);
       this.listarTallasDisponibles(id);
       this.listarColoresDisponibles(id);
     });
@@ -193,16 +195,22 @@ export class DetalleProductoComponent implements OnInit {
     )
   }
 
-  getOption(type) {
-    this.contents = [];
-    return this.allContent.filter(data => {
-      if (type == data.type) {
-        this.active = true;
-        return this.contents.push(data)
-      } else {
-        return false
-      }
-    })
+  getOption(event) {
+    console.log("Tipo seleccionado",event);
+    console.log("Descripcion",event.originalTarget.innerHTML);
+    console.log("Codigo",event.originalTarget.id);
+    // console.log("Type",this.type);
+    // console.log("itemInfoAdicionalActivo",this.itemInfoAdicionalActivo);
+    // this.itemInfoAdicionalActivo=type;
+    // this.InfoAdicionalActiva = [];
+    // return this.allContent.filter(data => {
+    //   if (type == data.type) {
+    //     this.active = true;
+    //     return this.contents.push(data)
+    //   } else {
+    //     return false
+    //   }
+    // })
   }
 
   public agregarProducto(producto: any) {
@@ -247,5 +255,21 @@ export class DetalleProductoComponent implements OnInit {
     }else{
       this.toastrService.warning("Para poder continuar con el pedido debe de iniciar sesión",'Alerta!');
     }
+  }
+  async listarInformacionAdicional(idProducto) {
+    this.conectorApi.Get(`productos/infoadicional/producto/${idProducto}`).subscribe(
+      async (data) => {
+        let dat = data as ApiRest;
+        if (dat.codigo == 0) {
+          this.infoAdicional = await dat.data;
+
+          console.log("Info adicional",this.infoAdicional);
+        }
+
+      },
+      (dataError) => {
+        this.toastrService.warning("No fue posible obtener la información adicional del producto",'Alerta!');
+      }
+    )
   }
 }
