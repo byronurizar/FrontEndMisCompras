@@ -81,7 +81,7 @@
                         <td>{{item.proveedor}}</td>
                         <td>{{item.Talla}}</td>
                         <td>{{item.Color}}</td>
-                        <td>{{item.cantidad}}</td>
+                        <td>{{item.cantidad>0?item.cantidad:'No se encontro disponibilidad con el proveedor'}}</td>
                         <td>{{item.Precio | currency:'Q':'symbol'}}</td>
                         <td>{{(item.cantidad*item.Precio) | currency:'Q':'symbol'}}</td>
                     </tr>

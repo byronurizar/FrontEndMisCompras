@@ -144,6 +144,40 @@
         </div>
     </div>
     <div class="card" *ngIf="productosRelacionados?.length>0">
+
+        <div class="row product-page-main">
+            <div class="col-sm-12">
+                <ul class="nav nav-tabs nav-material mb-0" id="top-tab" role="tablist">
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Febric'}" id="top-home-tab"
+                            data-toggle="tab" (click)="getOption(type = 'Febric')" role="tab" aria-controls="top-home"
+                            aria-selected="false">Beneficios</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Video'}"
+                            id="profile-top-tab" data-toggle="tab" (click)="getOption(type = 'Video')" role="tab"
+                            aria-controls="top-profile" aria-selected="false">Instrucciones de uso</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Details'}"
+                            id="contact-top-tab" data-toggle="tab" (click)="getOption(type = 'Details')" role="tab"
+                            aria-controls="top-contact" aria-selected="true">Preguntas frecuentes</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Brand'}" id="brand-top-tab"
+                            data-toggle="tab" (click)="getOption(type = 'Brand')" role="tab" aria-controls="top-brand"
+                            aria-selected="true">Productos relacionados</a>
+                        <div class="material-border"></div>
+                    </li>
+                </ul>
+                <div class="tab-content" id="top-tabContent" *ngFor="let item of contents">
+                    <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                        <p class="mb-0 m-t-20">{{item.content_1}}</p>
+                        <p class="mb-0 m-t-20">{{item.content_2}}"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- 
         <div class="row product-page-main">
             <div class="col-sm-12">
                 <ul class="nav nav-tabs nav-material mb-0" id="top-tab" role="tablist">
@@ -152,13 +186,18 @@
                             aria-selected="false">Quiza te pueda interesar</a>
                         <div class="material-border"></div>
                     </li>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Febric'}" id="top-beneficios-tab"
+                        data-toggle="tab" (click)="getOption(type = 'Febric')" role="tab" aria-controls="top-beneficios"
+                        aria-selected="false">Beneficios</a>
+                    <div class="material-border"></div>
+                </li>
                 </ul>
                 <div class="tab-content" id="top-tabContent">
                     <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
                         <br>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-xl-3 col-sm-3" *ngFor="let product of productosRelacionados">
+                                <div class="col-xl-2 col-sm-2" *ngFor="let product of productosRelacionados">
                                     <div class="card">
                                         <div class="product-box">
                                             <div class="product-img">
@@ -184,8 +223,43 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade active show" id="top-beneficios" role="tabpanel" aria-labelledby="top-beneficios-tab">
+                        <br>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xl-2 col-sm-2" *ngFor="let product of productosRelacionados">
+                                    <div class="card">
+                                        <div class="product-box">
+                                            <div class="product-img">
+                                                <div class="ribbon ribbon-danger" *ngIf="product.oferta>0">Oferta</div>
+                                                <img class="img-fluid" [src]="urlImagenes+[product.pathImagen]" alt="">
+                                            </div>
+                                            <div class="product-details">
+                                                <a [routerLink]="['/comercio/detalle', product.id]">
+                                                    <h6>{{product.nombre}}</h6>
+                                                </a>
+                                                <div class="product-price">
+                                                    <div *ngIf="product.oferta>0">
+                                                        <del>{{product.precio | currency:'Q':'symbol'}}</del>{{product.oferta | currency:'Q':'symbol'}}
+                                                    </div>
+                                                    <div *ngIf="product.oferta==0">
+                                                        {{product.precio | currency:'Q':'symbol'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+
             </div>
-        </div>
+        </div> -->
+
     </div>
 </div>

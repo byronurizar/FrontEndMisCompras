@@ -67,6 +67,7 @@
                                             <td class="Rate"><h6 class="p-2 mb-0">Color</h6></td>
                                             <td class="Rate"><h6 class="p-2 mb-0">Cantidad</h6></td>
                                             <td class="Rate"><h6 class="p-2 mb-0">Precio</h6></td>
+                                            <td class="Rate"><h6 class="p-2 mb-0">Estado</h6></td>
                                         </tr>
                                         <tr *ngFor="let item of detalleProd">
                                         <td>{{item.Producto}}</td>
@@ -74,6 +75,7 @@
                                         <td>{{item.Color}}</td>
                                         <td>{{item.cantidad}}</td>
                                         <td>{{item.Precio| currency:'Q':'symbol'}}</td>
+                                        <td>{{item.idEstado==1?"Activo":"No se encontro disponibilidad con el proveedor"}}</td>
                                         </tr>
                                         
                                         <tr>

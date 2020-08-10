@@ -137,15 +137,15 @@
                     </tr>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="6"></td>
+                    <tr *ngIf="total>infoPedido.costoEnvio">
+                        <td colspan="7"></td>
                         <td>Costo Envio</td>
                         <td>{{infoPedido.costoEnvio|currency:'Q':'symbol'}}</td>
                     </tr>
                     <tr>
-                        <td colspan="6"></td>
+                        <td colspan="7"></td>
                         <td>Total</td>
-                        <td>{{(total+infoPedido.costoEnvio)|currency:'Q':'symbol'}}</td>
+                        <td>{{(total>0?total+infoPedido.costoEnvio:0)|currency:'Q':'symbol'}}</td>
                     </tr>
                 </tfoot>
             </table>

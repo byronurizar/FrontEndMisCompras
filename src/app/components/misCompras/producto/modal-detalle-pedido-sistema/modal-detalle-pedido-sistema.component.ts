@@ -54,25 +54,24 @@ export class ModalDetallePedidoSistemaComponent implements OnInit {
     this.itemDetallePedido=item;
     this.isCollapsed = !this.isCollapsed
   }
-  public cambiarEstado(event){
-this.idEstadoPedido= event.target.value;
-  }
-
-  async actualizarDetallePedido(existeConProveedor:boolean){
+   async actualizarDetallePedido(existeConProveedor:boolean){
     let json={};
     if(!existeConProveedor){
-      json["idEstadoPedido"]=3;
+      json["cantidad"]=0;
+      json["idEstado"]=3;
     }else{
       json["cantidad"]=this.itemDetallePedido["cantidad"];
     }
     console.log("Envio de datos",json);
     try{
-      this.conectorApi.Patch(`pedido/actualizar/${this.itemDetallePedido["id"]}`,json).subscribe(
+      console.log("Datos de item detalle",this.itemDetallePedido);
+      this.conectorApi.Patch(`pedido/detalle/actualizar/${this.itemDetallePedido["id"]}`,json).subscribe(
         (data) => {
           let apiResult = data as ApiRest;
           if (apiResult.codigo == 0) {
             this.toastrService.success(apiResult.respuesta, 'Información!');
             this.infoPedido.idEstadoPedido=this.idEstadoPedido;
+            this.detallePedido(this.infoPedido.idPedido);
             this.isCollapsed = !this.isCollapsed
             this.actualizarListado.emit(true);
           } else {
