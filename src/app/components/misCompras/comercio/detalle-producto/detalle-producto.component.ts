@@ -29,10 +29,9 @@ export class DetalleProductoComponent implements OnInit {
   public allContent = [];
   public contents = [];
   public active: boolean = false;
-  public type: string = "Febric"
+  public type: string = "1"
   public nav: any;
   public infoAdicional:any=[];
-  public itemInfoAdicionalActivo:string="1";
   public InfoAdicionalActiva=[];
   colorValido = true;
   tallaValido = true;
@@ -195,22 +194,19 @@ export class DetalleProductoComponent implements OnInit {
     )
   }
 
-  getOption(event) {
-    console.log("Tipo seleccionado",event);
-    console.log("Descripcion",event.originalTarget.innerHTML);
-    console.log("Codigo",event.originalTarget.id);
-    // console.log("Type",this.type);
-    // console.log("itemInfoAdicionalActivo",this.itemInfoAdicionalActivo);
-    // this.itemInfoAdicionalActivo=type;
-    // this.InfoAdicionalActiva = [];
-    // return this.allContent.filter(data => {
-    //   if (type == data.type) {
-    //     this.active = true;
-    //     return this.contents.push(data)
-    //   } else {
-    //     return false
-    //   }
-    // })
+  getOption(type) {
+    console.log("infoAdicional",this.infoAdicional);
+    this.InfoAdicionalActiva = [];
+    return this.infoAdicional.filter(data => {
+      if (type == data.idTipoInfoAdicional) {
+        this.active = true;
+        console.log("Info",data["valor"]);
+        return this.InfoAdicionalActiva.push(data.valor)
+        
+      } else {
+        return false
+      }
+    })
   }
 
   public agregarProducto(producto: any) {

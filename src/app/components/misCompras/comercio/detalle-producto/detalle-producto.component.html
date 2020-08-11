@@ -146,37 +146,37 @@
         <div class="row product-page-main">
             <div class="col-sm-12">
                 <ul class="nav nav-tabs nav-material mb-0" id="top-tab" role="tablist">
-                    <li class="nav-item" *ngFor="let item of infoAdicional">
-                        <a class="nav-link"  id={{item.id}}-top-tab [ngClass]="{'active':type==itemInfoAdicionalActivo}" 
-                            data-toggle="tab" (click)="getOption($event)" role="tab" aria-controls="top-home"
-                            aria-selected="false">{{item.descripcion}}
-                        </a>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == '1'}" id="top-home-tab"
+                            data-toggle="tab" (click)="getOption(type = '1')" role="tab" aria-controls="top-home"
+                            aria-selected="false">Beneficios</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Video'}"
-                            id="profile-top-tab" data-toggle="tab" (click)="getOption(type = 'Video')" role="tab"
-                            aria-controls="top-profile" aria-selected="false">Instrucciones de uso</a>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == '2'}"
+                            id="profile-top-tab" data-toggle="tab" (click)="getOption(type = '2')" role="tab"
+                            aria-controls="top-profile" aria-selected="false">Instruciones de uso</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Details'}"
-                            id="contact-top-tab" data-toggle="tab" (click)="getOption(type = 'Details')" role="tab"
-                            aria-controls="top-contact" aria-selected="true">Preguntas frecuentes</a>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == '3'}"
+                            id="contact-top-tab" data-toggle="tab" (click)="getOption(type = '3')" role="tab"
+                            aria-controls="top-contact" aria-selected="true">Advertencias</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == 'Brand'}" id="brand-top-tab"
-                            data-toggle="tab" (click)="getOption(type = 'Brand')" role="tab" aria-controls="top-brand"
-                            aria-selected="true">Productos relacionados</a>
+                    <li class="nav-item"><a class="nav-link" [ngClass]="{'active': type == '4'}" id="brand-top-tab"
+                            data-toggle="tab" (click)="getOption(type = '4')" role="tab" aria-controls="top-brand"
+                            aria-selected="true">Consultas</a>
                         <div class="material-border"></div>
                     </li>
+                    
                 </ul>
-                <div class="tab-content" id="top-tabContent" *ngFor="let item of contents">
+                <div class="tab-content" id="top-tabContent" *ngFor="let item of InfoAdicionalActiva">
                     <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                        <p class="mb-0 m-t-20">{{item.content_1}}</p>
-                        <p class="mb-0 m-t-20">{{item.content_2}}"</p>
+                        <p class="mb-0 m-t-20">{{item}}</p>
+                        <!-- <p class="mb-0 m-t-20">{{item}}"</p> -->
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
+          
 
 
     </div>
