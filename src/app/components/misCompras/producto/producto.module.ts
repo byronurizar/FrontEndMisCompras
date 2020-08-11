@@ -10,9 +10,10 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { PedidosSistemaComponent } from './pedidos-sistema/pedidos-sistema.component';
 import { ModalDetallePedidoSistemaComponent } from './modal-detalle-pedido-sistema/modal-detalle-pedido-sistema.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfoAdicionalComponent } from './info-adicional/info-adicional.component';
 
 @NgModule({
-  declarations: [BarraNavegacionComponent,ProductoComponent, PedidosSistemaComponent, ModalDetallePedidoSistemaComponent],
+  declarations: [BarraNavegacionComponent,ProductoComponent, PedidosSistemaComponent, ModalDetallePedidoSistemaComponent, InfoAdicionalComponent],
   imports: [
     CommonModule,
     FormsModule,

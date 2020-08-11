@@ -25,6 +25,7 @@ export class BarraNavegacionComponent implements OnInit {
   public configuracion: Object;
   public configuracionTallas: Object;
   public configuracionEtiquetas: Object;
+  public configuracionInfoAdicional: Object;
   colores: ElementoLista[] = [];
   coloresDesc: ElementoLista[] = [];
   coloresAsignados: any;
@@ -44,6 +45,12 @@ export class BarraNavegacionComponent implements OnInit {
 
   resultadoPadre: number;
   idCatalogo = 0;
+
+
+  tipoInfoAdicional: ElementoLista[] = [];
+  tipoInfoAdicionalDesc: ElementoLista[] = [];
+
+
   constructor(private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService) {
 
     this.promListarColores.then((data1) => {
@@ -58,6 +65,13 @@ export class BarraNavegacionComponent implements OnInit {
 
     }).catch((error3) => {
       this.toastrService.error(error3.message, 'Alerta!');
+    });
+
+    this.promListarInfoAdicional.then((data1) => {
+      console.log("Data",data1);
+    })
+    .catch((error3) => {
+      this.toastrService.error("No se logro cargar la gestión de info adicional", 'Alerta!');
     });
   }
 
@@ -686,6 +700,103 @@ export class BarraNavegacionComponent implements OnInit {
       reject(ex);
     }
   });
+
+
+  promListarInfoAdicional = new Promise((resolver, reject) => {
+    try {
+      this.conectorApi.Get(`tipoinfoadicional/producto`).subscribe(
+        async (data) => {
+          let dat = data as ApiRest;
+          await dat.data.forEach(item => {
+            this.tipoInfoAdicional.push(new ElementoLista(item.id, item.descripcion))
+            this.tipoInfoAdicionalDesc.push(new ElementoLista(item.descripcion, item.descripcion))
+          });
+          this.configuracionInfoAdicional = {
+            mode: 'inline', // inline|external|click-to-edit
+            selectMode: 'single', // single|multi
+            hideHeader: false,
+            hideSubHeader: false,
+            actions: {
+              columnTitle: 'Acciones',
+              add: true,
+              edit: true,
+              delete: false,
+              custom: [{ name: 'ourCustomAction', title: '<i class="nb-compose"></i>' }],
+              position: 'left'
+            },
+            pager: {
+              display: true,
+              perPage: 10
+            },
+            add: {
+              confirmCreate: true
+            },
+            edit: {
+              confirmSave: true
+            },
+            delete: {
+              confirmDelete: true
+            },
+            columns: {
+              idDepartamento: {
+                title: 'Tipo',
+                filter: {
+                  type: 'list',
+                  config: {
+                    selectText: 'Todos',
+                    list: this.tipoInfoAdicionalDesc
+                  }
+                },
+                editor: {
+                  type: 'list',
+                  config: {
+                    selectText: 'Select',
+                    list: this.tipoInfoAdicionalDesc
+                  }
+                },
+                type: 'number',
+              },
+              valor: {
+                title: 'Descripción'
+              },
+              idEstado: {
+                title: 'Estado',
+                filter: {
+                  type: 'list',
+                  config: {
+                    selectText: 'Todos',
+                    list: [
+                      { value: 'Activo', title: 'Activo' },
+                      { value: 'Inactivo', title: 'Inactivo' }
+                    ]
+                  }
+                },
+                editor: {
+                  type: 'list',
+                  config: {
+                    selectText: 'Select',
+                    list: [
+                      { value: 'Activo', title: 'Activo' },
+                      { value: 'Inactivo', title: 'Inactivo' }
+                    ]
+                  }
+                },
+                type: 'number',
+              },
+            },
+            noDataMessage: 'No existen registros',
+          }
+          resolver(true);
+        },
+        (dataError) => {
+          reject(dataError);
+        }
+      )
+    } catch (ex) {
+      reject(ex);
+    }
+  });
+
 
   onAsignarColor(event): void {
     try {

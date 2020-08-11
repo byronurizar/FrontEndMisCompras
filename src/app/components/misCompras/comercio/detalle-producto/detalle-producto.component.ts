@@ -8,6 +8,7 @@ import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { Producto } from 'src/app/modelos/producto.model';
 import { Carrito } from 'src/app/servicios/carrito.service';
 import { environment } from 'src/environments/environment';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -29,10 +30,17 @@ export class DetalleProductoComponent implements OnInit {
   public allContent = [];
   public contents = [];
   public active: boolean = false;
-  public type: string = "1"
+  public type: string = "0"
   public nav: any;
   public infoAdicional:any=[];
   public InfoAdicionalActiva=[];
+
+
+  public tabBeneficios:boolean=false;
+  public tabInstruccionesUso:boolean=false;
+  public tabAdvertencia:boolean=false;
+  public tabConsultas:boolean=false;
+public codigoProducto=0;
   colorValido = true;
   tallaValido = true;
 
@@ -76,15 +84,15 @@ export class DetalleProductoComponent implements OnInit {
       const id = +params['id'];
       this.infoProducto(id);
       this.listarProductosCruzados(id);
-      this.listarInformacionAdicional(id);
       this.listarTallasDisponibles(id);
       this.listarColoresDisponibles(id);
+      this.codigoProducto=id;
+      this.listarInformacionAdicional(id);
     });
 
 
   }
   ngOnInit() {
-    //console.log("Detalle de producto");
 
   }
 
@@ -258,8 +266,37 @@ export class DetalleProductoComponent implements OnInit {
         let dat = data as ApiRest;
         if (dat.codigo == 0) {
           this.infoAdicional = await dat.data;
-
-          console.log("Info adicional",this.infoAdicional);
+          this.infoAdicional.map(async(item)=>{
+              if(item.id==1){
+                this.tabBeneficios=true;
+                if(this.InfoAdicionalActiva.length==0){
+                  this.type=item.id;
+                  this.InfoAdicionalActiva.push(item.valor);
+                  console.log("Ingreo 1");
+                }
+              }else if(item.id==2){
+                this.tabInstruccionesUso=true;
+                if(this.InfoAdicionalActiva.length==0){
+                  this.type=item.id;
+                  this.InfoAdicionalActiva.push(item.valor);
+                  console.log("Ingreo 2");
+                }
+              }else if(item.id==3){
+                this.tabAdvertencia=true;
+                if(this.InfoAdicionalActiva.length==0){
+                  this.type=item.id;
+                  this.InfoAdicionalActiva.push(item.valor);
+                  console.log("Ingreo 3");
+                }
+              }else if(item.id==4){
+                this.tabConsultas=true;
+                if(this.InfoAdicionalActiva.length==0){
+                  this.type=item.id;
+                  this.InfoAdicionalActiva.push(item.valor);
+                  console.log("Ingreo 4");
+                }
+              }
+          });
         }
 
       },
