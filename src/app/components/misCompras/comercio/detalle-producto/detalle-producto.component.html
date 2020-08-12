@@ -170,8 +170,8 @@
                 </ul>
                 <div class="tab-content" id="top-tabContent" *ngFor="let item of InfoAdicionalActiva">
                     <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                        {{item}}
-                        <!-- <p class="mb-0 m-t-20">{{item}}"</p> -->
+                        <!-- {{item}} -->
+                        <p class="mb-0">{{item}}</p>
                     </div>
                 </div>
             </div>
@@ -200,9 +200,7 @@
                                         <img class="img-fluid" [src]="urlImagenes+[product.pathImagen]" alt="">
                                     </div>
                                     <div class="product-details">
-                                        
-                                            <h6>{{product.nombre}}</h6>
-                                      
+                                            <h5>{{product.nombre}}</h5>
                                         <div class="product-price">
                                             <div *ngIf="product.oferta>0">
                                                 <del>{{product.precio | currency:'Q':'symbol'}}</del>{{product.oferta | currency:'Q':'symbol'}}
