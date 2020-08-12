@@ -49,7 +49,7 @@ export class BarraNavegacionComponent implements OnInit {
 
   tipoInfoAdicional: ElementoLista[] = [];
   tipoInfoAdicionalDesc: ElementoLista[] = [];
-
+  listaInfoAdicionalAsignada:any[]=[];
 
   constructor(private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService) {
 
@@ -73,6 +73,9 @@ export class BarraNavegacionComponent implements OnInit {
     .catch((error3) => {
       this.toastrService.error("No se logro cargar la gestión de info adicional", 'Alerta!');
     });
+
+    // this.listaInformacionAdicionalAsignada();
+
   }
 
   configuracionProductosRelacionados = {
@@ -177,6 +180,8 @@ export class BarraNavegacionComponent implements OnInit {
     }).catch((error1) => {
       this.toastrService.error(error1.message, 'Alerta!');
     });
+
+    
 
     this.validationForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -346,6 +351,24 @@ export class BarraNavegacionComponent implements OnInit {
           }
         );
       }
+    } catch (exce) {
+      this.toastrService.error(exce.message, 'Alerta!');
+    }
+  }
+
+  async listaInformacionAdicionalAsignada() {
+    try {
+        this.conectorApi.Get(`productos/infoadicionalregproducto/${this.idProducto}`).subscribe(
+          async (data) => {
+            let dat = data as ApiRest;
+            this.listaInfoAdicionalAsignada = dat.data;
+          },
+          (dataError) => {
+            let dat = dataError as ApiRest;
+            this.toastrService.error(dat.error, 'Alerta!');
+          }
+        );
+      
     } catch (exce) {
       this.toastrService.error(exce.message, 'Alerta!');
     }
@@ -738,7 +761,7 @@ export class BarraNavegacionComponent implements OnInit {
               confirmDelete: true
             },
             columns: {
-              idDepartamento: {
+              idTipoInfoAdicional: {
                 title: 'Tipo',
                 filter: {
                   type: 'list',
@@ -1080,6 +1103,79 @@ export class BarraNavegacionComponent implements OnInit {
     }
   }
 
+  onActualizarInfoAdicionalAsignada(event): void {
+    try {
+      if (event.newData) {
+        if (event.newData["idEstado"].trim().toUpperCase() == "INACTIVO") {
+          event.newData["idEstado"] = 2;
+        } else {
+          event.newData["idEstado"] = 1;
+        }
+        let idTipoInfoAdicional = this.tipoInfoAdicional.find(item => item.title == event.newData["idTipoInfoAdicional"]);
+
+        let jsonSolicitud = JSON.stringify({
+          idProducto: this.idProducto,
+          idTipoInfoAdicional: idTipoInfoAdicional.value,
+          valor: event.newData["valor"],
+          idEstado: event.newData["idEstado"]
+        });
+        this.conectorApi.Patch("productos/infoadicional/" + event.newData["id"], jsonSolicitud).subscribe(
+          (data) => {
+            let apiResult = data as ApiRest;
+            if (apiResult.codigo == 0) {
+              this.toastrService.success(apiResult.respuesta, 'Información!');
+              event.confirm.resolve(event.newData);
+              this.listaInformacionAdicionalAsignada();
+            } else {
+              this.toastrService.success(apiResult.respuesta, 'Alerta!');
+              event.confirm.reject();
+            }
+          },
+          (dataError) => {
+            this.toastrService.error(dataError.message, 'Alerta!');
+          }
+        )
+      }
+    } catch (error) {
+      this.toastrService.error(error.message, 'Alerta!');
+    }
+  }
+
+  onAsignarInfoAdicional(event): void {
+    try {
+      if (event.newData) {
+        let idTipoInfoAdicional = this.tipoInfoAdicional.find(item => item.title == event.newData["idTipoInfoAdicional"]);
+
+        let jsonSolicitud = JSON.stringify({
+          idProducto: this.idProducto,
+          idTipoInfoAdicional: idTipoInfoAdicional.value,
+          valor: event.newData["valor"],
+          idEstado: 1
+        });
+
+        console.log({jsonSolicitud});
+        this.conectorApi.Post("productos/infoadicional", jsonSolicitud).subscribe(
+          (data) => {
+            let apiResult = data as ApiRest;
+            if (apiResult.codigo == 0) {
+              this.toastrService.success(apiResult.respuesta, 'Información!');
+              event.confirm.resolve(event.newData);
+              this.listaInformacionAdicionalAsignada();
+            } else {
+              this.toastrService.success(apiResult.respuesta, 'Alerta!');
+              event.confirm.reject();
+            }
+          },
+          (dataError) => {
+            this.toastrService.error(dataError.message, 'Alerta!');
+          }
+        )
+      }
+    } catch (error) {
+      this.toastrService.error(error.message, 'Alerta!');
+    }
+  }
+  
   onAsignarEtiqueta(event): void {
     try {
       if (event.newData) {

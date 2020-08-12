@@ -108,7 +108,20 @@
                 </li>
             </ul>
             <div class="d-lg-none mobile-toggle">
-                <i class="icon-more" (click)="openHeaderMenu()"></i>
+                <ul class="nav-menus">
+                    <li>
+                        <i>
+                            <a [routerLink]="['/comercio/carrito']" class="txt-dark">
+                                <img class="align-self-center pull-right mr-2" src="assets/images/dashboard/carrito.png"
+                                    alt="header-notification">
+                                <span class="badge badge-pill badge-primary notification" *ngIf="selectCartItems.length>0">{{selectCartItems.length}}</span>
+                            </a>  
+                        </i>
+                    </li>
+                    <li>
+                        <i class="fa fa-tasks" (click)="openHeaderMenu()"></i>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

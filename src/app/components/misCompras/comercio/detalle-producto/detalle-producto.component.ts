@@ -208,9 +208,14 @@ public codigoProducto=0;
     return this.infoAdicional.filter(data => {
       if (type == data.idTipoInfoAdicional) {
         this.active = true;
-        console.log("Info",data["valor"]);
-        return this.InfoAdicionalActiva.push(data.valor)
-        
+        let itemDividir=data.valor.split('- ');
+        itemDividir.map(valor=>{
+          this.InfoAdicionalActiva.push("- "+valor);
+        });
+        if(this.InfoAdicionalActiva.length>1){
+          this.InfoAdicionalActiva.splice(0,1);
+        }
+        return this.InfoAdicionalActiva;
       } else {
         return false
       }
@@ -267,33 +272,55 @@ public codigoProducto=0;
         if (dat.codigo == 0) {
           this.infoAdicional = await dat.data;
           this.infoAdicional.map(async(item)=>{
-              if(item.id==1){
+            console.log("Informacion adicional",this.infoAdicional);
+              if(item.idTipoInfoAdicional==1){
                 this.tabBeneficios=true;
                 if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.id;
-                  this.InfoAdicionalActiva.push(item.valor);
-                  console.log("Ingreo 1");
+                  this.type=item.idTipoInfoAdicional;
+                  let itemDividir=item.valor.split('- ');
+                  itemDividir.map(valor=>{
+                    this.InfoAdicionalActiva.push("- "+valor);
+                  });
+                  if(this.InfoAdicionalActiva.length>1){
+                    this.InfoAdicionalActiva.splice(0,1);
+                  }
+                  
                 }
-              }else if(item.id==2){
+              }else if(item.idTipoInfoAdicional==2){
                 this.tabInstruccionesUso=true;
                 if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.id;
-                  this.InfoAdicionalActiva.push(item.valor);
-                  console.log("Ingreo 2");
+                  this.type=item.idTipoInfoAdicional;
+                  let itemDividir=item.valor.split('- ');
+                  itemDividir.map(valor=>{
+                    this.InfoAdicionalActiva.push("- "+valor);
+                  });
+                  if(this.InfoAdicionalActiva.length>1){
+                    this.InfoAdicionalActiva.splice(0,1);
+                  }
                 }
-              }else if(item.id==3){
+              }else if(item.idTipoInfoAdicional==3){
                 this.tabAdvertencia=true;
                 if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.id;
-                  this.InfoAdicionalActiva.push(item.valor);
-                  console.log("Ingreo 3");
+                  this.type=item.idTipoInfoAdicional;
+                  let itemDividir=item.valor.split('- ');
+                  itemDividir.map(valor=>{
+                    this.InfoAdicionalActiva.push("- "+valor);
+                  });
+                  if(this.InfoAdicionalActiva.length>1){
+                    this.InfoAdicionalActiva.splice(0,1);
+                  }
                 }
-              }else if(item.id==4){
+              }else if(item.idTipoInfoAdicional==4){
                 this.tabConsultas=true;
                 if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.id;
-                  this.InfoAdicionalActiva.push(item.valor);
-                  console.log("Ingreo 4");
+                  this.type=item.idTipoInfoAdicional;
+                  let itemDividir=item.valor.split('- ');
+                  itemDividir.map(valor=>{
+                    this.InfoAdicionalActiva.push("- "+valor);
+                  });
+                  if(this.InfoAdicionalActiva.length>1){
+                    this.InfoAdicionalActiva.splice(0,1);
+                  }
                 }
               }
           });

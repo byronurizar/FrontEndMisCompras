@@ -165,27 +165,6 @@
               </div>
               <!-- Container-fluid Ends -->
 
-
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="card">
-                      <div class="card-header">
-                        <h5>Información adicional</h5>
-                      </div>
-                      <div class="card-body smart-datatable">
-                        <div class="table-responsive">
-                          <ng2-smart-table [settings]="configuracionInfoAdicional" [source]="etiquetasAsignadas"
-                            (createConfirm)="onAsignarEtiqueta($event)"
-                            (editConfirm)="onActualizarAsigEtiqueta($event)"></ng2-smart-table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
             </aw-wizard-step>
             <aw-wizard-step [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }" stepTitle="Imagenes">
 
@@ -337,7 +316,25 @@
                 </div>
               </div>
 
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Información adicional</h5>
+                      </div>
+                      <div class="card-body smart-datatable">
+                        <div class="table-responsive">
+                          <ng2-smart-table [settings]="configuracionInfoAdicional" [source]="listaInfoAdicionalAsignada"
+                            (createConfirm)="onAsignarInfoAdicional($event)"
+                            (editConfirm)="onActualizarInfoAdicionalAsignada($event)"></ng2-smart-table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
+                </div>
+              </div>
              
 
 
