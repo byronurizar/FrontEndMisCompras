@@ -1,0 +1,60 @@
+
+// Bootstrap Layout scss
+@import '~bootstrap/scss/bootstrap';
+//style.scss
+@import 'scss/style.scss';
+
+
+// Datatables
+@import "~datatables.net-select-dt/css/select.dataTables.css";
+
+// Ngx-Datatable
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/bootstrap.css";
+
+// ngx-owl-carousel 
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+// Toastr Css
+@import '~ngx-toastr/toastr.css';
+
+// Animation css
+@import '~animate.css/animate.min.css';
+
+// icons css
+@import "scss/icoicon";
+@import "scss/themify";
+@import "scss/flag-icon";
+
+// Chartist css
+@import "scss/chartist";
+
+// Page loader Topbar
+@import 'pace/pace-min.css';
+@import "scss/todo/todo";
+@import 'scss/sticky';
+@import 'scss/scrollable';
+@import 'scss/whether-icon/whether-icon';
+
+//map
+@import '~leaflet/dist/leaflet.css';
+
+@import 'scss/sweetalert/sweetalert2.scss';
+@import 'scss/theme/loader';
+
+// ng2-Dragulla
+@import "~dragula/dist/dragula.css";
+
+
+
+
+
+
+
+
+
+
+
+
+
