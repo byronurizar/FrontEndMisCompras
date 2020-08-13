@@ -53,7 +53,7 @@ export class ProductosComponent implements OnInit {
   }
   abrirDetalle(content, id: number) {
     this.modalReference=this.modalService.open(content, { centered: true, size: 'lg' });
-    this.productoDetalleVistaRapida = this.productos.find(item => item.id == id);
+    this.productoDetalleVistaRapida = this.productoService.productos.find(item => item.id == id);
   }
 
 
