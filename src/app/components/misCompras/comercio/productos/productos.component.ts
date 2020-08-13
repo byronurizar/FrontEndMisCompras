@@ -8,6 +8,7 @@ import { Producto } from 'src/app/modelos/producto.model';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { ListaDeseos } from 'src/app/servicios/listadeseos.service';
 import { environment } from 'src/environments/environment';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 @Component({
   selector: 'app-productos',
@@ -23,11 +24,14 @@ export class ProductosComponent implements OnInit {
   public urlImagenes = environment.urlImagnes;
 
 
-  constructor(private conectorApi: ConectorApi, private toastrService: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos) { 
+  constructor(private conectorApi: ConectorApi, private toastrService: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos,public productoService:ProductosService) { 
     this.route.params.subscribe(params => {
       const idCatalogo = +params['idCatalogo'];
       const idCategoria = +params['idCategoria'];
-      this.listarProductos(idCatalogo,idCategoria);
+      if(idCatalogo>=0){
+      this.productoService.listarProductos(idCatalogo,idCategoria);
+      }
+     // this.listarProductos(idCatalogo,idCategoria);
     });
   }
 

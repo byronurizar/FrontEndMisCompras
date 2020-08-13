@@ -4,9 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { CustomizerService } from '../../service/customizer.service';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Carrito } from 'src/app/servicios/carrito.service';
 import { environment } from 'src/environments/environment';
+import { Producto } from 'src/app/modelos/producto.model';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 var body = document.getElementsByTagName("body")[0];
 
@@ -33,7 +35,7 @@ export class HeaderComponent implements OnInit {
   public urlImagenes = environment.urlImagnes;
   constructor(public navServices: NavService,public conectorApi: ConectorApi,
     private translate: TranslateService,
-    public customize: CustomizerService, private cartService: Carrito,) {
+    public customize: CustomizerService, private cartService: Carrito,public productoService:ProductosService) {
     // translate.setDefaultLang('en');
   }
 
@@ -56,6 +58,12 @@ export class HeaderComponent implements OnInit {
     this.openSearch = !this.openSearch;
   }
 
+
+  buscar(event){
+    console.log("Salida",event.target.value);
+    this.productoService.buscarInformacion(event.target.value);
+    event.target.value="";
+  }
   right_side_bar() {
     this.right_sidebar = !this.right_sidebar
     this.rightSidebarEvent.emit(this.right_sidebar)

@@ -1,10 +1,10 @@
 <!-- Container-fluid starts -->
-<div class="container-fluid" *ngIf="productos.length>0">
+<div class="container-fluid" *ngIf="productoService.productos.length>0">
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
                 <h3>Productos
-                    <small>Listado de productos disponibles</small>
+                    <small>Contamos con {{productoService.productos.length}} {{productoService.productos.length==1?' producto disponible con los criterios especificados':'productos disponibles con los criterios especificados' }}</small>
                 </h3>
             </div>
             <div class="col-lg-6">
@@ -18,8 +18,8 @@
         </div>
     </div>
 </div>
-<br *ngIf="productos.length<=0"/>
-<div class="col-lg-6" *ngIf="productos.length<=0">
+<br *ngIf="productoService.productos.length<=0"/>
+<div class="col-lg-6" *ngIf="productoService.productos.length<=0">
     <h3>
         No se logro encontrar ningún producto con los criterios especificados
     </h3>
@@ -29,7 +29,7 @@
 <!-- Container-fluid starts-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-3 col-sm-6" *ngFor="let product of productos">
+        <div class="col-xl-3 col-sm-6" *ngFor="let product of productoService.productos">
             <div class="card">
                 <div class="product-box">
                     <div class="product-img">

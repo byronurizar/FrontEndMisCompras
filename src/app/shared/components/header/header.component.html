@@ -20,11 +20,11 @@
         
         <div class="nav-right col">
             <ul class="nav-menus" [class.open]="open">
-                <li *ngIf="false">
+                <li>
                     <form class="form-inline search-form">
                         <div class="form-group">
-                            <label class="sr-only">Email</label>
-                            <input type="search" class="form-control-plaintext" [class.open]="openSearch"
+                            <label class="sr-only">Buscar</label>
+                            <input type="search" class="form-control-plaintext" [class.open]="openSearch" (change)="buscar($event)"
                                 placeholder="Buscar..">
                             <span class="d-sm-none mobile-search" (click)="clickSearch()">
                             </span>
