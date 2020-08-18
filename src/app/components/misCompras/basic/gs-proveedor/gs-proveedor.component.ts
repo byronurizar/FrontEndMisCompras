@@ -106,11 +106,12 @@ export class GsProveedorComponent implements OnInit {
         this.info = dat.data;
       },
       (dataError) => {
+        console.log({dataError});
         this.toastrService.error(dataError.error.error.message, 'Alerta!');
       }
     )
     }catch(ex){
-      this.toastrService.error(ex, 'Alerta!');
+      this.toastrService.error(ex.message, 'Alerta!');
     }
     
   }

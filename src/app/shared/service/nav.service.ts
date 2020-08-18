@@ -74,6 +74,7 @@ export class NavService {
                 let itemTitulo = {
                   headTitle: filaTitulo.descripcion
                 }
+                miMenuPerfil.push(itemTitulo);
                 const padres = this.menuBd.filter(item => item.idpadre == filaTitulo.id);
                 if (padres.length > 0) {
                   
@@ -84,7 +85,7 @@ export class NavService {
                     let hijosItemActual = this.menuBd.filter(i => i.idpadre === idPadre);
 
                     if (hijosItemActual.length > 0) {
-                      miMenuPerfil.push(itemTitulo);
+                      //Validar que tenga hijos si no eliminar
                       hijosItemActual.map(itemHijo => {
                         let itemHijoActual: Menu;
                         itemHijoActual = {
