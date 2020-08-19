@@ -6,6 +6,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ToastrService } from 'ngx-toastr';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 @Component({
   selector: 'app-carrito',
@@ -19,7 +20,7 @@ export class CarritoComponent implements OnInit {
   public urlImagenes = environment.urlImagnes;
   constructor(private route: ActivatedRoute, 
     private cartService: Carrito,
-    private modalService: NgbModal,private conectorApi:ConectorApi,private router: Router, private toastrService: ToastrService) {
+    private modalService: NgbModal,private conectorApi:ConectorApi,private router: Router, private toastrService: ToastrService,public productoService:ProductosService) {
   }
 
   remove(item) {
@@ -57,5 +58,8 @@ export class CarritoComponent implements OnInit {
     }else{
       this.toastrService.warning("Para poder continuar con el pedido debe de iniciar sesión",'Alerta!');
     }
+  }
+  regresar(){
+    this.router.navigate([`/comercio/productos/${this.productoService.catalogo}/${this.productoService.categoria}`]);
   }
 }

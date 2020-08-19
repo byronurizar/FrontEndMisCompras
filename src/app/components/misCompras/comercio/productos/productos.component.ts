@@ -29,7 +29,9 @@ export class ProductosComponent implements OnInit {
       const idCatalogo = +params['idCatalogo'];
       const idCategoria = +params['idCategoria'];
       if(idCatalogo>=0){
-      this.productoService.listarProductos(idCatalogo,idCategoria);
+        productoService.catalogo=idCatalogo;
+        productoService.categoria=idCategoria;
+       this.productoService.listarProductos(idCatalogo,idCategoria);
       }
      // this.listarProductos(idCatalogo,idCategoria);
     });

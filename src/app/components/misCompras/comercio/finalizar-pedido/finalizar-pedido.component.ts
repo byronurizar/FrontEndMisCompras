@@ -8,6 +8,7 @@ import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { Carrito } from 'src/app/servicios/carrito.service';
 import { Router } from '@angular/router';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductosService } from 'src/app/servicios/productos.service';
 declare var require
 const Swal = require('sweetalert2')
 
@@ -33,7 +34,7 @@ export class FinalizarPedidoComponent implements OnInit {
   public userInfo: string;
   modalReference: NgbModalRef;
   public observaciones: string = "";
-  constructor(private router: Router, private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService, private carrito: Carrito, private modalService: NgbModal) {
+  constructor(private router: Router, private fb: FormBuilder, private conectorApi: ConectorApi, private toastrService: ToastrService, private carrito: Carrito, private modalService: NgbModal,public productoService:ProductosService) {
     this.listarMisDirecciones(0);
   }
 
@@ -172,8 +173,7 @@ if(idDireccion){
     }
 
   }
-
-
-
-
+  regresar(){
+    this.router.navigate([`/comercio/productos/${this.productoService.catalogo}/${this.productoService.categoria}`]);
+  }
 }

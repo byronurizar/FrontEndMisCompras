@@ -9,26 +9,12 @@ import { Router } from "@angular/router";
 @Injectable({providedIn: "root"})
 export class ProductosService{
     public productos: any[] = [];
+    public catalogo=0;
+    public categoria=0;
     public itemsProductos: BehaviorSubject<any[]> = new BehaviorSubject([]);
     constructor(private conectorApi: ConectorApi, private toastrService: ToastrService,private router: Router) {
         this.itemsProductos.subscribe(productos => productos = productos);
      }
-    
-
-
-    // buscarInformacion(filtro){
-    //     console.log("Filtro ingresado",filtro);
-    //     this.listarProductos(0,0);
-    //   }
-
-    //   getTodos(): Observable<any[]> {
-    //     const itemsList = new Observable(observer => {
-    //       observer.next(productos);
-    //       observer.complete();
-    //     });
-    //     return <Observable<any[]>>itemsList;
-    //   }
-
     async buscarInformacion(filtro:String) {
         if(filtro.trim().length>0){
         this.conectorApi.Post(`productos/comercio/listar/filtro`,{filtro}).subscribe(

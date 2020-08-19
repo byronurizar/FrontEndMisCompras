@@ -9,6 +9,7 @@ import { Producto } from 'src/app/modelos/producto.model';
 import { Carrito } from 'src/app/servicios/carrito.service';
 import { environment } from 'src/environments/environment';
 import { async } from '@angular/core/testing';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -67,7 +68,7 @@ public codigoProducto=0;
 
   public urlImagenes = environment.urlImagnes;
 
-  constructor(private conectorApi: ConectorApi, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, config: NgbRatingConfig, private cartService: Carrito) {
+  constructor(private conectorApi: ConectorApi, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, config: NgbRatingConfig, private cartService: Carrito,public productoService:ProductosService) {
     this.allContent = ContentDetail.ContentDetails;
 
     //for rating 
@@ -209,10 +210,18 @@ public codigoProducto=0;
       if (type == data.idTipoInfoAdicional) {
         this.active = true;
         let itemDividir=data.valor.split('- ');
+        let dividirPreguntas=data.valor.split('P: ');
         itemDividir.map(valor=>{
           this.InfoAdicionalActiva.push("- "+valor);
         });
         if(this.InfoAdicionalActiva.length>1){
+          this.InfoAdicionalActiva.splice(0,1);
+        }
+        if(dividirPreguntas.length>1){
+          this.InfoAdicionalActiva=[];
+          dividirPreguntas.map(valor=>{
+            this.InfoAdicionalActiva.push("- P: "+valor);
+          });
           this.InfoAdicionalActiva.splice(0,1);
         }
         return this.InfoAdicionalActiva;
@@ -266,64 +275,29 @@ public codigoProducto=0;
     }
   }
   async listarInformacionAdicional(idProducto) {
-    this.conectorApi.Get(`productos/infoadicional/producto/${idProducto}`).subscribe(
+    this.conectorApi.Get(`productos/infoadicional/${idProducto}`).subscribe(
       async (data) => {
         let dat = data as ApiRest;
         if (dat.codigo == 0) {
           this.infoAdicional = await dat.data;
-          this.infoAdicional.map(async(item)=>{
-            console.log("Informacion adicional",this.infoAdicional);
-              if(item.idTipoInfoAdicional==1){
-                this.tabBeneficios=true;
-                if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.idTipoInfoAdicional;
-                  let itemDividir=item.valor.split('- ');
-                  itemDividir.map(valor=>{
-                    this.InfoAdicionalActiva.push("- "+valor);
-                  });
-                  if(this.InfoAdicionalActiva.length>1){
-                    this.InfoAdicionalActiva.splice(0,1);
-                  }
-                  
-                }
-              }else if(item.idTipoInfoAdicional==2){
-                this.tabInstruccionesUso=true;
-                if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.idTipoInfoAdicional;
-                  let itemDividir=item.valor.split('- ');
-                  itemDividir.map(valor=>{
-                    this.InfoAdicionalActiva.push("- "+valor);
-                  });
-                  if(this.InfoAdicionalActiva.length>1){
-                    this.InfoAdicionalActiva.splice(0,1);
-                  }
-                }
-              }else if(item.idTipoInfoAdicional==3){
-                this.tabAdvertencia=true;
-                if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.idTipoInfoAdicional;
-                  let itemDividir=item.valor.split('- ');
-                  itemDividir.map(valor=>{
-                    this.InfoAdicionalActiva.push("- "+valor);
-                  });
-                  if(this.InfoAdicionalActiva.length>1){
-                    this.InfoAdicionalActiva.splice(0,1);
-                  }
-                }
-              }else if(item.idTipoInfoAdicional==4){
-                this.tabConsultas=true;
-                if(this.InfoAdicionalActiva.length==0){
-                  this.type=item.idTipoInfoAdicional;
-                  let itemDividir=item.valor.split('- ');
-                  itemDividir.map(valor=>{
-                    this.InfoAdicionalActiva.push("- "+valor);
-                  });
-                  if(this.InfoAdicionalActiva.length>1){
-                    this.InfoAdicionalActiva.splice(0,1);
-                  }
-                }
-              }
-          });
+          if(this.infoAdicional.length>0){
+            this.type=this.infoAdicional[0].idTipoInfoAdicional;
+            let itemDividir=this.infoAdicional[0].valor.split('- ');
+            let dividirPreguntas=this.infoAdicional[0].valor.split('P: ');
+            itemDividir.map(valor=>{
+              this.InfoAdicionalActiva.push("- "+valor);
+            });
+            if(this.InfoAdicionalActiva.length>1){
+              this.InfoAdicionalActiva.splice(0,1);
+            }
+            if(dividirPreguntas.length>1){
+              this.InfoAdicionalActiva=[];
+              dividirPreguntas.map(valor=>{
+                this.InfoAdicionalActiva.push("- P: "+valor);
+              });
+              this.InfoAdicionalActiva.splice(0,1);
+            }
+          }
         }
 
       },
@@ -331,5 +305,8 @@ public codigoProducto=0;
         this.toastrService.warning("No fue posible obtener la información adicional del producto",'Alerta!');
       }
     )
+  }
+  regresar(){
+    this.router.navigate([`/comercio/productos/${this.productoService.catalogo}/${this.productoService.categoria}`]);
   }
 }

@@ -31,8 +31,8 @@ export class ModalEditDireccionComponent implements OnInit {
     this.checkoutForm = this.fb.group({
       idDepartamento: ['', Validators.required],
       idMunicipio: ['', Validators.required],
-      direccion: ['', [Validators.required, Validators.minLength(20)]],
-      puntoReferencia: ['', [Validators.required, Validators.minLength(20)]],
+      direccion: ['', [Validators.required, Validators.minLength(10)]],
+      puntoReferencia: ['', [Validators.required, Validators.minLength(10)]],
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       apellido: ['', [Validators.required, Validators.minLength(2)]],
       telefono: ['', [Validators.required, Validators.minLength(8)]]
