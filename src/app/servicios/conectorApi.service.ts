@@ -36,9 +36,9 @@ export class ConectorApi {
 
           if (dataResponse["codigo"] === 0) {
             let tokenGmail = dataResponse["data"].token.token;
-            let codigoRol = dataResponse["data"].usuario.codigoRol;
+            // let codigoRol = dataResponse["data"].usuario.codigoRol;
             this.usuario.token = tokenGmail;
-            this.usuario.codigoRol = codigoRol;
+            // this.usuario.codigoRol = codigoRol;
             sessionStorage.setItem("token", tokenGmail);
             if (!this.usuario.codigoRol) {
               this.router.navigate(['/'])
@@ -69,7 +69,8 @@ export class ConectorApi {
           this.usuario.urlfoto = "";
           this.usuario.token = dat.data.token.token;;
           this.usuario.proveedor = "";
-          this.usuario.codigoRol = dat.data.usuario.codigoRol;
+          this.usuario.codigoRol = dat.data.usuario.idRol;
+         
           if (recordarme) {
             sessionStorage.setItem("token", this.usuario.token);
             localStorage.setItem("token", this.usuario.token);
@@ -96,10 +97,11 @@ export class ConectorApi {
       (dataResponse) => {
 
         if (dataResponse["codigo"] === 0) {
+          console.log("Registro nuevo",dataResponse);
           let tokenGmail = dataResponse["data"].token.token;
-          let codigoRol = dataResponse["data"].usuario.codigoRol;
+          // let codigoRol = dataResponse["data"].usuario.codigoRol;
           this.usuario.token = tokenGmail;
-          this.usuario.codigoRol = codigoRol;
+          // this.usuario.codigoRol = codigoRol;
           this.usuario.name = dataResponse["data"].usuario.nombre;
           this.usuario.email =  dataResponse["data"].usuario.correo;
           sessionStorage.setItem("token", tokenGmail);

@@ -87,9 +87,18 @@ export class NavService {
                     if (hijosItemActual.length > 0) {
                       //Validar que tenga hijos si no eliminar
                       hijosItemActual.map(itemHijo => {
+                        //console.log("Href Hijo",itemHijo.href);
+                        let dividirUrl=itemHijo.href.split('/');
+
+                        let catalogo=dividirUrl[3];
+                        let categoria=dividirUrl[4];
+                        
+                        let nuevaUrl=`/comercio/productos/${btoa(catalogo)}/${btoa(categoria)}`;
+                        // console.log({catalogo,categoria,nuevaUrl});
+
                         let itemHijoActual: Menu;
                         itemHijoActual = {
-                          path: itemHijo.href, title: itemHijo.descripcion, type: 'link'
+                          path:nuevaUrl, title: itemHijo.descripcion, type: 'link'
                         }
                         itemsHijos.push(itemHijoActual);
                       });

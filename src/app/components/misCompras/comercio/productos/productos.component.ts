@@ -9,6 +9,7 @@ import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { ListaDeseos } from 'src/app/servicios/listadeseos.service';
 import { environment } from 'src/environments/environment';
 import { ProductosService } from 'src/app/servicios/productos.service';
+import { abort } from 'process';
 
 @Component({
   selector: 'app-productos',
@@ -26,30 +27,36 @@ export class ProductosComponent implements OnInit {
 
   constructor(private conectorApi: ConectorApi, private toastrService: ToastrService, private route: ActivatedRoute, private modalService: NgbModal, private listaDeseos: ListaDeseos,public productoService:ProductosService) { 
     this.route.params.subscribe(params => {
-      const idCatalogo = +params['idCatalogo'];
-      const idCategoria = +params['idCategoria'];
-      if(idCatalogo>=0){
+      const {idCatalogo} =params;
+      const {idCategoria} =params;
+
+      if(idCatalogo==="0" && idCategoria=="0"){
+        this.productoService.listarProductos(btoa("0"),btoa("0"));
+      }else{
+      let auxIdCatalogo=atob(idCatalogo);
+      if(Number(auxIdCatalogo)>0){
         productoService.catalogo=idCatalogo;
         productoService.categoria=idCategoria;
        this.productoService.listarProductos(idCatalogo,idCategoria);
       }
+    }
      // this.listarProductos(idCatalogo,idCategoria);
     });
   }
 
-  async listarProductos(idCatalogo,idCategoria) {
-    this.conectorApi.Get(`productos/comercio/listar/${idCatalogo}/${idCategoria}`).subscribe(
-      async (data) => {
-        let dat = data as ApiRest;
-        if (dat.codigo == 0) {
-          this.productos = await dat.data;
-        }
-      },
-      (dataError) => {
-        this.toastrService.error(dataError.error.error.message, 'Alerta!');
-      }
-    )
-  }
+  // async listarProductos(idCatalogo,idCategoria) {
+  //   this.conectorApi.Get(`productos/comercio/listar/${idCatalogo}/${idCategoria}`).subscribe(
+  //     async (data) => {
+  //       let dat = data as ApiRest;
+  //       if (dat.codigo == 0) {
+  //         this.productos = await dat.data;
+  //       }
+  //     },
+  //     (dataError) => {
+  //       this.toastrService.error(dataError.error.error.message, 'Alerta!');
+  //     }
+  //   )
+  // }
   ngOnInit() {
     // this.listarProductos();
   }

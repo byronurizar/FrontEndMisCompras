@@ -16,13 +16,17 @@ export class ProductosService{
         this.itemsProductos.subscribe(productos => productos = productos);
      }
     async buscarInformacion(filtro:String) {
+
+      console.log("Catalogo",btoa(this.catalogo.toString()));
+      console.log("categoria",btoa(this.categoria.toString()));
+
         if(filtro.trim().length>0){
         this.conectorApi.Post(`productos/comercio/listar/filtro`,{filtro}).subscribe(
           async (data) => {
             let dat = data as ApiRest;
             if (dat.codigo == 0) {
               this.productos = await dat.data;
-              this.router.navigate(['/comercio/productos/-1/1']);
+              this.router.navigate(['/comercio/productos/LTE=/MQ==']);
             //   console.log("Datos de productos con filtro",this.productos);
             }
           },
@@ -33,6 +37,8 @@ export class ProductosService{
         }
       }
       async listarProductos(idCatalogo,idCategoria) {
+        idCatalogo=atob(idCatalogo);
+        idCategoria=atob(idCategoria);
         this.conectorApi.Get(`productos/comercio/listar/${idCatalogo}/${idCategoria}`).subscribe(
           async (data) => {
             let dat = data as ApiRest;
