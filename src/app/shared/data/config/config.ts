@@ -8,8 +8,8 @@ export class ConfigDB {
         backgroungImage:'',
         defaultNavigation:'',
         header:{
-            semiLightbgColor:'',
-            headerBgColor:''
+            semiLightbgColor:'bg-info',
+            headerBgColor:'bg-info'
         }
     }
 }

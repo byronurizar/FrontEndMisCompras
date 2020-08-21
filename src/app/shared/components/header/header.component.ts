@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   public selectCartItems: any[] = [];
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
   @Output() toggleEvent = new EventEmitter<boolean>();
+  public auxClass="";
   public urlImagenes = environment.urlImagnes;
   constructor(public navServices: NavService,public conectorApi: ConectorApi,
     private translate: TranslateService,
@@ -60,7 +61,6 @@ export class HeaderComponent implements OnInit {
 
 
   buscar(event){
-    console.log("Salida",event.target.value);
     this.productoService.buscarInformacion(event.target.value);
     event.target.value="";
   }
@@ -75,6 +75,11 @@ export class HeaderComponent implements OnInit {
 
   openHeaderMenu(){
     this.open = !this.open;
+    if(this.open){
+      this.auxClass="bg-info";
+    }else{
+      this.auxClass="";
+    }
   }
 
   openMobileNav() {

@@ -8,6 +8,9 @@ import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.co
 import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
 import { MisdireccionesComponent } from './misdirecciones/misdirecciones.component';
 import { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
+import { TerminosyCondicionesComponent } from './terminosy-condiciones/terminosy-condiciones.component';
+import { PoliticasDePrivacidadComponent } from './politicas-de-privacidad/politicas-de-privacidad.component';
+import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 
 
 const routes: Routes = [{
@@ -48,6 +51,17 @@ const routes: Routes = [{
     {
       path: 'mispedidos',
       component: MisPedidosComponent
+    }, {
+      path: 'terminosycondiciones',
+      component: TerminosyCondicionesComponent
+    },
+    {
+      path: 'politicasprivacidad',
+      component: PoliticasDePrivacidadComponent
+    },
+    {
+      path: 'acercade',
+      component: AcercaDeComponent
     }
   ]
 }];

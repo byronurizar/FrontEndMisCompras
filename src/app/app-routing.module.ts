@@ -10,6 +10,7 @@ import { IngresoSistemaComponent } from './misCompras/ingreso-sistema/ingreso-si
 import { RegistroComponent } from './misCompras/registro/registro.component';
 import { InicioComponent } from './misCompras/inicio/inicio.component';
 import { NuevoUsuarioComponent } from './misCompras/nuevo-usuario/nuevo-usuario.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -26,24 +27,24 @@ const appRoutes: Routes = [
     children: content
   },
   {
-    path:'login',
-    component:IngresoSistemaComponent
+    path: 'login',
+    component: IngresoSistemaComponent
   },
   {
-    path:'registrarse',
-    component:RegistroComponent
+    path: 'registrarse',
+    component: RegistroComponent
   },
   {
-    path:'nuevousuario',
-    component:NuevoUsuarioComponent
+    path: 'nuevousuario',
+    component: NuevoUsuarioComponent
   },
   {
-    path:'inicio',
-    component:InicioComponent
+    path: 'inicio',
+    component: InicioComponent
   },
   {
-    path:'**',
-    component:IngresoSistemaComponent
+    path: '**',
+    component: IngresoSistemaComponent
   }
 ];
 

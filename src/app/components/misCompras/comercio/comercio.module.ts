@@ -24,9 +24,12 @@ import { ModaRegistrarDireccionComponent } from './moda-registrar-direccion/moda
 import { ModalEditDireccionComponent } from './modal-edit-direccion/modal-edit-direccion.component';
 import { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
 import { ModalDetallePedidoComponent } from './modal-detalle-pedido/modal-detalle-pedido.component';
+import { TerminosyCondicionesComponent } from './terminosy-condiciones/terminosy-condiciones.component';
+import { PoliticasDePrivacidadComponent } from './politicas-de-privacidad/politicas-de-privacidad.component';
+import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 
 @NgModule({
-  declarations: [ProductosComponent, VistaRapidaComponent, DetalleProductoComponent, CarritoComponent, ModalTallasComponent, ModalColoresComponent, ListaDeseosComponent, FinalizarPedidoComponent, DetallePedidoComponent, MisdireccionesComponent, ModaRegistrarDireccionComponent, ModalEditDireccionComponent, MisPedidosComponent, ModalDetallePedidoComponent],
+  declarations: [ProductosComponent, VistaRapidaComponent, DetalleProductoComponent, CarritoComponent, ModalTallasComponent, ModalColoresComponent, ListaDeseosComponent, FinalizarPedidoComponent, DetallePedidoComponent, MisdireccionesComponent, ModaRegistrarDireccionComponent, ModalEditDireccionComponent, MisPedidosComponent, ModalDetallePedidoComponent, TerminosyCondicionesComponent, PoliticasDePrivacidadComponent, AcercaDeComponent],
   imports: [
     CommonModule,
     ComercioRoutingModule,
