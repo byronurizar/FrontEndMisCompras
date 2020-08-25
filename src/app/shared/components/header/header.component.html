@@ -20,10 +20,13 @@
         <div class="nav-right col">
             <ul class="nav-menus" [class.open]="open" [attr.header-bg-color]="auxClass">
                 <li>
-                    <form class="form-inline search-form">
+                    <!-- <form class="form-inline search-form"> -->
+                    <form class="form-inline">
                         <div class="form-group">
                             <label class="sr-only">Buscar</label>
-                            <input type="text" class="form-control-plaintext" [class.open]="openSearch" (change)="buscar($event)"
+                            <!-- <input type="text" class="form-control-plaintext" [class.open]="openSearch" (change)="buscar($event)" value="Pruebas"
+                                placeholder="Buscar.."/> -->
+                                <input type="text" class="form-control form-control-sm " [class.open]="openSearch" (change)="buscar($event)"
                                 placeholder="Buscar.."/>
                             <span class="d-sm-none mobile-search" (click)="clickSearch()">
                             </span>
