@@ -61,8 +61,12 @@ export class HeaderComponent implements OnInit {
 
 
   buscar(event){
+    console.log("Salida",event.target.value);
     this.productoService.buscarInformacion(event.target.value);
     event.target.value="";
+    this.open=!this.open;
+    this.openSearch=!this.openSearch;
+
   }
   right_side_bar() {
     this.right_sidebar = !this.right_sidebar
@@ -75,11 +79,6 @@ export class HeaderComponent implements OnInit {
 
   openHeaderMenu(){
     this.open = !this.open;
-    if(this.open){
-      this.auxClass="bg-info";
-    }else{
-      this.auxClass="";
-    }
   }
 
   openMobileNav() {
@@ -108,7 +107,7 @@ export class HeaderComponent implements OnInit {
     this.text = "";
   }
 
-  switchToggle() {
+  public switchToggle() {
     this.openToggle = !this.openToggle;
     this.toggleEvent.emit(this.openToggle);
   }

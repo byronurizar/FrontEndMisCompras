@@ -1,5 +1,5 @@
 <div class="page-main-header">
-    <div class="main-header-left" [attr.semilight-bg-color]="customize.data.header.semiLightbgColor">
+    <div class="main-header-left bg-info">
         <div class="logo-wrapper">
             <a [routerLink]="'/comercio/productos'">
                 <img src="assets/images/logo-light.png" class="image-dark" alt="" />
@@ -7,7 +7,7 @@
             </a>
         </div>
     </div>
-    <div class="main-header-right row" [attr.header-bg-color]="customize.data.header.headerBgColor">
+    <div class="main-header-right row bg-info">
         <div class="mobile-sidebar" id="mobile-sidebar">
             <div class="media-body text-right switch-sm">
                 <label class="switch">
@@ -18,16 +18,16 @@
         </div>
         
         <div class="nav-right col">
-            <ul class="nav-menus" [class.open]="open" [attr.header-bg-color]="auxClass">
+            <ul class="nav-menus" [class.open]="open">
                 <li>
-                    <!-- <form class="form-inline search-form"> -->
-                    <form class="form-inline">
+                    <form class="form-inline search-form">
+                    <!-- <form class="form-inline"> -->
                         <div class="form-group">
                             <label class="sr-only">Buscar</label>
-                            <!-- <input type="text" class="form-control-plaintext" [class.open]="openSearch" (change)="buscar($event)" value="Pruebas"
-                                placeholder="Buscar.."/> -->
-                                <input type="text" class="form-control form-control-sm " [class.open]="openSearch" (change)="buscar($event)"
+                            <input type="text" class="form-control-plaintext" [class.open]="openSearch" (change)="buscar($event)"
                                 placeholder="Buscar.."/>
+                                <!-- <input type="text" class="form-control form-control-sm " [class.open]="openSearch" (change)="buscar($event)"
+                                placeholder="Buscar.."/> -->
                             <span class="d-sm-none mobile-search" (click)="clickSearch()">
                             </span>
                         </div>
