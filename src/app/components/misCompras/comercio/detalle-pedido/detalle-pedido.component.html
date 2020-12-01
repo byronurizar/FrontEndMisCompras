@@ -21,12 +21,12 @@
                                     <div class="col-sm-6">
                                         <div class="media">
                                             <div class="media-left">
-                                                <img src="assets/images/logo-login.png" class="media-object img-60" alt="">
+                                                <img src="assets/images/site/logoweb.png" class="media-object img-80" alt="">
                                             </div>
                                             <div class="media-body m-l-20">
-                                                <h4 class="media-heading">Mis Compras</h4>
-                                                <p> miscompras.com.gt<br>
-                                                    <span class="digits">58868596</span>
+                                                <h4 class="media-heading">Natalysshop</h4>
+                                                <p>natalysshop.com<br>
+                                                    <span class="digits"><a href="tel:58639819">5863-9819</a></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -63,32 +63,32 @@
                                     <table class="table table-bordered table-striped">
                                         <tr>
                                             <td class="item"><h6 class="p-2 mb-0">Producto</h6></td>
-                                            <td class="Hours"><h6 class="p-2 mb-0">Talla</h6></td>
-                                            <td class="Rate"><h6 class="p-2 mb-0">Color</h6></td>
+                                            <td class="Hours" *ngIf="false"><h6 class="p-2 mb-0">Talla</h6></td>
+                                            <td class="Rate"  *ngIf="false"><h6 class="p-2 mb-0">Color</h6></td>
                                             <td class="Rate"><h6 class="p-2 mb-0">Cantidad</h6></td>
                                             <td class="Rate"><h6 class="p-2 mb-0">Precio</h6></td>
-                                            <td class="Rate"><h6 class="p-2 mb-0">Estado</h6></td>
+                                            <td class="Rate"  *ngIf="false"><h6 class="p-2 mb-0">Estado</h6></td>
                                         </tr>
                                         <tr *ngFor="let item of detalleProd">
                                         <td>{{item.Producto}}</td>
-                                        <td>{{item.Talla}}</td>
-                                        <td>{{item.Color}}</td>
+                                        <td *ngIf="false">{{item.Talla}}</td>
+                                        <td *ngIf="false">{{item.Color}}</td>
                                         <td>{{item.cantidad}}</td>
                                         <td>{{item.Precio| currency:'Q':'symbol'}}</td>
-                                        <td>{{item.idEstado==1?"Activo":"No se encontro disponibilidad con el proveedor"}}</td>
+                                        <td  *ngIf="false">{{item.idEstado==1?"Activo":"No se encontro disponibilidad con el proveedor"}}</td>
                                         </tr>
                                         
                                         <tr>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <!-- <td></td>
+                                            <td></td> -->
                                             <td class="Rate"><h6 class="mb-0 p-2">Costo de Envio</h6></td>
                                             <td class="payment digits"><h6 class="mb-0 p-2">{{datosPedido.costoEnvio| currency:'Q':'symbol'}}</h6></td>
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <!-- <td></td>
+                                            <td></td> -->
                                             <td class="Rate"><h6 class="mb-0 p-2">Total</h6></td>
                                             <td class="payment digits"><h6 class="mb-0 p-2">{{(total+datosPedido.costoEnvio)| currency:'Q':'symbol'}}</h6></td>
                                         </tr>

@@ -34,7 +34,7 @@
                         <ng-container *ngFor="let variant of imagenesProducto">
                             <ng-template carouselSlide class="item">
                                 <div class="item">
-                                    <img [src]="urlImagenes+variant.pathImagen+variant.codigoImagen"
+                                    <img [src]="urlImagenes+variant.pathImagen+variant.codigoImagen"  class="img-fluid"
                                         (click)="owlCar.to(variant.id.toString())" alt="">
                                 </div>
                             </ng-template>

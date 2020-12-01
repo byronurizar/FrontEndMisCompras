@@ -44,8 +44,8 @@
                   <th>Nombre</th>
                   <th>Precio</th>
                   <th>Cantidad</th>
-                  <th>Color</th>
-                  <th>Talla</th>
+                  <th *ngIf="false">Color</th>
+                  <th *ngIf="false">Talla</th>
                   <th>Eliminar</th>
                   <th>Total</th>
                 </tr>
@@ -67,8 +67,8 @@
                       </div>
                     </div>
                   </td>
-                  <td *ngIf="item.color?.idColor==0">{{item.color.descripcion}}</td>
-                  <td *ngIf="item.color?.idColor>0">
+                  <td *ngIf="item.color?.idColor==0 && false">{{item.color.descripcion}}</td>
+                  <td *ngIf="item.color?.idColor>0 && false">
                     <div class="input-group">
                       <a (click)="abrirModal(content)">{{item.color.descripcion}}&nbsp;<i class="fa fa-edit"></i></a>
                       <ng-template #content let-modal>
@@ -81,8 +81,8 @@
 
                     </div>
                   </td>
-                  <td *ngIf="item.talla?.idTalla==0">{{item.talla.descripcion}}</td>
-                  <td *ngIf="item.talla?.idTalla>0">
+                  <td *ngIf="item.talla?.idTalla==0 && false">{{item.talla.descripcion}}</td>
+                  <td *ngIf="item.talla?.idTalla>0 && false">
                     <div class="input-group">
                       <a (click)="abrirModal(content2)">{{item.talla.descripcion}}&nbsp;<i class="fa fa-edit"></i></a>
                       <ng-template #content2 let-modal>
@@ -98,7 +98,7 @@
                   <td>{{ item.producto.precio * item.cantidad | currency:'Q':'symbol'}}</td>
                 </tr>
                 <tr>
-                  <td class="total-amount" colspan="7">
+                  <td class="total-amount" colspan="5">
                     <h6 class="m-0"> <span class="f-w-600">Total:</span></h6>
                   </td>
                   <td><span><strong>{{ getTotal() | async | currency:'Q':'symbol'}} </strong></span></td>

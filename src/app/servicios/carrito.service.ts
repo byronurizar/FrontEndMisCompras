@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subscriber, Observable } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import 'rxjs/add/operator/map';
-let productos =[];// JSON.parse(sessionStorage.getItem("carritoItems")) || [];
+let productos = [];// JSON.parse(sessionStorage.getItem("carritoItems")) || [];
 @Injectable({
   providedIn: 'root'
 })
@@ -15,16 +15,16 @@ export class Carrito {
   }
 
   getTodos(): Observable<any[]> {
+    console.log("Limpiar carrito");
     const itemsList = new Observable(observer => {
       observer.next(productos);
       observer.complete();
     });
     return <Observable<any[]>>itemsList;
   }
-  public limpiarCarrito(){
-    productos=[];
-    this.itemsCarrito.subscribe(productos => productos = productos);
-    //sessionStorage.removeItem("carritoItems");
+  public limpiarCarrito() {
+    productos = [];
+    this.itemsCarrito = new BehaviorSubject([]);
   }
 
 

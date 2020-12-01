@@ -1,15 +1,14 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Products } from 'src/app/shared/model/e-commerce/product.model';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal,NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { Producto } from 'src/app/modelos/producto.model';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
 import { ListaDeseos } from 'src/app/servicios/listadeseos.service';
 import { environment } from 'src/environments/environment';
 import { ProductosService } from 'src/app/servicios/productos.service';
-import { abort } from 'process';
 
 @Component({
   selector: 'app-productos',
@@ -19,6 +18,7 @@ import { abort } from 'process';
 export class ProductosComponent implements OnInit {
   @Output() productDetail: any;
   @Output() productoDetalleVistaRapida: any;
+  @ViewChild("modalInformacion",{static:true}) modal: ElementRef;
   modalReference: NgbModalRef;
   public productos: Producto[] = [];
 
@@ -44,6 +44,14 @@ export class ProductosComponent implements OnInit {
     });
   }
 
+  abrirModal(modal){
+    let seAlerto=sessionStorage.getItem("notificacion") ||false;
+    if(!seAlerto){
+      this.modalService.open(modal,{ size: 'lg'});
+      sessionStorage.setItem("notificacion",'true');
+    }
+}
+
   // async listarProductos(idCatalogo,idCategoria) {
   //   this.conectorApi.Get(`productos/comercio/listar/${idCatalogo}/${idCategoria}`).subscribe(
   //     async (data) => {
@@ -58,7 +66,9 @@ export class ProductosComponent implements OnInit {
   //   )
   // }
   ngOnInit() {
+   // this.open();
     // this.listarProductos();
+    this.abrirModal(this.modal);
   }
   abrirDetalle(content, id: number) {
     this.modalReference=this.modalService.open(content, { centered: true, size: 'lg' });
