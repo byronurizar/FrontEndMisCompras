@@ -1,0 +1,385 @@
+/**=====================
+    52. Datepicker CSS Start
+==========================**/
+.align-content-between {
+  select {
+    &.custom-select {
+      margin: 0.5rem 0.5rem 0 0;
+      width: auto;
+    }
+  }
+}
+.ngb-dp-navigation-chevron {
+  color: $white;
+  width: 9px !important;
+  height: 9px !important;
+}
+
+.ngb-dp-arrow {
+  background-color: $primary-color;
+  align-items: center;
+  justify-content: center;
+  &.right {
+    justify-content: center !important;
+  }
+}
+
+.ngb-dp-arrow-btn:focus {
+  outline: 0px !important;
+}
+
+.custom-datepicker {
+  .ngb-dp-arrow {
+    border-radius: .25rem;
+  }
+  .ngb-dp-day, .ngb-dp-week-number, .ngb-dp-weekday {
+    width: 40px;
+  }
+}
+
+.ngb-dp-day:focus {
+  outline-color: transparent !important;
+}
+
+.custom-datepicker .bg-light, .custom-mutliple-datepicker .bg-light, .dropdown-menu .bg-light {
+  background-color: $white !important;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px !important;
+  color: $theme-body-font-color;
+}
+
+.custom-datepicker .ngb-dp-day .btn-light, .custom-mutliple-datepicker .ngb-dp-day .btn-light, .dropdown-menu .ngb-dp-day .btn-light {
+  background-color: $white !important;
+}
+
+.custom-datepicker .ngb-dp-day .bg-primary, .custom-mutliple-datepicker .ngb-dp-day .bg-primary, .dropdown-menu .ngb-dp-day .bg-primary {
+  background-color: $primary-color !important;
+}
+
+.custom-datepicker {
+  .ngb-dp-navigation-select .custom-select {
+    margin-right: .25rem;
+    &:first-child {
+      margin-left: .25rem;
+    }
+  }
+  .ngb-dp-months .ngb-dp-month .ngb-dp-week .ngb-dp-weekday {
+    color: $primary-color !important;
+  }
+}
+
+.custom-mutliple-datepicker .ngb-dp-months .ngb-dp-month .ngb-dp-week .ngb-dp-weekday, .dropdown-menu .ngb-dp-months .ngb-dp-month .ngb-dp-week .ngb-dp-weekday {
+  color: $primary-color !important;
+}
+
+.custom-mutliple-datepicker {
+  .ngb-dp-navigation-select .custom-select {
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .ngb-dp-header {
+    padding: 16px;
+  }
+  .ngb-dp-months .ngb-dp-month .ngb-dp-month-name, .ngb-dp-week {
+    padding-top: 0 !important;
+  }
+  .ngb-dp-header .ngb-dp-arrow {
+    background-color: $white;
+    .ngb-dp-navigation-chevron {
+      color: $primary-color;
+    }
+  }
+  .ngb-dp-months .ngb-dp-month .ngb-dp-month-name {
+    color: $theme-body-font-color;
+  }
+}
+
+.dropdown-menu {
+  .ngb-dp-navigation-select .custom-select {
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .ngb-dp-header {
+    padding: 16px;
+    .ngb-dp-arrow {
+      background-color: $white;
+      .ngb-dp-navigation-chevron {
+        color: $primary-color;
+      }
+    }
+  }
+  .ngb-dp-months .ngb-dp-month .ngb-dp-month-name {
+    color: $theme-body-font-color;
+  }
+}
+
+.custom-day {
+  padding: 0.185rem 0.25rem;
+  width: 2rem;
+  &.range, &:hover {
+    background-color: $primary-color !important;
+    color: $white;
+  }
+}
+
+.weekend {
+  background-color: $secondary-color !important;
+}
+
+ngb-datepicker {
+  box-shadow: 0 4px 14px rgba(174, 197, 231, 0.5);
+  border: none !important;
+}
+
+.ngb-dp-arrow-btn {
+  padding: 5px 5px 4px 7px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.custom-datepicker-dropdown .form-group .input-group .input-group-append .btn {
+  color: #495057;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+}
+
+.datepicker--day-name {
+  color: $black;
+  font-weight: bold;
+}
+
+.datepicker--cell {
+  &.-current- {
+    color: $black;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid $primary-color;
+  }
+  &.-focus- {
+    background: $primary-color;
+    color: $white;
+  }
+  &.-selected- {
+    background: $primary-color;
+  }
+}
+
+.daterangepicker.ltr {
+  color: $dark-gray;
+  z-index: 8;
+  tr {
+    font-size: 13px;
+    td {
+      height: 34px;
+      width: 34px;
+      &.in-range {
+        background-color: $auth-bg-color;
+      }
+      &.active {
+        background-color: $primary-color;
+      }
+    }
+  }
+  .ranges {
+    float: none;
+    li {
+      color: $primary-color;
+      &:hover, &.active {
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        color: $white;
+      }
+    }
+  }
+  .calendar-time select {
+    color: $dark-gray;
+  }
+}
+
+.datetime-picker .bootstrap-datetimepicker-widget.dropdown-menu {
+  width: auto;
+}
+
+.date-range-picker {
+  .theme-form {
+    margin-bottom: 30px;
+  }
+  > div:last-child .theme-form {
+    margin-bottom: 0px;
+  }
+}
+
+.daterangepicker {
+  &:before {
+    border-bottom: 7px solid $light-semi-gray;
+  }
+  .daterangepicker_input i {
+    font-size: 14px;
+    color: $semi-dark;
+  }
+  .input-mini {
+    border-color: #ddd !important;
+    font-size: 14px;
+    color: $semi-dark;
+  }
+  th, td {
+    height: 34px;
+    width: 34px;
+  }
+  th:hover, td:hover {
+    color: $dark-color;
+  }
+  th {
+    &.prev, &.next {
+      color: $white;
+      height: 34px;
+      width: 34px;
+      background-color: $primary-color;
+    }
+  }
+  td {
+    &.prev, &.next {
+      color: $white;
+      height: 34px;
+      width: 34px;
+      background-color: $primary-color;
+    }
+  }
+  th.month, td.month {
+    color: $primary-color;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+}
+
+/* time-picker css*/
+
+.time-picker-custom .ngb-tp .ngb-tp-input-container {
+  .btn-link {
+    color: $primary-color;
+  }
+  .form-control {
+    font-family: $font-open-sans;
+  }
+}
+//colors
+.datepicker--day-name {
+  color: $black;
+  font-weight: bold;
+}
+.datepicker--cell {
+  &.-current- {
+    color: $black;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid $primary-color;
+  }
+  &.-focus- {
+    background: $primary-color;
+    color: $white;
+  }
+  &.-selected- {
+    background: $primary-color;
+  }
+}
+.daterangepicker.ltr {
+  color: $dark-gray;
+  z-index: 8;
+  tr {
+    font-size: 13px;
+    td {
+      height: 34px;
+      width: 34px;
+      &.in-range {
+        background-color: $auth-bg-color;
+      }
+      &.active {
+        background-color: $primary-color;
+      }
+    }
+  }
+  .ranges {
+    float: none;
+    li {
+      color: $primary-color;
+      &:hover {
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        color: $white;
+      }
+      &.active {
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        color: $white;
+      }
+    }
+  }
+  .calendar-time select {
+    color: $dark-gray;
+  }
+}
+.datetime-picker {
+  .bootstrap-datetimepicker-widget.dropdown-menu {
+    width: auto;
+  }
+}
+.date-range-picker{
+  .theme-form{
+    margin-bottom: 30px;
+  }
+  > div{
+    &:last-child{
+      .theme-form{
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+.daterangepicker{
+  &:before {
+    border-bottom: 7px solid $light-semi-gray;
+  }
+  .daterangepicker_input {
+    i {
+      font-size: 14px;
+      color: $semi-dark;
+    }
+  }
+
+ .input-mini{
+   border-color: $light-semi-gray !important;
+   font-size: 14px;
+   color: $semi-dark;
+ }
+  th,td{
+    height: 34px;
+    width: 34px;
+    &:hover{
+      color: $dark-color;
+    }
+    &.prev,&.next{
+      color: $white;
+      height: 34px;
+      width: 34px;
+      background-color: $primary-color;
+    }
+    &.month{
+      color: $primary-color;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  }
+}
+/**=====================
+   52. Datepicker CSS End
+==========================**/
+
+
+
+

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContentDetail } from 'src/app/shared/model/e-commerce/content';
-import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ConectorApi } from 'src/app/servicios/conectorApi.service';
 import { ApiRest } from 'src/app/modelos/apiResponse.model';
@@ -17,6 +17,7 @@ import { ProductosService } from 'src/app/servicios/productos.service';
   styleUrls: ['./detalle-producto.component.scss']
 })
 export class DetalleProductoComponent implements OnInit {
+  @ViewChild("modalInformacion",{static:true}) modal: ElementRef;
   public imagenesProducto: any[] = [];
   public producto: any = {};
   public tallasDisponibles: any;
@@ -68,7 +69,7 @@ public codigoProducto=0;
 
   public urlImagenes = environment.urlImagnes;
 
-  constructor(private conectorApi: ConectorApi, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, config: NgbRatingConfig, private cartService: Carrito,public productoService:ProductosService) {
+  constructor(private conectorApi: ConectorApi, private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, config: NgbRatingConfig, private cartService: Carrito,public productoService:ProductosService, private modalService: NgbModal) {
     this.allContent = ContentDetail.ContentDetails;
 
     //for rating 
@@ -94,9 +95,16 @@ public codigoProducto=0;
 
   }
   ngOnInit() {
-
+    this.abrirModal(this.modal);
   }
 
+  abrirModal(modal){
+    let seAlerto=sessionStorage.getItem("notificacion") ||false;
+    if(!seAlerto){
+      this.modalService.open(modal,{ size: 'lg'});
+      sessionStorage.setItem("notificacion",'true');
+    }
+}
 
   infoProducto(idProducto) {
     try {
