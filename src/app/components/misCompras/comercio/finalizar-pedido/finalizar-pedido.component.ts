@@ -103,8 +103,6 @@ if(idDireccion){
           this.toastrService.error(dataErrror.error, 'Alerta!');
         }
       )
-
-      console.log("Informacion pedido", json);
     } else {
       this.toastrService.error("Debe de seleccionar una dirección para poder realizar la entrega", "Alerta!");
     }
@@ -156,8 +154,6 @@ if(idDireccion){
           this.direcciones = dat.data;
           if(idDireccion>0){
             this.itemDireccion=this.direcciones.find(item=>item.id===idDireccion);
-            console.log("Item direccion registrado",this.itemDireccion);
-          
           }else if(idDireccion==0){
             if(this.direcciones.length>0){
               this.itemDireccion = this.direcciones[0];

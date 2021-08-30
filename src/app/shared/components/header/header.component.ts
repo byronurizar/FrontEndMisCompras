@@ -45,8 +45,8 @@ export class HeaderComponent implements OnInit {
       this.items = menuItems
     });
     this.cartItems = this.cartService.getTodos();
+    console.log({items:this.cartItems})
     this.cartItems.subscribe(selectCartItems => this.selectCartItems = selectCartItems)
-    console.log("Datos carrito",this.selectCartItems);
   }
 
 

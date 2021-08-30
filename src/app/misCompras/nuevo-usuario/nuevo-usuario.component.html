@@ -5,16 +5,12 @@
             <div class="col-md-4 p-0">
                 <div class="auth-innerleft">
                     <div class="text-center">
-                        <img src="assets/images/logo-login.png" class="logo-login" alt="">
+                        <img src="assets/images/site/logoweb.png" alt="Logo empresa">
                         <hr>
                         <div class="social-media">
                             <ul class="list-inline">
                                 <li class="list-inline-item"><i class="fa fa-facebook txt-fb" aria-hidden="true"></i>
                                 </li>
-                                <li class="list-inline-item"><i class="fa fa-google-plus txt-google-plus"
-                                        aria-hidden="true"></i></li>
-                                <li class="list-inline-item"><i class="fa fa-twitter txt-twitter"
-                                        aria-hidden="true"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -68,6 +64,10 @@
                                     <div class="col-md-3">
                                         <button type="submit" [disabled]="!validationForm.valid"
                                             class="btn btn-secondary">Registrarse</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <a  [routerLink]="['/login']"
+                                            class="btn btn-primary">Ya tengo una cuenta</a>
                                     </div>
                                 </div>
                                 <div class="theme-form">

@@ -1,3 +1,17 @@
+<ng-template #modalInformacion let-modal>
+    <div class="modal-header" style="border-bottom: 0px;">
+        <button type="button" class="close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="padding: 0%;">
+        <app-acerca-de></app-acerca-de>
+    </div>
+</ng-template>
+
+
+
 <!-- Container-fluid starts -->
 <div class="container-fluid" *ngIf="productoService.productos.length>0">
     <div class="page-header">

@@ -1,3 +1,15 @@
+<ng-template #modalInformacion let-modal>
+    <div class="modal-header" style="border-bottom: 0px;">
+        <button type="button" class="close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="padding: 0%;">
+        <app-acerca-de></app-acerca-de>
+    </div>
+</ng-template>
+
 <div class="container-fluid">
     <div class="page-header">
         <div class="row">
@@ -34,7 +46,7 @@
                         <ng-container *ngFor="let variant of imagenesProducto">
                             <ng-template carouselSlide class="item">
                                 <div class="item">
-                                    <img [src]="urlImagenes+variant.pathImagen+variant.codigoImagen"
+                                    <img [src]="urlImagenes+variant.pathImagen+variant.codigoImagen"  class="img-fluid"
                                         (click)="owlCar.to(variant.id.toString())" alt="">
                                 </div>
                             </ng-template>
