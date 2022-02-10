@@ -79,7 +79,7 @@
     "ngx-print": "^1.2.0-beta.3",
     "ngx-rangeslider-component": "^1.0.6",
     "ngx-toastr": "^10.2.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
     "screenfull": "^4.2.1",
